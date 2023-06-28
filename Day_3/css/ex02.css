@@ -1,0 +1,36 @@
+* {
+    font-family: 'Roboto', sans-serif;
+}
+
+.feedback h2 {
+    text-align: center;
+}
+
+.feedback hr {
+    text-align: center;
+    width: 50px;
+    height: 3px;
+    background-color: blue;
+    border: 0;
+}
+
+.feedback-list {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.feedback-list .feedback-item {
+    display: flex;
+    width: 33.33%;
+}
+
+.feedback-list .feedback-item img {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.feedback-list .feedback-item blockquote {
+    width: 200px;
+}

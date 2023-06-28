@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./css/ex03.css" />
+    <title>Form Access Manager</title>
+  </head>
+  <body>
+    <form action="">
+      <div>
+        <label for="username">Username:</label>
+        <input type="text" name="username" id="username" required="required" />
+      </div>
+
+      <div>
+        <label for="password">Password:</label>
+        <input type="password" name="password" id="password" />
+      </div>
+
+      <div>
+        <label for="city">City of Employment:</label>
+        <input type="text" name="city" id="city" />
+      </div>
+
+      <div>
+        <label for="server">Web server:</label>
+        <select name="server" id="server">
+          <option value="" hidden>--Choose a server--</option>
+        </select>
+      </div>
+
+      <div class="first">
+        <label>Please specify your role:</label>
+        <div class="content">
+          <label> <input type="radio" name="role" value="0" /> Admin </label>
+          <label> <input type="radio" name="role" value="1" /> Engineer </label>
+          <label> <input type="radio" name="role" value="2" /> Manager </label>
+          <label> <input type="radio" name="role" value="3" /> Guest </label>
+        </div>
+      </div>
+
+      <div class="first">
+        <label>Single Sign-on to the following:</label>
+        <div class="content">
+          <label> <input type="checkbox" name="role" value="0" /> Mail </label>
+          <label>
+            <input type="checkbox" name="role" value="1" /> Payroll
+          </label>
+          <label>
+            <input type="checkbox" name="role" value="2" /> Self-service
+          </label>
+        </div>
+      </div>
+
+      <div class="btn">
+        <button type="submit">Login</button>
+        <button type="reset">Reset</button>
+      </div>
+    </form>
+  </body>
+</html>

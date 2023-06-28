@@ -1,0 +1,17 @@
+div.first {
+    display: flex;
+}
+
+div.content {
+    display: flex;
+    flex-direction: column;
+}
+
+div.first > label {
+    display: flex;
+    align-items: center;
+}
+
+.btn {
+    margin-left: 100px;
+}

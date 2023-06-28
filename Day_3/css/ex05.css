@@ -1,0 +1,28 @@
+section {
+    text-align: center;
+}
+
+h2 {
+    font-size: 40px;
+}
+
+h2 > span {
+    color: rgb(68, 101, 185);
+}
+
+button.first-btn {
+    width: 150px;
+    height: 40px;
+    font-size: 20px;
+    color: #fff;
+    background-color: #6580a3;
+    border: none;
+}
+
+button.next-btn {
+    width: 150px;
+    height: 40px;
+    color: #fff;
+    background-color: #000;
+    margin-top: 20px;
+}
