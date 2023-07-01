@@ -3,6 +3,8 @@ footer {
     height: 190px;
     border-radius: 10px;
     background-color: #10455d;
+    margin: 0 auto;
+    margin-top: 50px;
 }
 
 form {
