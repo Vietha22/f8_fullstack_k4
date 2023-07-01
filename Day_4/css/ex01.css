@@ -1,0 +1,53 @@
+footer {
+    width: 70%;
+    height: 190px;
+    border-radius: 10px;
+    background-color: #10455d;
+}
+
+form {
+    padding-top: 1px;
+    padding-left: 40px;
+}
+
+h1 {
+    color: #fff;
+}
+
+span {
+    color: #d0bb19;
+}
+
+p {
+    color: #fff;
+}
+
+input {
+    width: 250px;
+    height: 30px;
+    border-radius: 5px;
+    font-size: 14px;
+    text-indent: 10px;
+}
+
+button {
+    width: 240px;
+    height: 35.2px;
+    border-radius: 5px;
+    font-size: 14px;
+    color: #000;
+    background-color: yellow;
+}
+
+footer:hover input::placeholder {
+    color: #d0bb19;
+}
+
+footer:hover input {
+    background-color: #ddd;
+}
+
+footer:hover button {
+    color: #fff;
+    background-color: #d0bb19;
+}

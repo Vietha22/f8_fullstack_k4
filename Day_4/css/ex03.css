@@ -1,0 +1,216 @@
+section.best-seller {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.best-seller h1 {
+    font-size: 40px;
+    margin-bottom: 15px;
+}
+
+div.product-tab {
+    display: flex;
+}
+
+input[type="radio"] {
+    display: none;
+}
+
+.product-tab label span {
+    display: block;
+    width: 150px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    margin-left: 3px;
+    background-color: #f1e9e9;
+}
+
+input:nth-of-type(1):checked ~ .product-tab label:nth-of-type(1) span {
+    color: #fff;
+    background-color: rgb(69, 4, 115)
+}
+
+input:nth-of-type(2):checked ~ .product-tab label:nth-of-type(2) span {
+    color: #fff;
+    background-color: rgb(69, 4, 115)
+}
+
+input:nth-of-type(3):checked ~ .product-tab label:nth-of-type(3) span {
+    color: #fff;
+    background-color: rgb(69, 4, 115)
+}
+
+input:nth-of-type(4):checked ~ .product-tab label:nth-of-type(4) span {
+    color: #fff;
+    background-color: rgb(69, 4, 115)
+}
+
+input:nth-of-type(5):checked ~ .product-tab label:nth-of-type(5) span {
+    color: #fff;
+    background-color: rgb(69, 4, 115)
+}
+
+.product-type {
+    width: 100%;
+}
+
+.product-type ul {
+    display: flex;
+    list-style: none;
+    width: 80%;
+    margin: 0 auto;
+    margin-top: 70px;
+}
+
+.product-type ul li {
+    width: 25%;
+}
+
+.product-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.product-item .product-img {
+    position: relative;
+    display: flex;
+    width: 80%;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+}
+
+.product-item .product-img img {
+    object-fit: contain;
+    width: 100%;
+    height: 250px;
+}
+
+.product-item .product-img .btn-action {
+    position: absolute;
+    top: 220px;
+    width: 100%;
+    height: 40px;
+    color: #fff;
+    border: none;
+    background-color: rgb(69, 4, 115);
+    line-height: 40px;
+    text-align: center;
+    opacity: 0;
+}
+
+.product-item .product-img:hover .btn-action {
+    opacity: 1;
+}
+
+/* Hover đổi ảnh */
+.skincare .product-item .product-img:hover img[src^="https"]  {
+    content: url("https://chiaki.vn/upload/news/content/2021/07/san-pham-skincare-cho-da-hon-hop-thien-dau-bioderma-jpg-1626750455-20072021100735.jpg");
+    object-fit: contain;
+    width: 100%;
+    height: 250px;
+}
+
+.haircare .product-item .product-img:hover img[src^="https"]  {
+    content: url("https://yoy.vn/images/product/product_1639580237_variable_gallery_dau-goi-pantene-pro-v-tim-total-damage-care-phuc-hoi-toc-hu-ton.jpeg");
+    object-fit: contain;
+    width: 100%;
+    height: 250px;
+}
+
+.cosmetics .product-item .product-img:hover img[src^="https"]  {
+    content: url("https://cdn-amz.woka.io/images/I/61LMDKCHONL.jpg");
+    object-fit: contain;
+    width: 100%;
+    height: 250px;
+}
+
+.fragrance .product-item .product-img:hover img[src^="https"]  {
+    content: url("https://m.media-amazon.com/images/I/51auJtbL9ZL._SX466_.jpg");
+    object-fit: contain;
+    width: 100%;
+    height: 250px;
+}
+
+.makeup .product-item .product-img:hover img[src^="https"] {
+    content: url("https://phanphoimyphamgiasi.com/wp-content/uploads/2021/06/son-kem-li-romand-zero-velvet-tint-mau-18-dncosmetics.jpg");
+    object-fit: contain;
+    width: 100%;
+    height: 250px;
+}
+
+/* Rate star */
+.rate-star {
+    margin-top: 50px;
+}
+
+.rate-star .fa-star {
+    color: #ddd;
+}
+
+.rate-star .checked {
+    color: orange;
+}
+
+.product-item h3 {
+    font-weight: normal;
+    font-size: 16px;
+    margin-bottom: 0px;
+}
+
+.product-item p {
+    font-weight: bold;
+}
+
+/* Check đổi tab */
+
+/* Tab 1 */
+input:nth-of-type(1):checked ~ .skincare {
+    display: block;
+}
+
+input:nth-of-type(1):checked ~ .haircare, .cosmetics, .fragrance, .makeup {
+    display: none;
+}
+
+/* Tab 2 */
+input:nth-of-type(2):checked ~ .haircare {
+    display: block;
+}
+
+input:nth-of-type(2):checked ~ .skincare, .cosmetics, .fragrance, .makeup {
+    display: none;
+}
+
+/* Tab 3 */
+input:nth-of-type(3):checked ~ .cosmetics {
+    display: block;
+}
+
+input:nth-of-type(3):checked ~ .skincare, .haircare, .fragrance, .makeup {
+    display: none;
+}
+
+/* Tab 4 */
+input:nth-of-type(4):checked ~ .fragrance {
+    display: block;
+}
+
+input:nth-of-type(4):checked ~ .skincare, .haircare, .cosmetics, .makeup {
+    display: none;
+}
+
+/* Tab 5 */
+input:nth-of-type(5):checked ~ .makeup {
+    display: block;
+}
+
+input:nth-of-type(5):checked ~ .skincare, .haircare, .cosmetics, .fragrance {
+    display: none;
+}

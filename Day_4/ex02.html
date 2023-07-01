@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Bebas+Neue&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./css/ex02.css" />
+    <title>Form đặt bàn</title>
+  </head>
+  <body>
+    <section class="form-reservation">
+      <form>
+        <h1>RESERVATION</h1>
+        <h2>Book your table</h2>
+
+        <div class="form-row">
+          <input type="text" placeholder="NAME" />
+          <input type="email" placeholder="EMAIL" />
+        </div>
+        <div class="form-row">
+          <input
+            type="text"
+            placeholder="DATE"
+            onfocus="(this.type='date')"
+            onblur="(this.type='text')"
+          />
+          <input
+            type="text"
+            placeholder="TIME"
+            onfocus="(this.type='time')"
+            onblur="(this.type='text')"
+          />
+        </div>
+        <div class="form-row">
+          <input type="text" placeholder="PEOPLE" />
+          <button>Find A Table</button>
+        </div>
+      </form>
+    </section>
+  </body>
+</html>
