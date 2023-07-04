@@ -123,9 +123,9 @@ div.form-input textarea {
   border-color: #ddd;
   border-left: none;
   border-top-color: #dddddd57;
-  text-indent: 10px;
   margin-left: 50px;
   padding-right: 40px;
+  padding-left: 10px;
 }
 
 div.form-input select,
