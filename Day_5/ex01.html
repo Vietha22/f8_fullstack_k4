@@ -21,8 +21,15 @@
 
         <div class="form-input">
           <div class="form-input-item">
-            <input class="form-active" type="text" placeholder="Your name" />
-            <span class="form-icon1"><i class="fa-solid fa-user"></i></span>
+            <input
+              class="form-active"
+              id="name"
+              type="text"
+              placeholder="Your name"
+            />
+            <label for="name"
+              ><span class="form-icon1"><i class="fa-solid fa-user"></i></span
+            ></label>
             <span class="tooltip">Enter your name</span>
             <div>
               <span class="icon icon-show"
@@ -34,10 +41,14 @@
           <div class="form-input-item">
             <input
               class="form-active"
+              id="email"
               type="email"
               placeholder="your@domain.com"
             />
-            <span class="form-icon1"><i class="fa-solid fa-envelope"></i></span>
+            <label for="email"
+              ><span class="form-icon1"
+                ><i class="fa-solid fa-envelope"></i></span
+            ></label>
             <span class="tooltip">Enter your email</span>
             <div>
               <span class="icon icon-show"
@@ -47,22 +58,31 @@
             </div>
           </div>
           <div class="form-input-item">
-            <input class="form-active" type="text" placeholder="+44 00 123" />
-            <span class="form-icon1"
-              ><i class="fa-solid fa-mobile-screen-button"></i
-            ></span>
+            <input
+              class="form-active"
+              id="phone"
+              type="text"
+              placeholder="+44 00 123"
+            />
+            <label for="phone">
+              <span class="form-icon1"
+                ><i class="fa-solid fa-mobile-screen-button"></i
+              ></span>
+            </label>
             <span class="tooltip">Enter your phone</span>
             <div>
               <span class="icon icon-hide"><i class="fa-solid fa-x"></i></span>
             </div>
           </div>
           <div class="form-input-item">
-            <select class="form-active">
+            <select class="form-active" id="subject">
               <option value="" hidden>Subject</option>
               <option value="1">JavaScript</option>
               <option value="2">HTML</option>
             </select>
-            <span class="form-icon1"><i class="fa-solid fa-book"></i></span>
+            <label for="subject"
+              ><span class="form-icon1"><i class="fa-solid fa-book"></i></span
+            ></label>
             <span class="tooltip">Choose your subject</span>
             <span class="icon icon-show fa fa-stack">
               <i class="fa-solid fa-caret-down"></i>
@@ -70,8 +90,15 @@
             </span>
           </div>
           <div class="form-input-item form-message">
-            <textarea class="form-active" placeholder="Message"></textarea>
-            <span class="form-icon1"><i class="fa-solid fa-message"></i></span>
+            <textarea
+              class="form-active"
+              id="msg"
+              placeholder="Message"
+            ></textarea>
+            <label for="msg"
+              ><span class="form-icon1"
+                ><i class="fa-solid fa-message"></i></span
+            ></label>
             <span class="tooltip msg">Write your message</span>
             <div>
               <span class="icon icon-show icon-message"

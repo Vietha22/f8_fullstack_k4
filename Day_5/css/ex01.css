@@ -99,7 +99,7 @@ div.form-input .form-input-item {
   top: 0;
 }
 
-div.form-input .form-icon1 {
+div.form-input .form-input-item label {
   position: absolute;
   line-height: 50px;
   width: 50px;
@@ -112,7 +112,7 @@ div.form-input .form-message {
   height: 200px;
 }
 
-.form-message .form-icon1 {
+.form-message label {
   height: 200px;
 }
 
@@ -156,8 +156,8 @@ div.form-input select::placeholder {
   border-color: #000;
 }
 
-.form-active:focus + .form-icon1,
-.form-input-item:hover .form-icon1 {
+div.form-input .form-active:focus + label,
+div.form-input .form-input-item:hover label {
   background-color: #000;
 }
 
