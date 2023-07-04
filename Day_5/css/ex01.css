@@ -181,13 +181,36 @@ div.form-last {
 }
 
 div.form-last input {
+  display: none;
+}
+
+div.form-last input + label {
+  display: flex;
+  align-items: center;
+}
+
+div.form-last input + label span {
+  border: 3px solid #a8a4a4;
   width: 20px;
   height: 20px;
+  text-align: center;
+  font-size: 18px;
+  line-height: 20px;
+  cursor: pointer;
+}
+
+div.form-last input + label span .fa-solid {
+  visibility: hidden;
+}
+
+div.form-last input:checked + label span .fa-solid {
+  visibility: visible;
 }
 
 div.form-last p {
   margin-left: 5px;
   font-size: 14px;
+  cursor: pointer;
 }
 
 div.form-last button {
