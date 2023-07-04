@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="./css/ex01.css" />
+    <title>Form Contact</title>
+  </head>
+  <body>
+    <section>
+      <form class="form-contact">
+        <h1 class="form-title">Hey there</h1>
+        <p>
+          <span>We'd like to hear form you.</span> Send us your message or just
+          say hi with our contact form or directly via phone, we love to chat.
+        </p>
+
+        <div class="form-input">
+          <div class="form-input-item">
+            <input class="form-active" type="text" placeholder="Your name" />
+            <span class="form-icon1"><i class="fa-solid fa-user"></i></span>
+            <span class="tooltip">Enter your name</span>
+            <div>
+              <span class="icon icon-show"
+                ><i class="fa-solid fa-star"></i
+              ></span>
+              <span class="icon icon-hide"><i class="fa-solid fa-x"></i></span>
+            </div>
+          </div>
+          <div class="form-input-item">
+            <input
+              class="form-active"
+              type="email"
+              placeholder="your@domain.com"
+            />
+            <span class="form-icon1"><i class="fa-solid fa-envelope"></i></span>
+            <span class="tooltip">Enter your email</span>
+            <div>
+              <span class="icon icon-show"
+                ><i class="fa-solid fa-star"></i
+              ></span>
+              <span class="icon icon-hide"><i class="fa-solid fa-x"></i></span>
+            </div>
+          </div>
+          <div class="form-input-item">
+            <input class="form-active" type="text" placeholder="+44 00 123" />
+            <span class="form-icon1"
+              ><i class="fa-solid fa-mobile-screen-button"></i
+            ></span>
+            <span class="tooltip">Enter your phone</span>
+            <div>
+              <span class="icon icon-hide"><i class="fa-solid fa-x"></i></span>
+            </div>
+          </div>
+          <div class="form-input-item">
+            <select class="form-active">
+              <option value="" hidden>Subject</option>
+              <option value="1">Subject 1</option>
+              <option value="2">Subject 2</option>
+            </select>
+            <span class="form-icon1"><i class="fa-solid fa-book"></i></span>
+            <span class="tooltip">Choose your subject</span>
+            <span class="icon icon-show fa fa-stack">
+              <i class="fa-solid fa-caret-down"></i>
+              <i class="fa-solid fa-caret-up"></i>
+            </span>
+          </div>
+          <div class="form-input-item form-message">
+            <textarea class="form-active" placeholder="Message"></textarea>
+            <span class="form-icon1"><i class="fa-solid fa-message"></i></span>
+            <span class="tooltip msg">Write your message</span>
+            <div>
+              <span class="icon icon-show icon-message"
+                ><i class="fa-solid fa-star"></i
+              ></span>
+              <span class="icon icon-hide icon-message"
+                ><i class="fa-solid fa-x"></i
+              ></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-last">
+          <input type="checkbox" id="check" />
+          <label for="check"><p>Send me a copy of this message</p></label>
+
+          <button>SEND</button>
+        </div>
+      </form>
+    </section>
+  </body>
+</html>

@@ -1,0 +1,201 @@
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Lobster&display=swap");
+
+.form-contact {
+  width: 600px;
+  margin-left: 50%;
+  transform: translateX(-50%);
+  font-family: "Lato", sans-serif;
+}
+
+.form-title {
+  font-family: "Lobster", cursive;
+  font-size: 40px;
+  font-weight: 400;
+}
+
+p {
+  color: #c6c1c1;
+}
+
+p span {
+  color: red;
+}
+
+div.form-input {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+div.form-input .form-input-item {
+  position: relative;
+  display: flex;
+  width: 100%;
+  height: 50px;
+  margin-bottom: 20px;
+}
+
+.form-input-item .tooltip {
+  visibility: hidden;
+  position: absolute;
+  width: 120px;
+  height: 30px;
+  line-height: 30px;
+  font-size: 12px;
+  background-color: rgba(0, 0, 0, 0.784);
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+  bottom: 130%;
+  left: 5%;
+  z-index: 1;
+}
+
+.form-input-item .msg {
+  bottom: 108%;
+}
+
+.form-input-item .tooltip::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 30%;
+  margin-left: -5px;
+  border-width: 8px;
+  border-style: solid;
+  border-color: rgba(0, 0, 0, 0.784) transparent transparent transparent;
+}
+
+.icon {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 20px;
+  font-size: 10px;
+  color: #ddd;
+  visibility: hidden;
+}
+
+.icon-show {
+  visibility: visible;
+}
+
+.icon-message {
+  top: 10%;
+}
+
+.fa-stack {
+  right: 2px;
+}
+
+.fa-stack .fa-caret-down {
+  position: absolute;
+  bottom: 0;
+}
+
+.fa-stack .fa-caret-up {
+  position: absolute;
+  top: 0;
+}
+
+div.form-input .form-icon1 {
+  position: absolute;
+  line-height: 50px;
+  width: 50px;
+  color: #fff;
+  background-color: #ddd;
+  text-align: center;
+}
+
+div.form-input .form-message {
+  height: 200px;
+}
+
+.form-message .form-icon1 {
+  height: 200px;
+}
+
+div.form-input input,
+div.form-input select,
+div.form-input textarea {
+  width: 100%;
+  border-color: #ddd;
+  border-left: none;
+  border-top-color: #dddddd57;
+  text-indent: 10px;
+  margin-left: 50px;
+  padding-right: 40px;
+}
+
+div.form-input select,
+div.form-input textarea {
+  border: 1.6px solid #ddd;
+  border-left: none;
+}
+
+div.form-input select {
+  appearance: none;
+  color: #8e8e8e;
+}
+
+div.form-input textarea {
+  text-indent: 0;
+  padding-top: 10px;
+  padding-left: 10px;
+}
+
+div.form-input select::placeholder {
+  color: #ddd;
+}
+
+/* Hình 2, 3 */
+.form-active:focus,
+.form-input-item:hover .form-active {
+  outline: none;
+  border-color: #000;
+}
+
+.form-active:focus + .form-icon1,
+.form-input-item:hover .form-icon1 {
+  background-color: #000;
+}
+
+.form-active:focus ~ .tooltip {
+  visibility: visible;
+}
+
+.form-active:focus ~ div .icon-show {
+  visibility: hidden;
+}
+
+.form-active:focus ~ div .icon-hide {
+  visibility: visible;
+}
+/* End */
+
+div.form-last {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+div.form-last input {
+  width: 20px;
+  height: 20px;
+}
+
+div.form-last p {
+  margin-left: 5px;
+  font-size: 14px;
+}
+
+div.form-last button {
+  width: 120px;
+  height: 35px;
+  margin-left: auto;
+  border: none;
+  color: #fff;
+  background-color: red;
+  cursor: pointer;
+}
