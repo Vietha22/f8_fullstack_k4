@@ -73,12 +73,16 @@ div.form-input .form-input-item {
   transform: translateY(-50%);
   right: 20px;
   font-size: 10px;
-  color: #ddd;
   visibility: hidden;
 }
 
 .icon-show {
+  color: #ddd;
   visibility: visible;
+}
+
+.icon-hide {
+  color: #000;
 }
 
 .icon-message {
@@ -137,7 +141,15 @@ div.form-input textarea {
 
 div.form-input select {
   appearance: none;
+}
+
+div.form-input select:invalid {
   color: #8e8e8e;
+}
+
+div.form-input select option:nth-of-type(2),
+div.form-input select option:nth-of-type(3) {
+  color: #000;
 }
 
 div.form-input textarea {
@@ -160,6 +172,10 @@ div.form-input select::placeholder {
 div.form-input .form-active:focus + label,
 div.form-input .form-input-item:hover label {
   background-color: #000;
+}
+
+div.form-input .form-input-item:hover .icon-show {
+  color: #000;
 }
 
 .form-active:focus ~ .tooltip {
