@@ -174,7 +174,8 @@ div.form-input .form-input-item:hover label {
   background-color: #000;
 }
 
-div.form-input .form-input-item:hover .icon-show {
+div.form-input .form-input-item:hover .icon-show,
+div.form-input .form-input-item .form-active:focus ~ .icon-show {
   color: #000;
 }
 
