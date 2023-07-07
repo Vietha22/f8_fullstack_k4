@@ -1,0 +1,146 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap");
+
+html {
+  font-size: 10px;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+  background: #ebf5fe;
+}
+
+.service-layout {
+  display: flex;
+  flex-wrap: wrap;
+  width: 70%;
+  gap: 20px;
+  margin-top: 150px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.service-item {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 10px;
+  width: calc(100% / 3 - 25px);
+  height: 180px;
+  background-color: #fff;
+  box-shadow: 0px 0px 9px 3px #88888822;
+  border: 2.2px solid transparent;
+  border-radius: 5px;
+}
+
+.service-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 5px;
+  margin-left: 20px;
+}
+
+.service-item:hover {
+  border-color: red;
+  box-shadow: none;
+  cursor: pointer;
+}
+
+.service-item .service-title span.service-item-icon {
+  width: 50px;
+  height: 50px;
+  text-align: center;
+  line-height: 50px;
+  font-size: 25px;
+  color: #fff;
+  border-radius: 50%;
+}
+
+.service-item:nth-of-type(1) .service-title span.service-item-icon {
+  transform: rotate(45deg);
+}
+
+.service-item:nth-of-type(4) .service-title span.service-item-icon {
+  transform: rotate(-90deg);
+}
+
+/* Màu */
+.service-item:nth-of-type(1) .service-title span.service-item-icon {
+  background-image: linear-gradient(
+    to right,
+    rgb(244, 115, 137),
+    rgb(241, 164, 177)
+  );
+}
+
+.service-item:nth-of-type(2) .service-title span.service-item-icon {
+  background-image: linear-gradient(
+    to right,
+    rgb(102, 124, 95),
+    rgb(173, 216, 159)
+  );
+}
+
+.service-item:nth-of-type(3) .service-title span.service-item-icon {
+  background-image: linear-gradient(
+    to right,
+    rgb(212, 170, 32),
+    rgba(250, 207, 68, 0.696)
+  );
+}
+
+.service-item:nth-of-type(4) .service-title span.service-item-icon {
+  background-image: linear-gradient(
+    to right,
+    rgb(75, 96, 190),
+    rgb(159, 174, 242)
+  );
+}
+
+.service-item:nth-of-type(5) .service-title span.service-item-icon {
+  background-image: linear-gradient(
+    to right,
+    rgb(112, 36, 166),
+    rgb(165, 69, 233)
+  );
+}
+
+.service-item:nth-of-type(6) .service-title span.service-item-icon {
+  background-image: linear-gradient(
+    to right,
+    rgb(56, 158, 23),
+    rgb(94, 224, 50)
+  );
+}
+
+.service-title h2 {
+  width: 200px;
+  font-size: 1.9rem;
+}
+
+.service-title h2 span {
+  display: block;
+}
+
+.service-item p {
+  font-size: 1.2rem;
+  margin-left: 20px;
+  margin-right: 20px;
+  color: #666666;
+}
+
+.service-item a {
+  font-size: 1.3rem;
+  font-weight: 500;
+  margin-top: 15px;
+  margin-left: 20px;
+  text-decoration: none;
+  color: blue;
+  margin-bottom: 5px;
+}

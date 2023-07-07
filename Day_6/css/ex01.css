@@ -1,0 +1,128 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+nav {
+  position: relative;
+  font-family: "Open Sans", sans-serif;
+  border: 1px solid #6666664e;
+  width: 80%;
+  height: 60px;
+  line-height: 60px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 20px;
+  color: #666;
+}
+
+nav.menu-list {
+  display: flex;
+}
+
+.menu-list .menu-icon:not(.menu-blank):hover {
+  background-color: #2da5da;
+  color: #fff;
+  cursor: pointer;
+}
+
+.menu-icon a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.menu-home {
+  width: 70px;
+  border-right: 1px solid #6666664e;
+}
+
+.menu-home a {
+  height: 58.4px;
+}
+
+.menu-blog {
+  width: 120px;
+  border-right: 1px solid #6666664e;
+}
+
+.menu-contact {
+  position: absolute;
+  border-left: 1px solid #6666664e;
+  width: 150px;
+  top: 0;
+  right: 0;
+}
+
+div.menu-list-title {
+  position: relative;
+  width: 150px;
+  border-right: 1px solid #6666664e;
+}
+
+div.menu-list-title:hover div.menu-downdrop {
+  display: block;
+}
+
+div.menu-list-heading {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+div.menu-list-heading:hover {
+  background-color: #2da5da;
+  color: #fff;
+  cursor: pointer;
+}
+
+div.menu-downdrop {
+  display: none;
+}
+
+div.menu-list-title span.dropup {
+  position: absolute;
+  top: 54px;
+  left: 22px;
+  border-left-width: 8px;
+  border-right-width: 8px;
+  border-bottom-width: 8px;
+  border-style: solid;
+  border-color: transparent transparent #fff transparent;
+  z-index: 1;
+}
+
+ul.menu-list-item {
+  list-style: none;
+  position: absolute;
+  top: 61px;
+  width: 300px;
+  box-shadow: 0px 0px 7px 4px #8888883f;
+}
+
+ul.menu-list-item li {
+  border: 1px solid #8888883f;
+  display: flex;
+  justify-content: center;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+ul.menu-list-item li a {
+  width: 95%;
+  height: 50px;
+  line-height: 50px;
+  display: flex;
+  gap: 10px;
+  padding-left: 20px;
+}
+
+ul.menu-list-item li a:hover {
+  background-color: #2da5da;
+  color: #fff;
+  cursor: pointer;
+}

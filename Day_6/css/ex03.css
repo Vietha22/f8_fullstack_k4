@@ -1,0 +1,230 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;600;700&display=swap");
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Nunito", sans-serif;
+  font-size: 10px;
+  background-image: url("http://uiwebsoft.com/justlog/login-one/images/login-bg2.jpg");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position-y: bottom;
+}
+
+form.form-box {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  display: flex;
+  width: 800px;
+  height: 480px;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0px 0px 9px 5px #88888820;
+  border-radius: 15px;
+}
+
+div.form-content {
+  display: flex;
+  flex-direction: column;
+  width: 40%;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+  background-color: #ff574d;
+  border-top-left-radius: 15px;
+  border-bottom-left-radius: 15px;
+  gap: 20px;
+}
+
+.form-content h2 {
+  color: #fff;
+  font-size: 2rem;
+}
+
+.form-content h2 span {
+  display: inline-block;
+  background-color: #fff;
+  color: #ff574d;
+  width: 40px;
+  text-align: center;
+  border-radius: 4px;
+}
+
+.form-content p {
+  text-align: center;
+  font-size: 1rem;
+  margin-left: 5px;
+  margin-right: 5px;
+  margin-bottom: 20px;
+  color: #fff;
+}
+
+.form-content button {
+  font-family: "Nunito", sans-serif;
+  width: 150px;
+  height: 40px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #ff574d;
+  background-color: #fff;
+  border: none;
+  border-radius: 3px;
+  margin-bottom: 20px;
+  cursor: pointer;
+}
+
+.form-content ul {
+  display: flex;
+  gap: 13px;
+  list-style: none;
+  font-size: 1rem;
+  color: #fff;
+}
+
+.form-content ul li {
+  width: 35px;
+  height: 35px;
+  line-height: 35px;
+  text-align: center;
+  background-color: #c6322a65;
+  border-radius: 4px;
+}
+
+div.form-arrow-icon {
+  position: absolute;
+  left: 40%;
+  transform: translateX(-50%);
+  width: 40px;
+  height: 40px;
+  text-align: center;
+  line-height: 40px;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #ff574d;
+  border-radius: 50%;
+  background-color: #fff;
+  box-shadow: 0px 0px 5px 3px #8888883f;
+}
+
+div.form-arrow-icon:hover {
+  background-color: #faf7f7;
+  cursor: pointer;
+}
+
+div.form-login {
+  display: flex;
+  flex-direction: column;
+  width: 60%;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+  color: #717171;
+  background-color: #fff;
+  border-top-right-radius: 15px;
+  border-bottom-right-radius: 15px;
+  gap: 20px;
+}
+
+.form-login h3 {
+  position: relative;
+  font-size: 1.6rem;
+  color: #272323;
+}
+
+.form-login h3::after {
+  content: "";
+  width: 55px;
+  text-align: center;
+  border-bottom: 2px solid #ff574d;
+  position: absolute;
+  top: 48px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1;
+}
+
+.form-login h3 span {
+  color: #ff574d;
+}
+
+.form-login input[type="email"] {
+  font-family: "Nunito", sans-serif;
+  width: 360px;
+  height: 45px;
+  font-size: 1rem;
+  text-indent: 20px;
+  color: #717171;
+  margin-top: 10px;
+  margin-bottom: 7px;
+  border: none;
+  border-radius: 3px;
+  box-shadow: 0px 0px 2px 2px #8888883f;
+}
+
+.form-login input[type="password"] {
+  font-family: "Nunito", sans-serif;
+  width: 360px;
+  height: 45px;
+  font-size: 1rem;
+  text-indent: 20px;
+  border: none;
+  border-radius: 3px;
+  box-shadow: 0px 0px 2px 2px #8888883f;
+}
+
+.form-login .form-check {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 360px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-top: 5px;
+}
+
+.form-check label {
+  display: flex;
+  gap: 6px;
+  cursor: pointer;
+}
+
+.form-check label input {
+  width: 18px;
+  height: 18px;
+}
+
+.form-check a {
+  text-decoration: none;
+  color: #717171;
+}
+
+.form-login button[type="submit"] {
+  font-family: "Nunito", sans-serif;
+  width: 360px;
+  height: 45px;
+  font-size: 1rem;
+  text-transform: uppercase;
+  background-color: #ff574d;
+  border: none;
+  color: #fff;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.form-login .form-register {
+  display: flex;
+  font-size: 1rem;
+  font-weight: 600;
+  gap: 10px;
+}
+
+.form-register a {
+  text-decoration: none;
+  color: #717171;
+}
