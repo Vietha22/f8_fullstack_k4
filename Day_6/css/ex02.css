@@ -49,7 +49,6 @@ body {
 .service-item:hover {
   border-color: red;
   box-shadow: none;
-  cursor: pointer;
 }
 
 .service-item .service-title span.service-item-icon {
@@ -143,4 +142,5 @@ body {
   text-decoration: none;
   color: blue;
   margin-bottom: 5px;
+  cursor: pointer;
 }
