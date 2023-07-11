@@ -24,21 +24,21 @@ body {
 }
 
 .profile-info {
+  display: flex;
   position: absolute;
-  top: 60%;
+  bottom: 0;
   left: 5%;
   color: #fff;
   font-size: 1rem;
 }
 
 .profile-info img {
-  float: left;
   width: 20%;
 }
 
 .profile-info .profile-name {
-  float: left;
-  padding: 20px 15px;
+  margin-left: 15px;
+  margin-top: 20px;
 }
 
 .profile-name h2 {
