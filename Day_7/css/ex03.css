@@ -1,0 +1,144 @@
+@import url("https://fonts.googleapis.com/css2?family=Asap:wght@300;400;500;700&display=swap");
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Asap", sans-serif;
+  font-size: 10px;
+}
+
+.real-estate {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  gap: 20px;
+  margin-top: 50px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.real-estate .area-heading {
+  display: flex;
+  align-items: center;
+}
+
+.real-estate .area-heading h2 {
+  font-size: 1.1rem;
+  width: 33%;
+  text-transform: uppercase;
+}
+
+.real-estate .area-heading span {
+  width: 67%;
+  height: 1.6px;
+  background-color: #ddd;
+}
+
+.area-nav {
+  display: flex;
+  justify-content: space-between;
+}
+
+.area-nav input {
+  display: none;
+}
+
+/* focus đổi màu */
+.area-nav input:nth-of-type(1):checked ~ label:nth-of-type(1) {
+  background-color: #ce762e;
+  color: #fff;
+}
+
+.area-nav input:nth-of-type(2):checked ~ label:nth-of-type(2) {
+  background-color: #ce762e;
+  color: #fff;
+}
+
+.area-nav input:nth-of-type(3):checked ~ label:nth-of-type(3) {
+  background-color: #ce762e;
+  color: #fff;
+}
+
+.area-nav input:nth-of-type(4):checked ~ label:nth-of-type(4) {
+  background-color: #ce762e;
+  color: #fff;
+}
+
+.area-nav input:nth-of-type(5):checked ~ label:nth-of-type(5) {
+  background-color: #ce762e;
+  color: #fff;
+}
+
+.area-nav input:nth-of-type(6):checked ~ label:nth-of-type(6) {
+  background-color: #ce762e;
+  color: #fff;
+}
+
+.area-nav input:nth-of-type(7):checked ~ label:nth-of-type(7) {
+  background-color: #ce762e;
+  color: #fff;
+}
+
+.area-nav input:nth-of-type(8):checked ~ label:nth-of-type(8) {
+  background-color: #ce762e;
+  color: #fff;
+}
+
+.area-nav label {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #ddd;
+  width: 140px;
+  height: 60px;
+  line-height: 20px;
+  font-size: 0.8rem;
+  border-radius: 30px;
+  cursor: pointer;
+}
+
+.area-nav label span {
+  font-size: 0.7rem;
+  font-style: italic;
+  font-weight: 500;
+}
+
+.area-layout {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  gap: 20px;
+}
+
+.area-layout .area-item {
+  width: calc(100% / 3 - 15px);
+  height: 250px;
+  padding: 25px 25px;
+  color: #fff;
+  background-image: url("https://arental.vn/images/users/images/quan-2-dang-song%20(4).jpg");
+  background-size: cover;
+  border-radius: 4px;
+  box-shadow: 0px 0px 6px 3px #dddddd58;
+}
+
+.area-item h4 {
+  font-size: 1.4rem;
+  font-weight: 500;
+}
+
+.area-item span {
+  position: relative;
+  top: 75%;
+  font-size: 0.9rem;
+}
+
+.area-item span strong {
+  font-size: 1.1rem;
+}
