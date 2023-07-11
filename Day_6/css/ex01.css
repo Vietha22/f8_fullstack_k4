@@ -101,15 +101,21 @@ ul.menu-list-item {
   position: absolute;
   top: 61px;
   width: 300px;
+  border-radius: 4px;
+  border: 1px solid #8888883f;
   box-shadow: 0px 0px 7px 4px #8888883f;
 }
 
 ul.menu-list-item li {
-  border: 1px solid #8888883f;
   display: flex;
+  border-bottom: 1px solid #8888883f;
   justify-content: center;
   padding-top: 10px;
   padding-bottom: 10px;
+}
+
+ul.menu-list-item li:nth-of-type(3) {
+  border: none;
 }
 
 ul.menu-list-item li a {

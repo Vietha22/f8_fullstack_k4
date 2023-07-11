@@ -1,0 +1,133 @@
+@import url("https://fonts.googleapis.com/css2?family=Asap:wght@300;400;500;700&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Asap, sans-serif;
+  font-size: 10px;
+}
+
+.profile-company {
+  position: relative;
+  background-image: url("https://cafebiz.cafebizcdn.vn/2018/7/30/photo-1-15329137808881538228700.jpg");
+  background-repeat: no-repeat;
+  width: 80%;
+  height: 300px;
+  margin-left: auto;
+  margin-right: auto;
+  background-position: center;
+  background-size: cover;
+}
+
+.profile-info {
+  position: absolute;
+  top: 60%;
+  left: 5%;
+  color: #fff;
+  font-size: 1rem;
+}
+
+.profile-info img {
+  float: left;
+  width: 20%;
+}
+
+.profile-info .profile-name {
+  float: left;
+  padding: 20px 15px;
+}
+
+.profile-name h2 {
+  font-weight: 500;
+  margin-bottom: 15px;
+}
+
+.profile-name span {
+  font-weight: 400;
+  font-size: 0.9rem;
+  margin-right: 12px;
+}
+
+.profile-name span strong {
+  font-size: 1.2rem;
+}
+
+.profile-nav {
+  position: absolute;
+  top: 100%;
+  right: 5%;
+  font-size: 1rem;
+  text-transform: uppercase;
+  font-weight: 500;
+  padding: 10px;
+}
+
+.profile-nav input {
+  visibility: hidden;
+}
+
+.profile-nav div {
+  display: flex;
+  gap: 20px;
+}
+
+.profile-nav span {
+  cursor: pointer;
+}
+
+/* Đổi màu */
+
+.profile-nav
+  div
+  input:nth-of-type(1):checked
+  ~ label:nth-of-type(1)
+  span::after {
+  content: "";
+  position: absolute;
+  top: 37px;
+  left: 109px;
+  width: 80.51px;
+  border-bottom: 4px solid #ff574d;
+}
+
+.profile-nav div input:nth-of-type(1):checked ~ label:nth-of-type(1) span {
+  color: #ff574d;
+}
+
+.profile-nav
+  div
+  input:nth-of-type(2):checked
+  ~ label:nth-of-type(2)
+  span::after {
+  content: "";
+  position: absolute;
+  top: 37px;
+  left: 210px;
+  width: 132.61px;
+  border-bottom: 4px solid #ff574d;
+}
+
+.profile-nav div input:nth-of-type(2):checked ~ label:nth-of-type(2) span {
+  color: #ff574d;
+}
+
+.profile-nav
+  div
+  input:nth-of-type(3):checked
+  ~ label:nth-of-type(3)
+  span::after {
+  content: "";
+  position: absolute;
+  top: 37px;
+  left: 362.4px;
+  width: 56.83px;
+  border-bottom: 4px solid #ff574d;
+}
+
+.profile-nav div input:nth-of-type(3):checked ~ label:nth-of-type(3) span {
+  color: #ff574d;
+}

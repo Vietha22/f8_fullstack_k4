@@ -9,10 +9,11 @@
 body {
   font-family: "Nunito", sans-serif;
   font-size: 10px;
-  background-image: url("http://uiwebsoft.com/justlog/login-one/images/login-bg2.jpg");
+  background-image: url(http://uiwebsoft.com/justlog/login-one/images/login-bg2.jpg);
   background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-position-y: bottom;
+  background-position: left bottom;
+  min-height: 100vh;
+  background-size: cover;
 }
 
 form.form-box {
