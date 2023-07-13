@@ -28,19 +28,20 @@ body {
 
 .real-estate .area-heading h2 {
   font-size: 1.1rem;
-  width: 33%;
   text-transform: uppercase;
 }
 
 .real-estate .area-heading span {
-  width: 67%;
+  flex-grow: 1;
+  margin-left: 20px;
   height: 1.6px;
   background-color: #ddd;
 }
 
 .area-nav {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
+  gap: 20px;
 }
 
 .area-nav input {

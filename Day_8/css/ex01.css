@@ -1,0 +1,156 @@
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;700&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Manrope", sans-serif;
+  font-size: 10px;
+  background-color: #faf7f7;
+}
+
+.menu-header {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 30px 80px;
+}
+
+.menu-header .menu-logo {
+  flex: 4;
+}
+
+.menu-header .menu-logo img {
+  width: auto;
+  max-height: 40px;
+}
+
+.menu-nav {
+  flex: 5;
+}
+
+.menu-nav .menu-nav-heading {
+  display: flex;
+  list-style: none;
+  justify-content: flex-end;
+  gap: 40px;
+}
+
+.menu-nav .menu-nav-heading .menu-nav-item {
+  display: flex;
+  gap: 5px;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.menu-nav .menu-nav-heading .menu-nav-item i {
+  font-size: 0.7rem;
+}
+
+.menu-icons {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+  gap: 15px;
+  font-size: 1.3rem;
+}
+
+.menu-mega {
+  position: absolute;
+  top: 90px;
+  left: 80px;
+  right: 80px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  font-size: 0.9rem;
+  background-color: #fff;
+  height: 420px;
+  padding: 35px 40px;
+  padding-bottom: 0;
+  padding-right: 0;
+  border-radius: 10px;
+  box-shadow: 0px 0px 6px 2px #dddddd58;
+  display: none;
+}
+
+.menu-mega-usage {
+  width: 35%;
+  margin-bottom: 11px;
+}
+
+.menu-mega-style {
+  width: 35%;
+  flex-grow: 1;
+}
+
+.menu-mega-element {
+  width: 65%;
+  flex-grow: 1;
+}
+
+.menu-mega .menu-mega-item h3 {
+  font-size: 1rem;
+  margin-bottom: 20px;
+}
+
+.menu-mega-item ul {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  list-style: none;
+  gap: 15px;
+}
+
+.menu-mega-item:nth-child(1) ul {
+  height: 120px;
+}
+
+.menu-mega-item:nth-child(2) ul {
+  height: 150px;
+}
+
+.menu-mega-item:nth-child(3) ul {
+  height: 310px;
+}
+
+.menu-mega-usage::after {
+  content: "";
+  position: absolute;
+  display: block;
+  height: 344px;
+  width: 1px;
+  background-color: #edeaea;
+  left: 34.9%;
+  top: 8%;
+}
+
+.menu-mega .menu-mega-item a {
+  color: #000;
+  text-decoration: none;
+}
+
+/* Hover */
+.menu-nav .menu-nav-heading .menu-nav-item span:hover {
+  color: #7b7474;
+  cursor: pointer;
+}
+
+.menu-nav .menu-nav-heading .menu-nav-item:nth-child(6):hover::after {
+  content: "";
+  position: absolute;
+  display: block;
+  background-color: transparent;
+  width: 145px;
+  height: 31px;
+  top: 60px;
+}
+
+.menu-nav .menu-nav-heading .menu-nav-item:nth-child(6):hover .menu-mega {
+  display: flex;
+}
