@@ -1,0 +1,164 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-size: 10px;
+  font-family: "Inter", sans-serif;
+}
+
+.history {
+  width: 70%;
+  position: relative;
+  margin: 20px auto;
+}
+
+.images {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.img-1 img {
+  width: 300px;
+}
+
+.img-2 {
+  position: absolute;
+  top: 60px;
+  right: 200px;
+  width: 200px;
+  height: 300px;
+  background-image: url("https://st.depositphotos.com/1037987/2504/i/600/depositphotos_25048647-stock-photo-team-meeting-in-creative-office.jpg");
+  background-size: cover;
+}
+
+.img-color {
+  position: absolute;
+  width: 93%;
+  height: 93%;
+  background-color: rgba(87, 87, 236, 0.979);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-end;
+  padding: 20px 20px;
+}
+
+.img-color h1 {
+  font-family: "Space Grotesk", sans-serif;
+  background: url("https://st.depositphotos.com/1037987/2504/i/600/depositphotos_25048647-stock-photo-team-meeting-in-creative-office.jpg");
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-size: 4rem;
+  font-weight: 700;
+}
+
+.img-color span {
+  font-size: 0.8rem;
+  color: #fff;
+}
+
+div.timeline {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.timeline ul.timeline-list {
+  list-style: none;
+  font-size: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+}
+
+.timeline-list .timeline-item {
+  display: flex;
+  gap: 20px;
+}
+
+.timeline-item .content {
+  width: 300px;
+  text-align: end;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 15px;
+  transition: all 0.7s ease;
+}
+
+.content h2 {
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 1.6rem;
+}
+
+.content p {
+  color: #888;
+}
+
+.content span {
+  background-color: #ddd;
+  width: 120px;
+  color: #888;
+  font-weight: 600;
+  height: 30px;
+  text-align: center;
+  line-height: 30px;
+  border-radius: 20px;
+  margin-top: 5px;
+  font-size: 0.9rem;
+}
+
+.timeline-item .dot {
+  width: 20px;
+  height: 20px;
+  margin-top: 8px;
+  border: 6px solid #ddd;
+  border-radius: 50%;
+  background-image: linear-gradient(rgb(151, 207, 124), rgb(37, 86, 62));
+}
+
+.timeline-item .time-year {
+  color: #888;
+  margin-top: 8px;
+  transition: all 0.7s ease;
+}
+
+.timeline-item:not(:last-child) .dot::after {
+  content: "";
+  display: block;
+  width: 1px;
+  margin-top: 30px;
+  margin-left: 50%;
+  transform: translateX(-50%);
+  height: 140px;
+  background-color: #ddd;
+}
+
+/* Hover transition */
+.timeline-item:hover .content {
+  transform: translateX(calc(100% + 60px));
+  text-align: start;
+  align-items: flex-start;
+}
+
+.timeline-item:hover .time-year {
+  transform: translateX(calc(-100% - 60px));
+}
+
+.timeline-item:hover .dot {
+  background-image: linear-gradient(rgb(98, 241, 21), rgb(130, 199, 33));
+}
+
+.timeline-item:hover .content span {
+  color: #fff;
+  background-color: rgb(196, 103, 41);
+}
