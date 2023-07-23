@@ -1,0 +1,130 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap");
+
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 10px;
+}
+
+body {
+  font-family: Roboto, sans-serif;
+  background-color: #eee;
+  font-size: 1.6rem;
+  color: #555;
+}
+
+section.menu-nav {
+  width: 800px;
+  margin-top: 100px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+section.menu-nav ul.menu-list {
+  list-style: none;
+  display: flex;
+  border: 1px solid #eee;
+  background-color: #fff;
+}
+
+.menu-nav input {
+  display: none;
+}
+
+ul.menu-list li {
+  position: relative;
+  text-align: center;
+  flex-grow: 1;
+  z-index: 1;
+  height: 60px;
+  line-height: 60px;
+}
+
+ul.menu-list li::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 95%;
+  height: 80%;
+  background-color: cornflowerblue;
+  z-index: -1;
+  opacity: 0;
+  transition: all 0.3s ease;
+}
+
+ul.menu-list li:not(:last-child) {
+  border-right: 1px solid #eee;
+}
+
+ul.menu-list li label {
+  display: block;
+  cursor: pointer;
+}
+
+div.menu-items {
+  perspective: 1000px;
+}
+
+article.menu-item {
+  position: absolute;
+  width: 800px;
+  background-color: #fff;
+  border: 1px solid #eee;
+  padding: 20px 30px;
+  border-top: none;
+  overflow: auto;
+  opacity: 0;
+  transform: rotateX(-70deg);
+  transform-origin: top;
+  transition: all 0.6s ease;
+}
+
+.menu-item h1 {
+  font-size: 3rem;
+}
+
+.menu-item p {
+  width: 830px;
+  line-height: 22px;
+}
+
+/* Animation */
+
+ul.menu-list li:nth-of-type(1):hover:before,
+ul.menu-list li:nth-of-type(2):hover:before,
+ul.menu-list li:nth-of-type(3):hover:before,
+ul.menu-list li:nth-of-type(4):hover:before,
+input:nth-of-type(1):checked ~ ul.menu-list li:nth-of-type(1)::before,
+input:nth-of-type(2):checked ~ ul.menu-list li:nth-of-type(2)::before,
+input:nth-of-type(3):checked ~ ul.menu-list li:nth-of-type(3)::before,
+input:nth-of-type(4):checked ~ ul.menu-list li:nth-of-type(4)::before {
+  opacity: 1;
+}
+
+ul.menu-list li:nth-of-type(1):hover,
+ul.menu-list li:nth-of-type(2):hover,
+ul.menu-list li:nth-of-type(3):hover,
+ul.menu-list li:nth-of-type(4):hover,
+input:nth-of-type(1):checked ~ ul.menu-list li:nth-of-type(1),
+input:nth-of-type(2):checked ~ ul.menu-list li:nth-of-type(2),
+input:nth-of-type(3):checked ~ ul.menu-list li:nth-of-type(3),
+input:nth-of-type(4):checked ~ ul.menu-list li:nth-of-type(4) {
+  color: #fff;
+}
+
+input:nth-of-type(1):checked ~ div.menu-items article.menu-item:nth-of-type(1),
+input:nth-of-type(2):checked ~ div.menu-items article.menu-item:nth-of-type(2),
+input:nth-of-type(3):checked ~ div.menu-items article.menu-item:nth-of-type(3),
+input:nth-of-type(4):checked ~ div.menu-items article.menu-item:nth-of-type(4) {
+  opacity: 1;
+  transform: rotateX(0deg);
+  transition-delay: 0.3s;
+}
