@@ -1,0 +1,76 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  outline: none;
+}
+
+:root {
+  --container-width: 100%;
+  --column-space: 0px;
+  --container-padding: 0px;
+}
+
+.container {
+  max-width: var(--container-width);
+  margin: 0 auto;
+  padding: 0 var(--container-padding);
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 calc(-1 * var(--column-space) / 2);
+}
+
+.row [class^="col-"] {
+  --column-width: calc(100% / (12 / var(--column-size)));
+  flex-basis: var(--column-width);
+  max-width: var(--column-width);
+  padding: 0 calc(var(--column-space) / 2);
+}
+
+.d-none {
+  display: none;
+}
+
+.d-block {
+  display: block;
+}
+
+$breakpoints: (
+  sm: 501,
+  md: 601,
+  lg: 960,
+  xl: 1366,
+  xxl: 1501,
+);
+
+@mixin column($name: "") {
+  $prefix: "col";
+
+  @if ($name != "") {
+    $prefix: $prefix + "-" + $name;
+  }
+
+  @for $i from 1 through 12 {
+    .#{$prefix}-#{$i} {
+      --column-size: #{$i};
+    }
+  }
+}
+
+@include column();
+
+@each $name, $breakpoint in $breakpoints {
+  @media screen and (min-width: #{$breakpoint}px) {
+    @include column($name);
+    .d-#{$name}-none {
+      display: none;
+    }
+
+    .d-#{$name}-block {
+      display: block;
+    }
+  }
+}

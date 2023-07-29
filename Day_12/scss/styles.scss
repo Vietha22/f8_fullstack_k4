@@ -1,0 +1,408 @@
+@import url("https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;700&family=Titillium+Web:wght@300;400;600;700;900&display=swap");
+
+$firstFont: "Titillium Web", sans-serif;
+$secondFont: "Rajdhani", sans-serif;
+
+html {
+  font-size: 16px;
+}
+
+.landing {
+  padding: 80px 0 100px;
+  width: 100%;
+  height: 100%;
+  background: url("../img/landing-background.jpg") no-repeat 0;
+  background-size: cover;
+  @media screen and (min-width: 1366px) {
+    position: fixed;
+    top: 0;
+    left: 0;
+  }
+  input[type="radio"] {
+    display: none;
+    &[id="login"]:checked {
+      ~ .container {
+        .landing-intro {
+          .tab-switch {
+            label[for="login"] {
+              color: #3e3f5e;
+              background-color: #fff;
+              cursor: auto;
+            }
+          }
+        }
+        .landing-form {
+          .form-login {
+            display: block;
+            @media screen and (min-width: 1366px) {
+              transform: translate(0px, 0px);
+              opacity: 1;
+              visibility: visible;
+            }
+          }
+        }
+      }
+    }
+    &[id="register"]:checked {
+      ~ .container {
+        .landing-intro {
+          .tab-switch {
+            label[for="register"] {
+              color: #3e3f5e;
+              background-color: #fff;
+              cursor: auto;
+            }
+          }
+        }
+        .landing-form {
+          .form-register {
+            display: block;
+            @media screen and (min-width: 1366px) {
+              transform: translate(0px, 0px);
+              opacity: 1;
+              visibility: visible;
+            }
+          }
+        }
+      }
+    }
+  }
+  .dot {
+    position: absolute;
+    top: -20%;
+    right: -32%;
+    width: 64%;
+    height: 140%;
+    pointer-events: none;
+    border-radius: 50%;
+    background: url("../img/dot.png") repeat 0 0 #fff;
+  }
+  .container {
+    .landing-intro {
+      display: flex;
+      text-align: center;
+      flex-direction: column;
+      @media screen and (min-width: 1366px) {
+        width: 584px;
+        position: absolute;
+        top: 16%;
+        left: 6%;
+      }
+      h2 {
+        margin-top: 36px;
+        color: #fff;
+        font-family: $secondFont;
+        font-weight: 500;
+        font-size: 1.5rem;
+        line-height: 1em;
+      }
+      h1 {
+        font-weight: 900;
+        font-family: $firstFont;
+        font-size: 6.5rem;
+        color: #fff;
+        line-height: 1em;
+        position: relative;
+        top: -10px;
+      }
+      p {
+        margin: 10px auto 0;
+        width: 384px;
+        font-size: 1.125rem;
+        font-weight: 500;
+        font-family: $secondFont;
+        line-height: 24px;
+        color: #fff;
+      }
+      .tab-switch {
+        margin-top: 40px;
+        display: flex;
+        justify-content: center;
+        @media screen and (min-width: 1501px) {
+          margin-top: 90px;
+        }
+        label {
+          width: 180px;
+          height: 54px;
+          border: 1px solid #fff;
+          color: #fff;
+          font-size: 1rem;
+          font-weight: 700;
+          line-height: 54px;
+          font-family: $secondFont;
+          text-align: center;
+          cursor: pointer;
+          transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+          &.btn-login {
+            border-top-left-radius: 12px;
+            border-bottom-left-radius: 12px;
+          }
+          &.btn-register {
+            border-top-right-radius: 12px;
+            border-bottom-right-radius: 12px;
+          }
+        }
+      }
+    }
+    .landing-form {
+      width: 484px;
+      height: 100%;
+      margin: 80px auto 0;
+      font-family: $secondFont;
+      @media screen and (min-width: 1366px) {
+        position: absolute;
+        top: 0;
+        right: 80px;
+      }
+      .form-box {
+        margin: 0 auto;
+        width: 484px;
+        padding: 64px;
+        border-radius: 12px;
+        background-color: #fff;
+        box-shadow: 0 0 60px 0 rgba(94, 92, 154, 0.12);
+        @media screen and (min-width: 1366px) {
+          position: absolute;
+          &:first-child {
+            top: -27px;
+          }
+          &:last-child {
+            top: -80px;
+          }
+        }
+
+        h2 {
+          font-size: 1.625rem;
+          text-align: center;
+          font-weight: 700;
+          color: #3e3f5e;
+          line-height: 1em;
+        }
+        form {
+          margin-top: 76px;
+          width: 100%;
+          display: flex;
+          flex-direction: column;
+          gap: 28px;
+          .form-input {
+            position: relative;
+            label {
+              position: absolute;
+              color: #adafca;
+              font-size: 1rem;
+              font-weight: 600;
+              top: 20px;
+              left: 20px;
+              pointer-events: none;
+              transition: all 0.3s ease-in-out;
+            }
+            input {
+              height: 54px;
+              padding: 0 18px;
+              background-color: #fff;
+              border: 1px solid #dedeea;
+              border-radius: 12px;
+              color: #3e3f5e;
+              width: 100%;
+              font-size: 1rem;
+              font-weight: 700;
+              font-family: $secondFont;
+              transition: border-color 0.2s ease-in-out;
+              &:is(:focus, :valid) {
+                border-color: #615dfa;
+                ~ label {
+                  background-color: #fff;
+                  padding: 0 6px;
+                  font-size: 0.75rem;
+                  top: -6px;
+                  left: 12px;
+                }
+              }
+            }
+          }
+          .form-check {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            .box-checked {
+              display: flex;
+              align-items: center;
+              .check-box {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 22px;
+                height: 22px;
+                border: 1px solid #dedeea;
+                border-radius: 6px;
+                background-color: #fff;
+                pointer-events: none;
+                position: absolute;
+                transition: all 0.2s ease-in-out;
+              }
+              label {
+                padding-left: 34px;
+                font-size: 0.875rem;
+                font-weight: 700;
+                line-height: 22px;
+                cursor: pointer;
+                color: #3e3f5e;
+              }
+              input:checked ~ .check-box {
+                background-color: #23d2e2;
+                border-color: #23d2e2;
+                img {
+                  fill: #fff;
+                }
+              }
+            }
+            .forget {
+              line-height: 1.5;
+              a {
+                color: #adafca;
+                font-size: 0.875rem;
+                font-weight: 700;
+                line-height: 22px;
+                text-align: left;
+                text-decoration: none;
+              }
+            }
+          }
+          .form-btn {
+            button {
+              width: 100%;
+              height: 54px;
+              line-height: 54px;
+              border-radius: 10px;
+              box-shadow: 4px 7px 12px 0 rgba(97, 93, 250, 0.2);
+              color: #fff;
+              font-family: $secondFont;
+              font-size: 0.875rem;
+              font-weight: 700;
+              border: none;
+              cursor: pointer;
+            }
+          }
+        }
+        .social-links {
+          margin-top: 30px;
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: center;
+          .social-link {
+            margin-right: 12px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            line-height: 1em;
+            transition: all 0.2s ease-in-out;
+            &:last-child {
+              margin-right: 0;
+            }
+            img {
+              width: 12px;
+              height: 12px;
+            }
+            &:hover {
+              transform: translateY(-4px);
+            }
+          }
+          .facebook {
+            background-color: #3763d2;
+          }
+          .twitter {
+            background-color: #1abcff;
+          }
+          .twitch {
+            background-color: #7b5dfa;
+          }
+          .youtube {
+            background-color: #fd434f;
+          }
+        }
+      }
+      .form-login {
+        display: none;
+        @media screen and (min-width: 1366px) {
+          display: block;
+          opacity: 0;
+          visibility: hidden;
+          transform: translate(50%, 0px);
+          transition: all 0.6s ease-in-out 0s;
+        }
+        .rocket {
+          position: absolute;
+          top: -68px;
+          left: -80px;
+        }
+        button {
+          background-color: #615dfa;
+        }
+        .lined-text {
+          margin-top: 48px;
+          font-size: 0.875rem;
+          font-weight: 700;
+          text-align: center;
+          position: relative;
+          color: #3e3f5e;
+          font-family: $secondFont;
+          line-height: 1em;
+          &::before {
+            content: "";
+            width: 70px;
+            height: 1px;
+            background-color: #eaeaf5;
+            position: absolute;
+            top: 7px;
+            left: 0;
+          }
+          &::after {
+            content: "";
+            width: 70px;
+            height: 1px;
+            background-color: #eaeaf5;
+            position: absolute;
+            top: 7px;
+            right: 0;
+          }
+        }
+      }
+      .form-register {
+        display: none;
+        @media screen and (min-width: 1366px) {
+          display: block;
+          opacity: 0;
+          visibility: hidden;
+          transform: translate(50%, 0px);
+          transition: all 0.6s ease-in-out 0s;
+        }
+        .rocket {
+          position: absolute;
+          top: -14px;
+          left: -80px;
+        }
+        button {
+          background-color: #23d2e2;
+        }
+        .contact {
+          margin-top: 30px;
+          font-size: 0.875rem;
+          font-weight: 500;
+          text-align: left;
+          position: relative;
+          color: #3e3f5e;
+          font-family: $secondFont;
+          line-height: 1.7142857143em;
+          a {
+            color: #00c7d9;
+            font-weight: 600;
+            text-decoration: none;
+          }
+        }
+      }
+    }
+  }
+}

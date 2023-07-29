@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./css/grid.css" />
+    <link rel="stylesheet" href="./css/styles.css" />
+    <title>Landing Page</title>
+  </head>
+  <body>
+    <section class="landing-wrapper">
+      <div class="landing">
+        <input type="radio" name="auth" id="login" checked />
+        <input type="radio" name="auth" id="register" />
+        <div class="dot d-none d-xxl-block"></div>
+        <div class="container">
+          <div class="row">
+            <div class="col-12 col-xl-6">
+              <div class="landing-intro">
+                <div class="logo">
+                  <img src="./img/logo.svg" alt="" />
+                </div>
+                <h2>WELCOME TO</h2>
+                <h1>VIKINGER</h1>
+                <p class="d-none d-xl-block">
+                  The next generation social network &amp; community! Connect
+                  with your friends and play with our quests and badges
+                  gamification system!
+                </p>
+                <div class="tab-switch">
+                  <label for="login" id="login" class="btn-login">Login</label>
+                  <label for="register" id="register" class="btn-register"
+                    >Register</label
+                  >
+                </div>
+              </div>
+            </div>
+            <div class="col-12 col-xl-6">
+              <section class="landing-form">
+                <div class="form-box form-login">
+                  <div class="rocket d-none d-xl-block">
+                    <img src="./img/rocket.png" alt="" />
+                  </div>
+                  <h2>Account Login</h2>
+                  <form action="#">
+                    <div class="form-input">
+                      <input
+                        type="text"
+                        id="login-username"
+                        required
+                        autofocus
+                      />
+                      <label for="login-username">Username or Email</label>
+                    </div>
+                    <div class="form-input">
+                      <input type="password" id="password" required />
+                      <label for="password">Password</label>
+                    </div>
+                    <div class="form-check">
+                      <div class="box-checked">
+                        <input
+                          type="checkbox"
+                          id="login-checked"
+                          hidden
+                          checked
+                        />
+                        <div class="check-box">
+                          <img src="./img/xmark.svg" alt="" />
+                        </div>
+                        <label for="login-checked">Remember Me</label>
+                      </div>
+                      <div class="forget">
+                        <a href="#">Forgot Password?</a>
+                      </div>
+                    </div>
+                    <div class="form-btn">
+                      <button>Login to your Account!</button>
+                    </div>
+                  </form>
+                  <p class="lined-text">Login with your Social Account</p>
+                  <div class="social-links">
+                    <a class="social-link facebook" href="#">
+                      <img src="./img/fb.svg" alt="" />
+                    </a>
+                    <a class="social-link twitter" href="#">
+                      <img src="./img/twitter.svg" alt="" />
+                    </a>
+                    <a class="social-link twitch" href="#">
+                      <img src="./img/twitch.svg" alt="" />
+                    </a>
+                    <a class="social-link youtube" href="#">
+                      <img src="./img/youtube.svg" alt="" />
+                    </a>
+                  </div>
+                </div>
+                <div class="form-box form-register">
+                  <div class="rocket d-none d-xl-block">
+                    <img src="./img/rocket.png" alt="" />
+                  </div>
+                  <h2>Create your Account!</h2>
+                  <form action="#">
+                    <div class="form-input">
+                      <input type="email" id="email" required autofocus />
+                      <label for="email">Your Email</label>
+                    </div>
+                    <div class="form-input">
+                      <input type="username" id="username" required />
+                      <label for="username">Username</label>
+                    </div>
+                    <div class="form-input">
+                      <input type="password" id="password" required />
+                      <label for="password">Password</label>
+                    </div>
+                    <div class="form-input">
+                      <input type="re-password" id="re-password" required />
+                      <label for="re-password">Repeat Password</label>
+                    </div>
+                    <div class="form-check">
+                      <div class="box-checked">
+                        <input
+                          type="checkbox"
+                          id="register-checked"
+                          hidden
+                          checked
+                        />
+                        <div class="check-box">
+                          <img src="./img/xmark.svg" alt="" />
+                        </div>
+                        <label for="register-checked"
+                          >Send me news and updates via email</label
+                        >
+                      </div>
+                    </div>
+                    <div class="form-btn">
+                      <button>Register Now!</button>
+                    </div>
+                  </form>
+                  <p class="contact">
+                    You'll receive a confirmation email in your inbox with a
+                    link to activate your account. If you have any problems,
+                    <a href="">contact us</a>!
+                  </p>
+                </div>
+              </section>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>
