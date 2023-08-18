@@ -53,7 +53,7 @@ for (var i = 0; i < Arr.length; i++) {
   }
 }
 
-console.log(newArr);
+console.log(`Mảng sau khi xử lý: ${newArr}`);
 
 // Bài 4
 var numbers = [5, 1, 9, 8, 10];
