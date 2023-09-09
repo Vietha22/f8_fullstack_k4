@@ -7,8 +7,8 @@ function sum(...args) {
   return isNaN(result) ? `Lỗi, dữ liệu truyền vào không hợp lệ` : result;
 }
 
-console.log(sum(1, 2, "3", 4));
-console.log(sum(1, 2, "3", "a"));
+console.log(sum(9, "2", "1", "a"));
+console.log(sum(9, "2", "1", [4], true));
 
 // Bài 2
 Object.prototype.getCurrency = function (unit) {
