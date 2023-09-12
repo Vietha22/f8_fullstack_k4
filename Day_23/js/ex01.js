@@ -1,137 +1,231 @@
-// Bài 1
-function sum(...args) {
-  var result = 0;
-  for (var index in args) {
-    result += Number(args[index]);
+// Button tab
+var loginBtn = document.querySelector(".btn-login");
+var registerBtn = document.querySelector(".btn-register");
+var loginForm = document.querySelector(".auth-login");
+var registerForm = document.querySelector(".auth-register");
+
+// input
+var loginEmail = document.querySelector("#login-email");
+var loginPassword = document.querySelector("#login-password");
+var registerName = document.querySelector("#register-name");
+var registerEmail = document.querySelector("#register-email");
+var registerPassword = document.querySelector("#register-password");
+
+// error
+var loginEmailErr = document.querySelector("#login-email-err");
+var loginPassErr = document.querySelector("#login-password-err");
+var registerNameErr = document.querySelector("#register-name-err");
+var registerEmailErr = document.querySelector("#register-email-err");
+var registerPassErr = document.querySelector("#register-password-err");
+
+// button auth
+var loginBtnAuth = document.querySelector("#btn-login-auth");
+var registerBtnAuth = document.querySelector("#btn-register-auth");
+
+// Eye-slash show password
+var showPass = document.querySelectorAll(".password-show");
+var eyeIcon = document.querySelectorAll(".password-show span:first-child");
+var eyeSlashIcon = document.querySelectorAll(".password-show span:last-child");
+
+// Button tab switch event
+loginBtn.addEventListener("click", function () {
+  loginBtn.classList.add("active");
+  registerBtn.classList.remove("active");
+
+  loginForm.classList.add("show");
+  registerForm.classList.remove("show");
+
+  loginEmail.value = "";
+  loginEmailErr.innerText = "";
+  loginEmail.classList.remove("notice");
+
+  loginPassword.value = "";
+  loginPassErr.innerText = "";
+  loginPassword.classList.remove("notice");
+
+  eyeIcon[0].classList.add("show-icon");
+  eyeSlashIcon[0].classList.remove("show-icon");
+});
+
+registerBtn.addEventListener("click", function () {
+  registerBtn.classList.add("active");
+  loginBtn.classList.remove("active");
+
+  registerForm.classList.add("show");
+  loginForm.classList.remove("show");
+
+  registerName.value = "";
+  registerNameErr.innerText = "";
+  registerName.classList.remove("notice");
+
+  registerEmail.value = "";
+  registerEmailErr.innerText = "";
+  registerEmail.classList.remove("notice");
+
+  registerPassword.value = "";
+  registerPassErr.innerText = "";
+  registerPassword.classList.remove("notice");
+
+  eyeIcon[1].classList.add("show-icon");
+  eyeSlashIcon[1].classList.remove("show-icon");
+});
+
+// login input event
+var handleLoginInputBlur = function () {
+  if (loginEmail.value === "") {
+    loginEmailErr.innerText = "Vui lòng nhập thông tin";
+    loginEmail.classList.add("notice");
   }
-  return isNaN(result) ? `Lỗi, dữ liệu truyền vào không hợp lệ` : result;
-}
-
-console.log(sum(9, "2", "1", "a"));
-console.log(sum(9, "2", "1", [4], true));
-
-// Bài 2
-Object.prototype.getCurrency = function (unit) {
-  return this.toLocaleString("en") + " " + unit;
+  if (loginPassword.value === "") {
+    loginPassErr.innerText = "Vui lòng nhập thông tin";
+    loginPassword.classList.add("notice");
+  }
 };
 
-var price = 12000000;
-console.log(price.getCurrency("đ"));
+loginEmail.addEventListener("blur", handleLoginInputBlur);
+loginPassword.addEventListener("blur", handleLoginInputBlur);
 
-// Bài 3
-Array.prototype.push2 = function (...args) {
-  for (var i = 0; i < args.length; i++) {
-    this[this.length] = args[i];
-  }
-  return this.length;
-};
-
-var users = [1, 2, 3];
-var count = users.push2("A", "B", "C");
-console.log(count);
-console.log(users);
-
-// Bài 4
-Array.prototype.filter2 = function (callback) {
-  var newArr = [];
-  for (var i = 0; i < this.length; i++) {
-    if (callback(this[i], i)) {
-      newArr[newArr.length] = this[i];
-    }
-  }
-
-  return newArr;
-};
-
-var numbers = [5, 1, 2, 9, 6, 8, 2];
-var results = numbers.filter2(function (number) {
-  if (number >= 3) {
-    return true;
+loginEmail.addEventListener("input", function () {
+  loginEmailErr.innerHTML = "";
+  loginEmail.classList.remove("notice");
+  if (loginEmail.value === "") {
+    loginEmailErr.innerText = "Vui lòng nhập thông tin";
+    loginEmail.classList.add("notice");
   }
 });
 
-console.log(results);
-console.log(numbers);
+loginPassword.addEventListener("input", function () {
+  loginPassErr.innerHTML = "";
+  loginPassword.classList.remove("notice");
+  if (loginPassword.value === "") {
+    loginPassErr.innerText = "Vui lòng nhập thông tin";
+    loginPassword.classList.add("notice");
+  }
+});
 
-// Bài 5
-var categories = [
-  {
-    id: 1,
-    name: "Chuyên mục 1",
-  },
-  {
-    id: 2,
-    name: "Chuyên mục 2",
-    children: [
-      {
-        id: 4,
-        name: "Chuyên mục 2.1",
-      },
-      {
-        id: 5,
-        name: "Chuyên mục 2.2",
-        children: [
-          {
-            id: 10,
-            name: "Chuyên mục 2.2.1",
-          },
-          {
-            id: 11,
-            name: "Chuyên mục 2.2.2",
-          },
-          {
-            id: 12,
-            name: "Chuyên mục 2.2.3",
-          },
-        ],
-      },
-      {
-        id: 6,
-        name: "Chuyên mục 2.3",
-      },
-    ],
-  },
-  {
-    id: 3,
-    name: "Chuyên mục 3",
-    children: [
-      {
-        id: 7,
-        name: "Chuyên mục 3.1",
-      },
-      {
-        id: 8,
-        name: "Chuyên mục 3.2",
-      },
-      {
-        id: 9,
-        name: "Chuyên mục 3.3",
-      },
-    ],
-  },
-];
+// login button auth event
+loginBtnAuth.addEventListener("click", function (e) {
+  if (loginPassword.value === "" && loginEmail.value === "") {
+    loginPassErr.innerText = "Vui lòng nhập thông tin";
+    loginPassword.classList.add("notice");
+    loginEmailErr.innerText = "Vui lòng nhập thông tin";
+    loginEmail.classList.add("notice");
+  }
+  e.preventDefault();
+});
 
-function buildSelectOptions(categories, level = 0) {
-  var optionsHTML = "";
-  var arr = [];
-  arr.length = level;
+// register input event
+var handleRegisterInputBlur = function () {
+  if (registerName.value === "") {
+    registerNameErr.innerText = "Vui lòng nhập thông tin";
+    registerName.classList.add("notice");
+  }
+  if (registerEmail.value === "") {
+    registerEmailErr.innerText = "Vui lòng nhập thông tin";
+    registerEmail.classList.add("notice");
+  }
+  if (registerPassword.value === "") {
+    registerPassErr.innerText = "Vui lòng nhập thông tin";
+    registerPassword.classList.add("notice");
+  }
+};
 
-  categories.forEach((category) => {
-    var indentation = arr.fill("--|").join("");
-    optionsHTML += `<option value="${category.id}">${indentation}${category.name}</option>`;
+registerName.addEventListener("blur", handleRegisterInputBlur);
+registerEmail.addEventListener("blur", handleRegisterInputBlur);
+registerPassword.addEventListener("blur", handleRegisterInputBlur);
 
-    if (category.children) {
-      optionsHTML += buildSelectOptions(category.children, level + 1);
-    }
-  });
+registerName.addEventListener("input", function () {
+  registerNameErr.innerHTML = "";
+  registerName.classList.remove("notice");
+  if (registerName.value === "") {
+    registerNameErr.innerText = "Vui lòng nhập thông tin";
+    registerName.classList.add("notice");
+  }
+});
 
-  return optionsHTML;
-}
+registerEmail.addEventListener("input", function () {
+  registerEmailErr.innerHTML = "";
+  registerEmail.classList.remove("notice");
+  if (registerEmail.value === "") {
+    registerEmailErr.innerText = "Vui lòng nhập thông tin";
+    registerEmail.classList.add("notice");
+  }
+});
 
-var selectOptions = buildSelectOptions(categories);
-var selectHTML = `<select>
-<option value="">Chọn chuyên mục</option>
-    ${selectOptions}
-</select>`;
+registerPassword.addEventListener("input", function () {
+  registerPassErr.innerHTML = "";
+  registerPassword.classList.remove("notice");
+  if (registerPassword.value === "") {
+    registerPassErr.innerText = "Vui lòng nhập thông tin";
+    registerPassword.classList.add("notice");
+  }
+});
 
-document.write(selectHTML);
+// register button auth event
+registerBtnAuth.addEventListener("click", function (e) {
+  if (
+    registerName.value === "" &&
+    registerPassword.value === "" &&
+    registerEmail.value === ""
+  ) {
+    registerNameErr.innerText = "Vui lòng nhập thông tin";
+    registerName.classList.add("notice");
+    registerPassErr.innerText = "Vui lòng nhập thông tin";
+    registerPassword.classList.add("notice");
+    registerEmailErr.innerText = "Vui lòng nhập thông tin";
+    registerEmail.classList.add("notice");
+  }
+  e.preventDefault();
+});
+
+// show password event
+showPass[0].addEventListener("click", function () {
+  eyeIcon[0].classList.toggle("show-icon");
+  eyeSlashIcon[0].classList.toggle("show-icon");
+
+  if (eyeIcon[0].classList.contains("show-icon")) {
+    loginPassword.type = "password";
+  } else {
+    loginPassword.type = "text";
+  }
+});
+
+showPass[1].addEventListener("click", function () {
+  eyeIcon[1].classList.toggle("show-icon");
+  eyeSlashIcon[1].classList.toggle("show-icon");
+
+  if (eyeIcon[1].classList.contains("show-icon")) {
+    registerPassword.type = "password";
+  } else {
+    registerPassword.type = "text";
+  }
+});
+
+var btn = document.querySelector(".btn");
+var authBox = document.querySelector(".auth-box");
+var boxOverlay = authBox.querySelector(".overlay");
+
+btn.addEventListener("click", function () {
+  authBox.classList.add("show-box");
+
+  loginBtn.classList.add("active");
+  registerBtn.classList.remove("active");
+
+  loginForm.classList.add("show");
+  registerForm.classList.remove("show");
+
+  loginEmail.value = "";
+  loginEmailErr.innerText = "";
+  loginEmail.classList.remove("notice");
+
+  loginPassword.value = "";
+  loginPassErr.innerText = "";
+  loginPassword.classList.remove("notice");
+
+  eyeIcon[0].classList.add("show-icon");
+  eyeSlashIcon[0].classList.remove("show-icon");
+});
+
+boxOverlay.addEventListener("click", function () {
+  authBox.classList.remove("show-box");
+});

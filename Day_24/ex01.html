@@ -2,8 +2,9 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Todo List</title>
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
@@ -14,113 +15,33 @@
     <link rel="stylesheet" href="./css/ex01.css" />
   </head>
   <body>
-    <button class="btn">Đăng nhập</button>
+    <div class="wrapper">
+      <h1>Get Things Done !</h1>
+      <form id="new-task-form">
+        <input
+          type="text"
+          name="new-task-input"
+          id="new-task-input"
+          placeholder="What is the task today?"
+        />
+        <input type="submit" id="new-task-submit" value="Add Task" />
+      </form>
 
-    <div class="auth-box">
-      <div class="auth">
-        <div class="auth-nav">
-          <button class="btn-login active">Đăng nhập</button>
-          <button class="btn-register">Đăng ký</button>
+      <section class="task-list">
+        <div id="tasks">
+          <!-- <div class="task">
+            <div class="content">
+              <input type="text" class="text" value="A new task" readonly />
+            </div>
+            <div class="actions">
+              <button class="edit">
+                <i class="fa-solid fa-pen-to-square"></i>
+              </button>
+              <button class="delete"><i class="fa-solid fa-trash"></i></button>
+            </div>
+          </div> -->
         </div>
-        <div class="auth-panel">
-          <div class="auth-form auth-login show">
-            <div class="desc">với các tài khoản mạng xã hội</div>
-            <div class="social">
-              <a href="#">Google</a>
-              <a href="#">Facebook</a>
-            </div>
-            <div class="desc-line">
-              <span>hoặc</span>
-            </div>
-            <form action="#">
-              <div class="auth-control">
-                <label class="auth-label">Email</label>
-                <input
-                  type="email"
-                  name="email"
-                  placeholder="Email"
-                  id="login-email"
-                />
-                <span id="login-email-err"></span>
-              </div>
-              <div class="auth-control">
-                <label class="auth-label">Mật khẩu</label>
-                <input
-                  type="password"
-                  name="password"
-                  placeholder="Mật khẩu"
-                  id="login-password"
-                />
-                <div class="password-show">
-                  <span class="show-icon"
-                    ><i class="fa-regular fa-eye"></i
-                  ></span>
-                  <span><i class="fa-regular fa-eye-slash"></i></span>
-                </div>
-                <span id="login-password-err"></span>
-              </div>
-              <div class="auth-forgot"><button>Quên mật khẩu?</button></div>
-              <div class="auth-btn">
-                <button id="btn-login-auth">Đăng nhập</button>
-              </div>
-            </form>
-          </div>
-          <!-- End login -->
-          <div class="auth-form auth-register">
-            <div class="desc">
-              Hoàn thành đăng ký, và bắt đầu trải nghiệm ngay !
-            </div>
-            <form action="#">
-              <div class="auth-control">
-                <label class="auth-label">Họ và tên</label>
-                <input
-                  type="text"
-                  name="fullname"
-                  placeholder="Họ và tên"
-                  id="register-name"
-                />
-                <span id="register-name-err"></span>
-              </div>
-              <div class="auth-control">
-                <label class="auth-label">Email</label>
-                <input
-                  type="email"
-                  name="email"
-                  placeholder="Email"
-                  id="register-email"
-                />
-                <span id="register-email-err"></span>
-              </div>
-              <div class="auth-control">
-                <label class="auth-label">Mật khẩu</label>
-                <input
-                  type="password"
-                  name="password"
-                  placeholder="Mật khẩu"
-                  id="register-password"
-                />
-                <div class="password-show">
-                  <span class="show-icon"
-                    ><i class="fa-regular fa-eye"></i
-                  ></span>
-                  <span><i class="fa-regular fa-eye-slash"></i></span>
-                </div>
-                <span id="register-password-err"></span>
-              </div>
-              <div class="auth-term">
-                Bằng cách đăng ký tài khoản, bạn cũng đồng thời chấp nhận mọi
-                <a href="#">điều kiện về qui định và chính sách của Dân trí</a>
-              </div>
-              <div class="auth-btn">
-                <button id="btn-register-auth">Đăng ký</button>
-              </div>
-            </form>
-          </div>
-          <!-- End register -->
-        </div>
-      </div>
-      <!-- End auth -->
-      <div class="overlay"></div>
+      </section>
     </div>
 
     <script src="./js/ex01.js"></script>
