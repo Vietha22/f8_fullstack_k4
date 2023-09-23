@@ -98,7 +98,7 @@ var renderCart = function () {
         <td>${cart.id}</td>
         <td>${cart.name}</td>
         <td>${cart.price}</td>
-        <td><input type="number" value=${cart.quantity} class="quantity-cart" /></td>
+        <td><input type="number" value=${cart.quantity} class="quantity-cart" id="${cart.id}" /></td>
         <td>${cart.total}</td>
         <td><button type="button" class="delete-item" onclick="deleteItem(${index})">Xóa</button></td>
       </tr>
@@ -159,18 +159,24 @@ function deleteItem(index) {
 function updateCart() {
   alert("Cập nhật giỏ hàng thành công");
   var quantityCart = document.querySelectorAll(".quantity-cart");
-  carts.forEach(function (cart, index) {
-    if (+quantityCart[index].value > 0) {
-      cart.quantity = +quantityCart[index].value;
-      cart.total = cart.price * quantityCart[index].value;
-    } else {
-      // Nếu input < 0 thì xóa item
-      carts.splice(index, 1);
-      for (var i = index; i < carts.length; i++) {
-        carts[i].id--;
-      }
+  // Mảng để chứa product có input > 0
+  var newCarts = [];
+  quantityCart.forEach(function (quantity, index) {
+    if (+quantity.value > 0) {
+      carts[index].quantity = +quantity.value;
+      carts[index].total = carts[index].quantity * carts[index].price;
+      newCarts.push(carts[index]);
     }
   });
+
+  // Sửa STT
+  newCarts.forEach(function (item, index) {
+    item.id = index + 1;
+  });
+
+  // Gán lại mảng vào carts
+  carts = newCarts;
+
   renderCart();
 }
 
