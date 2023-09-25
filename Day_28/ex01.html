@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Karaoke</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+    />
+    <link rel="stylesheet" href="./css/ex01.css" />
+    <link rel="shortcut icon" href="#" />
+  </head>
+  <body>
+    <div class="player">
+      <div class="play-btn">
+        <i class="fa-solid fa-play"></i>
+      </div>
+      <div class="play-inner">
+        <span>00:00</span>
+        <div class="progress-bar">
+          <div class="progress">
+            <span></span>
+          </div>
+          <span class="timer">00:00</span>
+        </div>
+        <span>00:00</span>
+      </div>
+    </div>
+    <div class="open-karaoke"><button type="button">Hát Karaoke</button></div>
+    <div class="karaoke">
+      <div class="container">
+        <div class="karaoke-header">
+          <h2>Karaoke</h2>
+          <span class="close"><i class="fa-angle-down fa-solid"></i></span>
+        </div>
+        <div class="karaoke-inner"></div>
+      </div>
+    </div>
+    <audio src="mp3/beodatmaytroi.mp3" class="audio"></audio>
+    <script src="./js/lyric.js"></script>
+    <script src="./js/ex01.js"></script>
+  </body>
+</html>
