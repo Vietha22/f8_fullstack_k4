@@ -173,7 +173,7 @@ var renderKaraoke = function () {
     sentences[sentences.length - 1].words[
       sentences[sentences.length - 1].words.length - 1
     ].endTime +
-      700
+      2000
   ) {
     var info = `<p>Bèo dạt mây trôi</p>
             <p>Ca sĩ: Anh Khang</p>`;
@@ -186,7 +186,7 @@ var renderKaraoke = function () {
     if (i % 2 === 0) {
       // Handle 2 câu 1 page
       if (
-        currentTime >= sentences[i].words[0].startTime - 700 &&
+        currentTime >= sentences[i].words[0].startTime - 800 &&
         currentTime <=
           sentences[i + 1].words[sentences[i + 1].words.length - 1].endTime
       ) {
@@ -232,7 +232,7 @@ var renderKaraoke = function () {
       if (
         currentTime >
           sentences[i + 1].words[sentences[i + 1].words.length - 1].endTime +
-            700 &&
+            2000 &&
         currentTime < sentences[i + 2].words[0].startTime &&
         sentences[i + 2].words[0].startTime -
           sentences[i + 1].words[sentences[i + 1].words.length - 1].endTime >
