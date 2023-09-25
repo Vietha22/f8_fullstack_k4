@@ -105,8 +105,9 @@ var getTime = function (seconds) {
 };
 
 //Lăng nghe sự kiện loadeddata -> Khi nào file audio tải xong
-audio.addEventListener("loadeddata", function () {});
-durationEl.innerText = getTime(audio.duration);
+audio.addEventListener("loadeddata", function () {
+  durationEl.innerText = getTime(audio.duration);
+});
 
 playBtn.addEventListener("click", function () {
   if (audio.paused) {
