@@ -1,0 +1,22 @@
+.list {
+  background: #4286f4;
+  width: 500px;
+  padding: 1rem;
+}
+.ghost {
+  opacity: 0.4;
+}
+.list-item {
+  background: #8bb3f4;
+  border: 1px solid #fff;
+  margin: 1px 0;
+  padding: 0.5rem;
+}
+/* .placeholder {
+  pointer-events: none;
+  background: #303742;
+  display: none;
+} */
+.list-item.active {
+  background: #ff6f00;
+}
