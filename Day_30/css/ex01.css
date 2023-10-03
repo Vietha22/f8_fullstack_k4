@@ -1,0 +1,139 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Roboto, sans-serif;
+  font-size: 10px;
+}
+
+.container {
+  max-width: 90%;
+  margin: 20px auto;
+}
+
+.arrow {
+  border: solid #fff;
+  border-width: 0 3px 3px 0;
+  display: inline-block;
+  padding: 3px;
+}
+
+.btn,
+button {
+  font-family: Roboto, sans-serif;
+  padding: 8px 20px;
+  color: #fff;
+  background-color: #000;
+  border-radius: 5px;
+  border: none;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+h4 {
+  font-size: 1.4rem;
+  font-weight: 500;
+  border-bottom: 2px solid #ccc;
+  margin-bottom: 10px;
+  padding: 10px 0;
+}
+
+.controls {
+  display: flex;
+  justify-content: space-between;
+}
+
+.main-controls {
+  display: flex;
+  gap: 10px;
+}
+
+.dropdown {
+  position: relative;
+}
+
+.dropdown-toggle {
+  display: flex;
+  gap: 5px;
+  background-color: rgb(95, 95, 247);
+  padding: 8px 15px;
+  cursor: pointer;
+}
+
+.dropdown-toggle:hover {
+  background-color: rgb(69, 69, 223);
+}
+
+.dropdown-toggle .down {
+  margin-top: 3px;
+  transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+}
+
+.dropdown-menu {
+  position: absolute;
+  margin-top: 3px;
+  border-radius: 8px;
+  width: 170px;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #ddd;
+  padding: 10px 0;
+  display: none;
+}
+
+.dropdown-menu.show {
+  display: flex;
+}
+
+.dropdown-item {
+  background-color: #fff;
+  color: #555;
+  border: none;
+  text-align: left;
+  padding: 5px 18px;
+  font-size: 1rem;
+}
+
+.dropdown-item:hover {
+  background-color: #eee;
+  cursor: pointer;
+}
+
+#filename-input {
+  text-indent: 5px;
+  font-size: 1rem;
+  color: #333;
+}
+
+.control-btn {
+  display: flex;
+  gap: 8px;
+}
+
+#color-btn {
+  height: 100%;
+  width: 50px;
+}
+
+#content {
+  box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.5);
+  margin: 30px 0;
+  min-height: 300px;
+  outline: none;
+  padding: 20px;
+  font-size: 1.2rem;
+  color: #333;
+}
+
+.counts {
+  display: flex;
+  justify-content: end;
+  gap: 10px;
+  font-size: 1rem;
+}

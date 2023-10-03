@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/ex01.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h4 class="title">Doc Editor</h4>
+      <div class="controls">
+        <div class="main-controls">
+          <div class="dropdown">
+            <button class="btn dropdown-toggle">
+              File<i class="arrow down"></i>
+            </button>
+            <div class="dropdown-menu">
+              <button id="new-btn" class="dropdown-item">New</button>
+              <button id="txt-btn" class="dropdown-item">Save as TXT</button>
+              <button id="pdf-btn" class="dropdown-item">Save as PDF</button>
+            </div>
+          </div>
+          <input type="text" value="untitled" id="filename-input" />
+        </div>
+        <div class="control-btn">
+          <button id="bold-btn" class="btn control-btn">
+            <b>b</b>
+          </button>
+          <button id="underline-btn" class="btn control-btn">
+            <u>u</u>
+          </button>
+          <button id="italic-btn" class="btn control-btn">
+            <i>i</i>
+          </button>
+          <input id="color-btn" type="color" class="control-btn" />
+        </div>
+      </div>
+      <div id="content" contenteditable="true" spellcheck="false"></div>
+      <div class="counts">
+        <p>Số ký tự: <span class="char">0</span></p>
+        <p>Số từ: <span class="word">0</span></p>
+      </div>
+    </div>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"
+      integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script src="./js/ex01.js"></script>
+  </body>
+</html>
