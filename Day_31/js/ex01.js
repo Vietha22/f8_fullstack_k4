@@ -12,15 +12,16 @@ const cancelAnimationFrame =
 
 let requestId;
 
-const initialTime = 20;
-let timePerCb = initialTime * 60;
+const timeCount = 20;
+let initialTime = 0;
 let isDisabled = true;
 
+// The number of callbacks is usually 60 times per second
 const playCountdown = () => {
-  timePerCb--;
-  let timeLeft = timePerCb / 60;
-  if (timeLeft > 0) {
-    counter.textContent = timeLeft.toFixed();
+  let timeLeft = timeCount - initialTime / 60;
+  initialTime++;
+  if (timeLeft >= 0) {
+    counter.textContent = Math.ceil(timeLeft);
     requestId = requestAnimationFrame(playCountdown);
   } else {
     isDisabled = false;
