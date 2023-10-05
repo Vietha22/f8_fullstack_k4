@@ -12,7 +12,7 @@ const cancelAnimationFrame =
 
 let requestId;
 
-const initialTime = 2;
+const initialTime = 20;
 let timePerCb = initialTime * 60;
 let isDisabled = true;
 
