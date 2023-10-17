@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="css/ex01.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+      integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+  </head>
+
+  <body>
+    <div class="container">
+      <h1><span>Smatyx</span> Todos App</h1>
+      <div class="row">
+        <form action="#">
+          <input type="text" />
+          <button><i class="fa-solid fa-magnifying-glass"></i></button>
+        </form>
+        <button class="btn-add">Add Todos</button>
+      </div>
+      <div class="todos-list">
+        <div class="not-completed-todos"></div>
+        <button class="btn-completed"></button>
+        <div class="completed-todos"></div>
+      </div>
+      <div class="add-todo">
+        <div class="add-todo-box">
+          <input type="text" placeholder="Add Todos" />
+          <hr />
+          <div class="btn-row">
+            <button class="save" type="submit">Save</button>
+            <button class="cancel">Cancel</button>
+          </div>
+        </div>
+        <div class="overlay"></div>
+      </div>
+    </div>
+    <script type="module" src="js/ex01.js"></script>
+  </body>
+</html>
