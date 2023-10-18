@@ -155,7 +155,7 @@ btnCompleted.addEventListener("click", () => {
 searchInput.addEventListener("input", () => {
   const todosList = document.querySelectorAll(".todo");
   todosList.forEach((todo) => {
-    if (todo.textContent.includes(searchInput.value.trim())) {
+    if (todo.textContent.toLowerCase().includes(searchInput.value.trim())) {
       todo.style.display = "flex";
     } else {
       todo.style.display = "none";
