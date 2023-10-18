@@ -112,6 +112,7 @@ await renderTodos();
 
 // Update Todos
 addBtn.addEventListener("click", () => {
+  edit = false;
   addTodoEl.classList.add("show");
   saveInput.value = "";
 });
@@ -133,7 +134,6 @@ saveBtn.addEventListener("click", async () => {
       await patchTodos(changeId, {
         name: saveInput.value,
       });
-      edit = false;
       addTodoEl.classList.remove("show");
       renderTodos();
     } else {

@@ -100,6 +100,15 @@ h1 span {
   align-items: center;
 }
 
+.todo > span {
+  margin-right: 20px;
+}
+
+.todo .controls {
+  display: flex;
+  gap: 10px;
+}
+
 .todo .controls span {
   display: inline-block;
   width: 40px;
@@ -109,7 +118,6 @@ h1 span {
   text-align: center;
   border-radius: 5px;
   color: #fff;
-  margin-left: 5px;
   cursor: pointer;
 }
 
