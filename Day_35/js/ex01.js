@@ -70,7 +70,7 @@ const app = {
             setTimeout(() => {
               this.query._page++;
               this.getPosts(this.query);
-            }, 500);
+            }, 0);
           } else {
             this.hideLoader();
             const footer = document.querySelector(".footer");
