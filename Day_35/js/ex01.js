@@ -41,10 +41,13 @@ const app = {
     let queryString = new URLSearchParams(query).toString();
     queryString = queryString ? "?" + queryString : "";
     const { data: posts } = await client.get(`/posts${queryString}`);
-    if (posts.length !== 0) {
+    if (posts.length) {
       this.render(posts);
     } else {
       this.endOfPosts = true;
+      this.hideLoader();
+      const footer = document.querySelector(".footer");
+      footer.innerHTML = `<p>Đã xem hết tất cả bài viết!</p>`;
     }
   },
 
@@ -64,18 +67,12 @@ const app = {
       () => {
         const { scrollTop, scrollHeight, clientHeight } =
           document.documentElement;
-        if (scrollTop + clientHeight >= scrollHeight - 5) {
-          if (!this.endOfPosts) {
-            this.showLoader();
-            setTimeout(() => {
-              this.query._page++;
-              this.getPosts(this.query);
-            }, 0);
-          } else {
-            this.hideLoader();
-            const footer = document.querySelector(".footer");
-            footer.innerHTML = `<p>Đã xem hết tất cả bài viết!</p>`;
-          }
+        if (scrollTop + clientHeight >= scrollHeight - 5 && !this.endOfPosts) {
+          this.showLoader();
+          setTimeout(() => {
+            this.query._page++;
+            this.getPosts(this.query);
+          }, 500);
         }
       },
       {
