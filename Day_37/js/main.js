@@ -131,13 +131,29 @@ const app = {
 
     this.root.addEventListener("click", (e) => {
       if (e.target.classList.contains("loginBtn")) {
+        e.preventDefault();
         this.renderLoginForm();
       }
     });
 
     this.root.addEventListener("click", (e) => {
       if (e.target.classList.contains("registerBtn")) {
+        e.preventDefault();
         this.renderRegisterForm();
+      }
+    });
+
+    this.root.addEventListener("click", (e) => {
+      if (e.target.classList.contains("loginBack")) {
+        e.preventDefault();
+        this.render();
+      }
+    });
+
+    this.root.addEventListener("click", (e) => {
+      if (e.target.classList.contains("registerBack")) {
+        e.preventDefault();
+        this.renderLoginForm();
       }
     });
 
@@ -169,20 +185,6 @@ const app = {
           title,
           content,
         });
-      }
-    });
-
-    this.root.addEventListener("click", (e) => {
-      e.preventDefault();
-      if (e.target.classList.contains("loginBack")) {
-        this.render();
-      }
-    });
-
-    this.root.addEventListener("click", (e) => {
-      e.preventDefault();
-      if (e.target.classList.contains("registerBack")) {
-        this.renderLoginForm();
       }
     });
 
@@ -324,7 +326,7 @@ const app = {
               <input type="email" name="email" class="form-control email" placeholder="Email..." required/>
             </div>
             <div class="mb-3">
-              <label for="">Password</label>
+              <label  abel for="">Password</label>
               <input type="password" name="password" class="form-control password" placeholder="Password..." required/>
             </div>
             <div class="d-grid gap-2">
