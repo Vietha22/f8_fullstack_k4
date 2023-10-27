@@ -32,7 +32,7 @@ const app = {
     if (this.isLogin()) {
       html = `
       <div class="container py-3">
-        <h2 class="text-center">Chào mừng bạn đã quay trở lại</h2>
+        <h2 class="text-center">Chào mừng bạn đã quay Trở lại</h2>
         <ul class="profile list-unstyled d-flex gap-3">
           <li>Chào bạn: <span class="name">Loading...</span></li>
           <li><a href="#" class="text-decoration-none logout">Đăng xuất</a></li>
@@ -172,6 +172,20 @@ const app = {
       }
     });
 
+    this.root.addEventListener("click", (e) => {
+      e.preventDefault();
+      if (e.target.classList.contains("loginBack")) {
+        this.render();
+      }
+    });
+
+    this.root.addEventListener("click", (e) => {
+      e.preventDefault();
+      if (e.target.classList.contains("registerBack")) {
+        this.renderLoginForm();
+      }
+    });
+
     window.addEventListener("scroll", () => {
       const { scrollTop, scrollHeight, clientHeight } =
         document.documentElement;
@@ -302,6 +316,7 @@ const app = {
     <div class="container py-3">
       <div class="row justify-content-center">
         <div class="col-8 col-lg-6">
+          <button type="button" class="btn btn-primary loginBack">⭠ Trở về</button>
           <h2 class="text-center">Đăng nhập</h2>
           <form action="" class="login">
             <div class="mb-3">
@@ -328,6 +343,7 @@ const app = {
         <div class="container py-3">
           <div class="row justify-content-center">
             <div class="col-8 col-lg-6">
+              <button type="button" class="btn btn-primary registerBack">⭠ Trở về</button>
               <h2 class="text-center">Đăng ký</h2>
               <form action="" class="register">
                 <div class="mb-3">
