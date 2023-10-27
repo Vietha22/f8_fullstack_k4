@@ -54,7 +54,7 @@ const app = {
             <div class="msg mt-3 text-danger text-center"></div>
           </form>
         </div>
-        </div>
+      </div>
         `;
       this.getProfile();
     } else {
@@ -100,6 +100,10 @@ const app = {
     const { response, data } = await client.get(`/blogs${queryString}`);
     const { data: posts } = data;
     if (posts.length) {
+      const loadDiv = this.root.querySelector(".loader");
+      if (loadDiv) {
+        loadDiv.remove();
+      }
       this.renderPosts(posts);
     } else {
       // this.endOfPosts = true;
@@ -193,6 +197,12 @@ const app = {
         document.documentElement;
       if (scrollTop + clientHeight >= scrollHeight - 5 && !this.endOfPosts) {
         // this.showLoader();
+        const loadDiv = document.createElement("div");
+        loadDiv.classList.add("loader", "container", "py-3");
+        loadDiv.innerHTML = `<p class="text-center">Đang tải...</p>`;
+        if (!this.root.querySelector(".loader")) {
+          this.root.append(loadDiv);
+        }
         setTimeout(() => {
           this.query._page++;
           this.getPosts(this.query);
