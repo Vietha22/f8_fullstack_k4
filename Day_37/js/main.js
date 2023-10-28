@@ -8,8 +8,8 @@ const app = {
   root: document.querySelector("#root"),
   query: {
     // _sort: "id",
-    _page: 1,
-    _limit: PAGE_LIMIT,
+    page: 1,
+    limit: PAGE_LIMIT,
   },
   isLogin: function () {
     let token = localStorage.getItem("login_token");
@@ -204,7 +204,7 @@ const app = {
           this.root.append(loadDiv);
         }
         setTimeout(() => {
-          this.query._page++;
+          this.query.page++;
           this.getPosts(this.query);
         }, 500);
       }
