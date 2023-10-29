@@ -26,7 +26,6 @@ const app = {
     return status;
   },
   render: function () {
-    console.log("re-render");
     let html;
 
     if (this.isLogin()) {
@@ -80,7 +79,13 @@ const app = {
 
     posts.forEach((post) => {
       const postEl = document.createElement("div");
-      postEl.classList.add("post", "w-50");
+      postEl.classList.add("post", "w-75");
+
+      let date = new Date(post.createdAt);
+      let oldTimestamp = date.getTime();
+      let timestamp = new Date().getTime();
+
+      let relativeTime = this.getTimeRelative(timestamp, oldTimestamp);
 
       postEl.innerHTML = `
       <a class="link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover" href="#">
@@ -88,11 +93,44 @@ const app = {
       </a>
       <h3>${post.title}</h3> 
       <p>${post.content}</p>
+      <div>
+        <span><i>${relativeTime}</i></span>
+        <span>•</span>
+        <span>${date.getHours()} giờ ${date.getMinutes()} phút</span>
+      </div>
       <hr />
       `;
 
       postsEl.append(postEl);
     });
+  },
+  getTimeRelative: function (timestamp, oldTimestamp) {
+    const seconds = Math.floor(timestamp / 1000);
+    oldTimestamp = Math.floor(oldTimestamp / 1000);
+
+    const difference = seconds - oldTimestamp;
+    let output = ``;
+    if (difference < 60) {
+      // Less than a minute has passed:
+      output = `${difference} seconds ago`;
+    } else if (difference < 3600) {
+      // Less than an hour has passed:
+      output = `${Math.floor(difference / 60)} minutes ago`;
+    } else if (difference < 86400) {
+      // Less than a day has passed:
+      output = `${Math.floor(difference / 3600)} hours ago`;
+    } else if (difference < 2620800) {
+      // Less than a month has passed:
+      output = `${Math.floor(difference / 86400)} days ago`;
+    } else if (difference < 31449600) {
+      // Less than a year has passed:
+      output = `${Math.floor(difference / 2620800)} months ago`;
+    } else {
+      // More than a year has passed:
+      output = `${Math.floor(difference / 31449600)} years ago`;
+    }
+
+    return output;
   },
   getPosts: async function (query = {}) {
     let queryString = new URLSearchParams(query).toString();
@@ -210,82 +248,6 @@ const app = {
       }
     });
   },
-  writePost: async function (info) {
-    const titleEl = document.querySelector(".title");
-    const contentEl = document.querySelector(".content");
-    try {
-      this.loadingWrite(); //Thêm loading
-
-      let token = localStorage.getItem("login_token");
-      let accessToken;
-
-      if (token) {
-        accessToken = JSON.parse(token).accessToken;
-      }
-
-      if (!accessToken) {
-        throw new Error("accessToken not null");
-      }
-
-      client.setToken(accessToken);
-      const { response, data } = await client.post("/blogs", info);
-
-      if (response.status === 401) {
-        throw new Error("accessToken hết hạn");
-      }
-
-      if (response.status === 200) {
-        titleEl.value = "";
-        contentEl.value = "";
-        this.loadingWrite(false); //Xóa loading
-      }
-
-      this.render();
-    } catch (e) {
-      if (e.message === "accessToken hết hạn") {
-        const title = titleEl.value;
-        const content = contentEl.value;
-
-        await this.getRefreshToken();
-        await this.writePost({ title, content });
-      }
-    }
-  },
-  loadingLogin: function (status = true) {
-    const button = this.root.querySelector(".login .btn");
-    if (status) {
-      button.innerHTML = `<span class="spinner-border spinner-border-sm"></span> Loading...`;
-      button.disabled = true;
-    } else {
-      button.innerHTML = `Đăng nhập`;
-      button.disabled = false;
-    }
-  },
-  loadingRegister: function (status = true) {
-    const button = this.root.querySelector(".register .btn");
-    if (status) {
-      button.innerHTML = `<span class="spinner-border spinner-border-sm"></span> Loading...`;
-      button.disabled = true;
-    } else {
-      button.innerHTML = `Đăng ký`;
-      button.disabled = false;
-    }
-  },
-  loadingWrite: function (status = true) {
-    const button = this.root.querySelector(".writePost .btn");
-    if (status) {
-      button.innerHTML = `<span class="spinner-border spinner-border-sm"></span> Loading...`;
-      button.disabled = true;
-    } else {
-      button.innerHTML = `Write new`;
-      button.disabled = false;
-    }
-  },
-  showError: function (auth, msgText) {
-    const msg = this.root.querySelector(`${auth} .msg`);
-    msg.innerText = ``;
-    msg.innerText = msgText;
-  },
   login: async function (info) {
     this.loadingLogin(); //Thêm loading
     try {
@@ -322,63 +284,6 @@ const app = {
     } catch (e) {
       this.showError(".register", e.message);
     }
-  },
-  renderLoginForm: function () {
-    let html = `
-    <div class="container py-3">
-      <div class="row justify-content-center">
-        <div class="col-8 col-lg-6">
-          <button type="button" class="btn btn-primary loginBack">⭠ Trở về</button>
-          <h2 class="text-center">Đăng nhập</h2>
-          <form action="" class="login">
-            <div class="mb-3">
-              <label for="">Email</label>
-              <input type="email" name="email" class="form-control email" placeholder="Email..." required/>
-            </div>
-            <div class="mb-3">
-              <label  abel for="">Password</label>
-              <input type="password" name="password" class="form-control password" placeholder="Password..." required/>
-            </div>
-            <div class="d-grid gap-2">
-              <button class="btn btn-primary" type="submit">Đăng nhập</button>
-              <button class="btn btn-primary registerBtn" type="button">Đăng ký</button>
-            </div>
-            <div class="msg mt-3 text-danger text-center"></div>
-          </form>
-        </div>
-      </div>
-    </div>`;
-    this.root.innerHTML = html;
-  },
-  renderRegisterForm: function () {
-    let html = `
-        <div class="container py-3">
-          <div class="row justify-content-center">
-            <div class="col-8 col-lg-6">
-              <button type="button" class="btn btn-primary registerBack">⭠ Trở về</button>
-              <h2 class="text-center">Đăng ký</h2>
-              <form action="" class="register">
-                <div class="mb-3">
-                  <label for="">Điền tên</label>
-                  <input type="text" name="name" class="form-control name" placeholder="Name..." required/>
-                </div>
-                <div class="mb-3">
-                  <label for="">Điền email</label>
-                  <input type="email" name="email" class="form-control email" placeholder="Email..." required/>
-                </div>
-                <div class="mb-3">
-                  <label for="">Điền password</label>
-                  <input type="password" name="password" class="form-control password" placeholder="Password..." required/>
-                </div>
-                <div class="d-grid">
-                  <button class="btn btn-primary" type="submit">Đăng ký</button>
-                </div>
-                <div class="msg mt-3 text-danger text-center"></div>
-              </form>
-            </div>
-          </div>
-        </div>`;
-    this.root.innerHTML = html;
   },
   getProfile: async function () {
     try {
@@ -437,6 +342,47 @@ const app = {
       this.render();
     }
   },
+  writePost: async function (info) {
+    const titleEl = document.querySelector(".title");
+    const contentEl = document.querySelector(".content");
+    try {
+      this.loadingWrite(); //Thêm loading
+
+      let token = localStorage.getItem("login_token");
+      let accessToken;
+
+      if (token) {
+        accessToken = JSON.parse(token).accessToken;
+      }
+
+      if (!accessToken) {
+        throw new Error("accessToken not null");
+      }
+
+      client.setToken(accessToken);
+      const { response, data } = await client.post("/blogs", info);
+
+      if (response.status === 401) {
+        throw new Error("accessToken hết hạn");
+      }
+
+      if (response.status === 200) {
+        titleEl.value = "";
+        contentEl.value = "";
+        this.loadingWrite(false); //Xóa loading
+      }
+
+      this.render();
+    } catch (e) {
+      if (e.message === "accessToken hết hạn") {
+        const title = titleEl.value;
+        const content = contentEl.value;
+
+        await this.getRefreshToken();
+        await this.writePost({ title, content });
+      }
+    }
+  },
   getRefreshToken: async function () {
     try {
       let token = localStorage.getItem("login_token");
@@ -469,6 +415,98 @@ const app = {
         console.log("Vui lòng đăng nhập lại để lấy refreshToken mới!");
       }
     }
+  },
+  loadingLogin: function (status = true) {
+    const button = this.root.querySelector(".login .btn");
+    if (status) {
+      button.innerHTML = `<span class="spinner-border spinner-border-sm"></span> Loading...`;
+      button.disabled = true;
+    } else {
+      button.innerHTML = `Đăng nhập`;
+      button.disabled = false;
+    }
+  },
+  loadingRegister: function (status = true) {
+    const button = this.root.querySelector(".register .btn");
+    if (status) {
+      button.innerHTML = `<span class="spinner-border spinner-border-sm"></span> Loading...`;
+      button.disabled = true;
+    } else {
+      button.innerHTML = `Đăng ký`;
+      button.disabled = false;
+    }
+  },
+  loadingWrite: function (status = true) {
+    const button = this.root.querySelector(".writePost .btn");
+    if (status) {
+      button.innerHTML = `<span class="spinner-border spinner-border-sm"></span> Loading...`;
+      button.disabled = true;
+    } else {
+      button.innerHTML = `Write new`;
+      button.disabled = false;
+    }
+  },
+  showError: function (auth, msgText) {
+    const msg = this.root.querySelector(`${auth} .msg`);
+    msg.innerText = ``;
+    msg.innerText = msgText;
+  },
+  renderLoginForm: function () {
+    let html = `
+    <div class="container py-3">
+      <div class="row justify-content-center">
+        <div class="col-8 col-lg-6">
+          <button type="button" class="btn btn-primary loginBack">⭠ Trở về</button>
+          <h2 class="text-center">Đăng nhập</h2>
+          <form action="" class="login">
+            <div class="mb-3">
+              <label for="">Email</label>
+              <input type="email" name="email" class="form-control email" placeholder="Email..." required/>
+            </div>
+            <div class="mb-3">
+              <label  abel for="">Password</label>
+              <input type="password" name="password" class="form-control password" placeholder="Password..." required/>
+            </div>
+            <div class="d-grid gap-2">
+              <button class="btn btn-primary" type="submit">Đăng nhập</button>
+              <button class="btn btn-primary registerBtn" type="button">Đăng ký</button>
+            </div>
+            <div class="msg mt-3 text-danger text-center"></div>
+          </form>
+        </div>
+      </div>
+    </div>`;
+    this.root.innerHTML = html;
+  },
+  renderRegisterForm: function () {
+    let html = `
+        <div class="container py-3">
+          <div class="row justify-content-center">
+            <div class="col-8 col-lg-6">
+              <button type="button" class="btn btn-primary registerBack">⭠ Trở về</button>
+              <h2 class="text-center">Đăng ký</h2>
+              <form action="" class="register">
+                <div class="mb-3">
+                  <label for="">Điền tên</label>
+                  <input type="text" name="name" class="form-control name" placeholder="Name..." required/>
+                </div>
+                <div class="mb-3">
+                  <label for="">Điền email</label>
+                  <input type="email" name="email" class="form-control email" placeholder="Email..." required/>
+                </div>
+                <div class="mb-3">
+                  <label for="">Điền password</label>
+                  <input type="password" name="password" class="form-control password" placeholder="Password..." required/>
+                </div>
+                <div class="d-grid">
+                  <button class="btn btn-primary" type="submit">Đăng ký</button>
+                </div>
+                <div class="msg mt-3 text-danger text-center"></div>
+              </form>
+            </div>
+          </div>
+        </div>`;
+    this.root.innerHTML = html;
   },
   start: function () {
     //Khởi động ứng dụng
