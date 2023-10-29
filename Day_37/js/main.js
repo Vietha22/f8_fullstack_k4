@@ -112,22 +112,22 @@ const app = {
     let output = ``;
     if (difference < 60) {
       // Less than a minute has passed:
-      output = `${difference} seconds ago`;
+      output = `${difference} giây trước`;
     } else if (difference < 3600) {
       // Less than an hour has passed:
-      output = `${Math.floor(difference / 60)} minutes ago`;
+      output = `${Math.floor(difference / 60)} phút trước`;
     } else if (difference < 86400) {
       // Less than a day has passed:
-      output = `${Math.floor(difference / 3600)} hours ago`;
+      output = `${Math.floor(difference / 3600)} giờ trước`;
     } else if (difference < 2620800) {
       // Less than a month has passed:
-      output = `${Math.floor(difference / 86400)} days ago`;
+      output = `${Math.floor(difference / 86400)} ngày trước`;
     } else if (difference < 31449600) {
       // Less than a year has passed:
-      output = `${Math.floor(difference / 2620800)} months ago`;
+      output = `${Math.floor(difference / 2620800)} tháng trước`;
     } else {
       // More than a year has passed:
-      output = `${Math.floor(difference / 31449600)} years ago`;
+      output = `${Math.floor(difference / 31449600)} năm trước`;
     }
 
     return output;
