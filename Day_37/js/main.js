@@ -182,46 +182,6 @@ const app = {
 
         this.login({ email, password });
       }
-    });
-
-    this.root.addEventListener("click", (e) => {
-      if (e.target.classList.contains("logout")) {
-        e.preventDefault();
-        this.logout();
-      }
-    });
-
-    this.root.addEventListener("click", (e) => {
-      if (e.target.classList.contains("loginBtn")) {
-        e.preventDefault();
-        this.renderLoginForm();
-      }
-    });
-
-    this.root.addEventListener("click", (e) => {
-      if (e.target.classList.contains("registerBtn")) {
-        e.preventDefault();
-        this.renderRegisterForm();
-      }
-    });
-
-    this.root.addEventListener("click", (e) => {
-      if (e.target.classList.contains("loginBack")) {
-        e.preventDefault();
-        this.isShowUserDetail = false;
-        this.render();
-      }
-    });
-
-    this.root.addEventListener("click", (e) => {
-      if (e.target.classList.contains("registerBack")) {
-        e.preventDefault();
-        this.renderLoginForm();
-      }
-    });
-
-    this.root.addEventListener("submit", (e) => {
-      e.preventDefault();
       if (e.target.classList.contains("register")) {
         const nameEl = e.target.querySelector(".name");
         const emailEl = e.target.querySelector(".email");
@@ -233,10 +193,6 @@ const app = {
 
         this.register({ email, password, name });
       }
-    });
-
-    this.root.addEventListener("submit", (e) => {
-      e.preventDefault();
       if (e.target.classList.contains("writePost")) {
         const titleEl = e.target.querySelector(".title");
         const contentEl = e.target.querySelector(".content");
@@ -248,6 +204,37 @@ const app = {
           title,
           content,
         });
+      }
+    });
+
+    this.root.addEventListener("click", (e) => {
+      if (e.target.classList.contains("logout")) {
+        e.preventDefault();
+        this.logout();
+      }
+      if (e.target.classList.contains("loginBtn")) {
+        e.preventDefault();
+        this.renderLoginForm();
+      }
+      if (e.target.classList.contains("registerBtn")) {
+        e.preventDefault();
+        this.renderRegisterForm();
+      }
+      if (e.target.classList.contains("loginBack")) {
+        e.preventDefault();
+        this.isShowUserDetail = false;
+        this.render();
+      }
+      if (e.target.classList.contains("registerBack")) {
+        e.preventDefault();
+        this.renderLoginForm();
+      }
+      if (e.target.classList.contains("username")) {
+        if (!this.isShowUserDetail) {
+          e.preventDefault();
+          this.isShowUserDetail = true;
+          this.showUserDetail(e.target.dataset.userId, e.target.textContent);
+        }
       }
     });
 
@@ -273,16 +260,6 @@ const app = {
               type: "success",
               duration: 5000,
             });
-      }
-    });
-
-    this.root.addEventListener("click", (e) => {
-      if (e.target.classList.contains("username")) {
-        if (!this.isShowUserDetail) {
-          e.preventDefault();
-          this.isShowUserDetail = true;
-          this.showUserDetail(e.target.dataset.userId, e.target.textContent);
-        }
       }
     });
 
