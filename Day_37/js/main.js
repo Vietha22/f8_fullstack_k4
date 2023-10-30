@@ -1,5 +1,6 @@
 import { client } from "./client.js";
 import { config } from "./config.js";
+import toast from "./toast.js";
 const { SERVER_API_AUTH, PAGE_LIMIT } = config;
 
 client.setUrl(SERVER_API_AUTH);
@@ -25,6 +26,7 @@ const app = {
 
     return status;
   },
+  isShowUserDetail: false,
   render: function () {
     let html;
 
@@ -47,10 +49,13 @@ const app = {
               <label for="">Enter your content</label>
               <textarea class="form-control content" rows="3" placeholder="Content..." required></textarea>
             </div>
-            <div class="gap-2">
+            <div class="mb-3">
+              <label for="">Set time to post</label>
+              <input type="date" class="form-control date">
+            </div>
+            <div class="mb-3">
               <button class="btn btn-primary" type="submit">Write new</button>
             </div>
-            <div class="msg mt-3 text-danger text-center"></div>
           </form>
         </div>
       </div>
@@ -71,7 +76,10 @@ const app = {
     html += `<div class="posts container py-3"></div>`;
 
     this.root.innerHTML = html;
-    this.getPosts(this.query);
+    if (!this.isShowUserDetail) {
+      this.query.page = 1;
+      this.getPosts(this.query);
+    }
   },
   renderPosts: function (posts) {
     const stripHtml = (html) => html.replace(/(<([^>]+)>)/gi, "");
@@ -89,7 +97,9 @@ const app = {
 
       postEl.innerHTML = `
       <a class="link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover" href="#">
-        <span>${post.userId.name}</span>
+        <span class="username" data-user-id="${post.userId._id}">@${
+        post.userId.name
+      }</span>
       </a>
       <h3>${post.title}</h3> 
       <p>${post.content}</p>
@@ -104,7 +114,7 @@ const app = {
       postsEl.append(postEl);
     });
   },
-  getTimeRelative: function (timestamp, oldTimestamp) {
+  getTimeRelative: function (timestamp, oldTimestamp, timePost = false) {
     const seconds = Math.floor(timestamp / 1000);
     oldTimestamp = Math.floor(oldTimestamp / 1000);
 
@@ -112,22 +122,32 @@ const app = {
     let output = ``;
     if (difference < 60) {
       // Less than a minute has passed:
-      output = `${difference} giây trước`;
+      output = `${difference} giây ${timePost ? `sau` : `trước`}`;
     } else if (difference < 3600) {
       // Less than an hour has passed:
-      output = `${Math.floor(difference / 60)} phút trước`;
+      output = `${Math.floor(difference / 60)} phút ${
+        timePost ? `sau` : `trước`
+      }`;
     } else if (difference < 86400) {
       // Less than a day has passed:
-      output = `${Math.floor(difference / 3600)} giờ trước`;
+      output = `${Math.floor(difference / 3600)} giờ ${
+        timePost ? `sau` : `trước`
+      }`;
     } else if (difference < 2620800) {
       // Less than a month has passed:
-      output = `${Math.floor(difference / 86400)} ngày trước`;
+      output = `${Math.floor(difference / 86400)} ngày ${
+        timePost ? `sau` : `trước`
+      }`;
     } else if (difference < 31449600) {
       // Less than a year has passed:
-      output = `${Math.floor(difference / 2620800)} tháng trước`;
+      output = `${Math.floor(difference / 2620800)} tháng ${
+        timePost ? `sau` : `trước`
+      }`;
     } else {
       // More than a year has passed:
-      output = `${Math.floor(difference / 31449600)} năm trước`;
+      output = `${Math.floor(difference / 31449600)} năm ${
+        timePost ? `sau` : `trước`
+      }`;
     }
 
     return output;
@@ -188,6 +208,7 @@ const app = {
     this.root.addEventListener("click", (e) => {
       if (e.target.classList.contains("loginBack")) {
         e.preventDefault();
+        this.isShowUserDetail = false;
         this.render();
       }
     });
@@ -230,10 +251,49 @@ const app = {
       }
     });
 
+    this.root.addEventListener("input", (e) => {
+      e.preventDefault();
+      if (e.target.classList.contains("date")) {
+        let date = new Date(e.target.value + " 00:00:00");
+        let timestamp = date.getTime();
+        let oldTimestamp = new Date().getTime();
+
+        let relativeTime = this.getTimeRelative(timestamp, oldTimestamp, true);
+
+        relativeTime.includes("-")
+          ? this.showToast({
+              title: "Thất bại!",
+              message: "Vui lòng chọn thời gian khác",
+              type: "error",
+              duration: 5000,
+            })
+          : this.showToast({
+              title: "Thành công!",
+              message: `Bài viết sẽ được đăng vào ${relativeTime}`,
+              type: "success",
+              duration: 5000,
+            });
+      }
+    });
+
+    this.root.addEventListener("click", (e) => {
+      if (e.target.classList.contains("username")) {
+        if (!this.isShowUserDetail) {
+          e.preventDefault();
+          this.isShowUserDetail = true;
+          this.showUserDetail(e.target.dataset.userId, e.target.textContent);
+        }
+      }
+    });
+
     window.addEventListener("scroll", () => {
       const { scrollTop, scrollHeight, clientHeight } =
         document.documentElement;
-      if (scrollTop + clientHeight >= scrollHeight - 5 && !this.endOfPosts) {
+      if (
+        scrollTop + clientHeight >= scrollHeight - 5 &&
+        !this.endOfPosts &&
+        !this.isShowUserDetail
+      ) {
         // this.showLoader();
         const loadDiv = document.createElement("div");
         loadDiv.classList.add("loader", "container", "py-3");
@@ -247,6 +307,52 @@ const app = {
         }, 500);
       }
     });
+  },
+  showUserDetail: async function (userId, username) {
+    try {
+      const { response, data } = await client.get(`/users/${userId}`);
+      const posts = data.data.blogs;
+
+      this.root.innerHTML = `   
+      <div class="posts container py-3">
+        <div class="mb-3">
+          <button type="button" class="btn btn-primary loginBack">⭠ Trở về</button>
+        </div>
+      </div>`;
+
+      const stripHtml = (html) => html.replace(/(<([^>]+)>)/gi, "");
+      const postsEl = this.root.querySelector(".posts");
+
+      posts.forEach((post) => {
+        const postEl = document.createElement("div");
+        postEl.classList.add("post", "w-75");
+
+        let date = new Date(post.createdAt);
+        let oldTimestamp = date.getTime();
+        let timestamp = new Date().getTime();
+
+        let relativeTime = this.getTimeRelative(timestamp, oldTimestamp);
+
+        postEl.innerHTML = `
+            <a class="link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover" href="#">
+              <span class="username" data-user-id="${
+                post.userId
+              }">${username}</span>
+            </a>
+            <h3>${post.title}</h3> 
+            <p>${post.content}</p>
+            <div>
+              <span><i>${relativeTime}</i></span>
+              <span>•</span>
+              <span>${date.getHours()} giờ ${date.getMinutes()} phút</span>
+            </div>
+            <hr />
+            `;
+
+        postsEl.append(postEl);
+        document.documentElement.scrollTop = 0;
+      });
+    } catch (e) {}
   },
   login: async function (info) {
     this.loadingLogin(); //Thêm loading
@@ -265,6 +371,12 @@ const app = {
       localStorage.setItem("login_token", JSON.stringify(token));
       //Render
       this.render();
+      this.showToast({
+        title: "Thành công!",
+        message: "Bạn đã đăng nhập thành công.",
+        type: "success",
+        duration: 5000,
+      });
     } catch (e) {
       this.showError(".login", e.message);
     }
@@ -281,6 +393,12 @@ const app = {
       }
 
       this.renderLoginForm();
+      this.showToast({
+        title: "Thành công!",
+        message: "Bạn đã đăng ký thành công.",
+        type: "success",
+        duration: 5000,
+      });
     } catch (e) {
       this.showError(".register", e.message);
     }
@@ -337,9 +455,21 @@ const app = {
 
       localStorage.removeItem("login_token");
       this.render();
+      this.showToast({
+        title: "Thành công!",
+        message: "Bạn đã đăng xuất.",
+        type: "success",
+        duration: 5000,
+      });
     } catch (e) {
       localStorage.removeItem("login_token");
       this.render();
+      this.showToast({
+        title: "Thành công!",
+        message: "Bạn đã đăng xuất.",
+        type: "success",
+        duration: 5000,
+      });
     }
   },
   writePost: async function (info) {
@@ -373,6 +503,12 @@ const app = {
       }
 
       this.render();
+      this.showToast({
+        title: "Thành công!",
+        message: "Bạn đã đăng bài thành công.",
+        type: "success",
+        duration: 5000,
+      });
     } catch (e) {
       if (e.message === "accessToken hết hạn") {
         const title = titleEl.value;
@@ -507,6 +643,12 @@ const app = {
           </div>
         </div>`;
     this.root.innerHTML = html;
+  },
+  showToast: function (log) {
+    const toastEl = document.createElement("div");
+    toastEl.id = "toast";
+    this.root.append(toastEl);
+    toast(log);
   },
   start: function () {
     //Khởi động ứng dụng
