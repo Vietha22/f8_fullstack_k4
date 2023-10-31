@@ -217,10 +217,12 @@ const app = {
       }
       if (e.target.classList.contains("login-btn")) {
         e.preventDefault();
+        this.isShowDetail = true;
         this.renderLoginForm();
       }
       if (e.target.classList.contains("register-btn")) {
         e.preventDefault();
+        this.isShowDetail = true;
         this.renderRegisterForm();
       }
       if (e.target.classList.contains("login-back")) {
