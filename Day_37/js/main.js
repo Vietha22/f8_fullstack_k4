@@ -26,7 +26,7 @@ const app = {
 
     return status;
   },
-  cantScroll: false,
+  scrollable: true,
   render: function () {
     let html;
 
@@ -76,10 +76,9 @@ const app = {
     html += `<div class="posts container py-3"></div>`;
 
     this.root.innerHTML = html;
-    if (!this.cantScroll) {
-      this.query.page = 1;
-      this.getPosts(this.query);
-    }
+    this.scrollable = true;
+    this.query.page = 1;
+    this.getPosts(this.query);
   },
   renderPosts: function (posts) {
     const stripHtml = (html) => html.replace(/(<([^>]+)>)/gi, "");
@@ -217,17 +216,16 @@ const app = {
       }
       if (e.target.classList.contains("login-btn")) {
         e.preventDefault();
-        this.cantScroll = true;
+        this.scrollable = false;
         this.renderLoginForm();
       }
       if (e.target.classList.contains("register-btn")) {
         e.preventDefault();
-        this.cantScroll = true;
+        this.scrollable = false;
         this.renderRegisterForm();
       }
       if (e.target.classList.contains("login-back")) {
         e.preventDefault();
-        this.cantScroll = false;
         this.render();
       }
       if (e.target.classList.contains("register-back")) {
@@ -235,16 +233,14 @@ const app = {
         this.renderLoginForm();
       }
       if (e.target.classList.contains("username")) {
-        if (!this.cantScroll) {
-          e.preventDefault();
-          this.cantScroll = true;
-          this.showUserDetail(e.target.dataset.userId, e.target.textContent);
-        }
+        e.preventDefault();
+        this.scrollable = false;
+        this.showUserDetail(e.target.dataset.userId, e.target.textContent);
       }
 
       if (e.target.classList.contains("blog-detail")) {
         e.preventDefault();
-        this.cantScroll = true;
+        this.scrollable = false;
         this.showBlogDetail(e.target.dataset.blogId);
       }
     });
@@ -280,9 +276,8 @@ const app = {
       if (
         scrollTop + clientHeight >= scrollHeight - 5 &&
         !this.endOfPosts &&
-        !this.cantScroll
+        this.scrollable
       ) {
-        // this.showLoader();
         const loadDiv = document.createElement("div");
         loadDiv.classList.add("loader", "container", "py-3");
         loadDiv.innerHTML = `<p class="text-center">Đang tải...</p>`;
