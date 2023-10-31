@@ -26,7 +26,7 @@ const app = {
 
     return status;
   },
-  isShowUserDetail: false,
+  isShowDetail: false,
   render: function () {
     let html;
 
@@ -40,7 +40,7 @@ const app = {
         </ul>
         <div class="w-50">
           <h2 class="">Viết bài</h2>
-          <form action="" class="writePost">
+          <form action="" class="write-post">
             <div class="mb-3">
               <label for="">Enter your title</label>
               <input type="text" name="title" class="form-control title" placeholder="Title..." required/>
@@ -66,7 +66,7 @@ const app = {
       <div class="container py-3">
         <div class="row">
           <div class="">
-            <button class="btn btn-primary loginBtn">Đăng nhập</button>
+            <button class="btn btn-primary login-btn">Đăng nhập</button>
           </div>
         </div>
       </div>
@@ -76,7 +76,7 @@ const app = {
     html += `<div class="posts container py-3"></div>`;
 
     this.root.innerHTML = html;
-    if (!this.isShowUserDetail) {
+    if (!this.isShowDetail) {
       this.query.page = 1;
       this.getPosts(this.query);
     }
@@ -103,11 +103,14 @@ const app = {
       </a>
       <h3>${post.title}</h3> 
       <p>${post.content}</p>
-      <div>
+      <div class="mb-3">
         <span><i>${relativeTime}</i></span>
         <span>•</span>
         <span>${date.getHours()} giờ ${date.getMinutes()} phút</span>
       </div>
+      <a class="link-underline-primary blog-detail" href="#" data-blog-id="${
+        post._id
+      }">#View more ${post.title}</a>
       <hr />
       `;
 
@@ -193,7 +196,7 @@ const app = {
 
         this.register({ email, password, name });
       }
-      if (e.target.classList.contains("writePost")) {
+      if (e.target.classList.contains("write-post")) {
         const titleEl = e.target.querySelector(".title");
         const contentEl = e.target.querySelector(".content");
 
@@ -212,29 +215,35 @@ const app = {
         e.preventDefault();
         this.logout();
       }
-      if (e.target.classList.contains("loginBtn")) {
+      if (e.target.classList.contains("login-btn")) {
         e.preventDefault();
         this.renderLoginForm();
       }
-      if (e.target.classList.contains("registerBtn")) {
+      if (e.target.classList.contains("register-btn")) {
         e.preventDefault();
         this.renderRegisterForm();
       }
-      if (e.target.classList.contains("loginBack")) {
+      if (e.target.classList.contains("login-back")) {
         e.preventDefault();
-        this.isShowUserDetail = false;
+        this.isShowDetail = false;
         this.render();
       }
-      if (e.target.classList.contains("registerBack")) {
+      if (e.target.classList.contains("register-back")) {
         e.preventDefault();
         this.renderLoginForm();
       }
       if (e.target.classList.contains("username")) {
-        if (!this.isShowUserDetail) {
+        if (!this.isShowDetail) {
           e.preventDefault();
-          this.isShowUserDetail = true;
+          this.isShowDetail = true;
           this.showUserDetail(e.target.dataset.userId, e.target.textContent);
         }
+      }
+
+      if (e.target.classList.contains("blog-detail")) {
+        e.preventDefault();
+        this.isShowDetail = true;
+        this.showBlogDetail(e.target.dataset.blogId);
       }
     });
 
@@ -252,13 +261,13 @@ const app = {
               title: "Thất bại!",
               message: "Vui lòng chọn thời gian khác",
               type: "error",
-              duration: 5000,
+              duration: 2000,
             })
           : this.showToast({
               title: "Thành công!",
               message: `Bài viết sẽ được đăng vào ${relativeTime}`,
               type: "success",
-              duration: 5000,
+              duration: 2000,
             });
       }
     });
@@ -269,7 +278,7 @@ const app = {
       if (
         scrollTop + clientHeight >= scrollHeight - 5 &&
         !this.endOfPosts &&
-        !this.isShowUserDetail
+        !this.isShowDetail
       ) {
         // this.showLoader();
         const loadDiv = document.createElement("div");
@@ -285,15 +294,66 @@ const app = {
       }
     });
   },
+  showBlogDetail: async function (blogId) {
+    try {
+      const { response, data } = await client.get(`/blogs/${blogId}`);
+
+      const post = data.data;
+      this.root.innerHTML = `
+      <div class="posts container py-3">
+        <div class="mb-3">
+          <button type="button" class="btn btn-primary login-back mb-3">⭠ Trở về trang chủ</button>
+        </div>
+        <div class="mb-3">
+          <h2>View blog: <span style="color: #0d6efd">${post.title}</span></h2>
+        </div>
+      </div>`;
+
+      const stripHtml = (html) => html.replace(/(<([^>]+)>)/gi, "");
+      const postsEl = this.root.querySelector(".posts");
+
+      const postEl = document.createElement("div");
+      postEl.classList.add("post", "w-75");
+
+      let date = new Date(post.createdAt);
+      let oldTimestamp = date.getTime();
+      let timestamp = new Date().getTime();
+
+      let relativeTime = this.getTimeRelative(timestamp, oldTimestamp);
+
+      postEl.innerHTML = `
+            <a class="link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover" href="#">
+              <span class="username" data-user-id="${post.userId._id}">@${
+        post.userId.name
+      }</span>
+            </a>
+            <h3>${post.title}</h3>
+            <p>${post.content}</p>
+            <div class="mb-3">
+              <span><i>${relativeTime}</i></span>
+              <span>•</span>
+              <span>${date.getHours()} giờ ${date.getMinutes()} phút</span>
+            </div>
+            <hr />
+            `;
+
+      postsEl.append(postEl);
+    } catch (e) {
+      console.log(e);
+    }
+  },
   showUserDetail: async function (userId, username) {
     try {
       const { response, data } = await client.get(`/users/${userId}`);
-      const posts = data.data.blogs;
 
+      const posts = data.data.blogs;
       this.root.innerHTML = `   
       <div class="posts container py-3">
         <div class="mb-3">
-          <button type="button" class="btn btn-primary loginBack">⭠ Trở về</button>
+          <button type="button" class="btn btn-primary login-back mb-3">⭠ Trở về trang chủ</button>
+        </div>
+        <div class="mb-3">
+          <h2>View profile: <span style="color: #0d6efd">${username}</span></h2>
         </div>
       </div>`;
 
@@ -318,18 +378,23 @@ const app = {
             </a>
             <h3>${post.title}</h3> 
             <p>${post.content}</p>
-            <div>
+            <div class="mb-3">
               <span><i>${relativeTime}</i></span>
               <span>•</span>
               <span>${date.getHours()} giờ ${date.getMinutes()} phút</span>
             </div>
+            <a class="link-underline-primary blog-detail" href="#" data-blog-id="${
+              post._id
+            }">#View more ${post.title}</a>
             <hr />
             `;
 
         postsEl.append(postEl);
         document.documentElement.scrollTop = 0;
       });
-    } catch (e) {}
+    } catch (e) {
+      console.log(e);
+    }
   },
   login: async function (info) {
     this.loadingLogin(); //Thêm loading
@@ -352,7 +417,7 @@ const app = {
         title: "Thành công!",
         message: "Bạn đã đăng nhập thành công.",
         type: "success",
-        duration: 5000,
+        duration: 2000,
       });
     } catch (e) {
       this.showError(".login", e.message);
@@ -374,7 +439,7 @@ const app = {
         title: "Thành công!",
         message: "Bạn đã đăng ký thành công.",
         type: "success",
-        duration: 5000,
+        duration: 2000,
       });
     } catch (e) {
       this.showError(".register", e.message);
@@ -402,6 +467,7 @@ const app = {
 
       const profileEl = this.root.querySelector(".profile");
       const profileName = profileEl.querySelector(".name");
+      profileName.classList.add("fw-bold");
       profileName.innerText = user.data.name;
     } catch (e) {
       if (e.message === "accessToken hết hạn") {
@@ -436,7 +502,7 @@ const app = {
         title: "Thành công!",
         message: "Bạn đã đăng xuất.",
         type: "success",
-        duration: 5000,
+        duration: 2000,
       });
     } catch (e) {
       localStorage.removeItem("login_token");
@@ -445,7 +511,7 @@ const app = {
         title: "Thành công!",
         message: "Bạn đã đăng xuất.",
         type: "success",
-        duration: 5000,
+        duration: 2000,
       });
     }
   },
@@ -484,15 +550,12 @@ const app = {
         title: "Thành công!",
         message: "Bạn đã đăng bài thành công.",
         type: "success",
-        duration: 5000,
+        duration: 2000,
       });
     } catch (e) {
       if (e.message === "accessToken hết hạn") {
-        const title = titleEl.value;
-        const content = contentEl.value;
-
         await this.getRefreshToken();
-        await this.writePost({ title, content });
+        await this.writePost(info);
       }
     }
   },
@@ -550,7 +613,7 @@ const app = {
     }
   },
   loadingWrite: function (status = true) {
-    const button = this.root.querySelector(".writePost .btn");
+    const button = this.root.querySelector(".write-post .btn");
     if (status) {
       button.innerHTML = `<span class="spinner-border spinner-border-sm"></span> Loading...`;
       button.disabled = true;
@@ -569,7 +632,7 @@ const app = {
     <div class="container py-3">
       <div class="row justify-content-center">
         <div class="col-8 col-lg-6">
-          <button type="button" class="btn btn-primary loginBack">⭠ Trở về</button>
+          <button type="button" class="btn btn-primary login-back mb-3">⭠ Trở về trang chủ</button>
           <h2 class="text-center">Đăng nhập</h2>
           <form action="" class="login">
             <div class="mb-3">
@@ -582,7 +645,7 @@ const app = {
             </div>
             <div class="d-grid gap-2">
               <button class="btn btn-primary" type="submit">Đăng nhập</button>
-              <button class="btn btn-primary registerBtn" type="button">Đăng ký</button>
+              <button class="btn btn-primary register-btn" type="button">Đăng ký</button>
             </div>
             <div class="msg mt-3 text-danger text-center"></div>
           </form>
@@ -596,7 +659,7 @@ const app = {
         <div class="container py-3">
           <div class="row justify-content-center">
             <div class="col-8 col-lg-6">
-              <button type="button" class="btn btn-primary registerBack">⭠ Trở về</button>
+              <button type="button" class="btn btn-primary register-back mb-3">⭠ Trở về đăng nhập</button>
               <h2 class="text-center">Đăng ký</h2>
               <form action="" class="register">
                 <div class="mb-3">
