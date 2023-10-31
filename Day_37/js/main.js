@@ -26,7 +26,7 @@ const app = {
 
     return status;
   },
-  isShowDetail: false,
+  cantScroll: false,
   render: function () {
     let html;
 
@@ -76,7 +76,7 @@ const app = {
     html += `<div class="posts container py-3"></div>`;
 
     this.root.innerHTML = html;
-    if (!this.isShowDetail) {
+    if (!this.cantScroll) {
       this.query.page = 1;
       this.getPosts(this.query);
     }
@@ -217,17 +217,17 @@ const app = {
       }
       if (e.target.classList.contains("login-btn")) {
         e.preventDefault();
-        this.isShowDetail = true;
+        this.cantScroll = true;
         this.renderLoginForm();
       }
       if (e.target.classList.contains("register-btn")) {
         e.preventDefault();
-        this.isShowDetail = true;
+        this.cantScroll = true;
         this.renderRegisterForm();
       }
       if (e.target.classList.contains("login-back")) {
         e.preventDefault();
-        this.isShowDetail = false;
+        this.cantScroll = false;
         this.render();
       }
       if (e.target.classList.contains("register-back")) {
@@ -235,16 +235,16 @@ const app = {
         this.renderLoginForm();
       }
       if (e.target.classList.contains("username")) {
-        if (!this.isShowDetail) {
+        if (!this.cantScroll) {
           e.preventDefault();
-          this.isShowDetail = true;
+          this.cantScroll = true;
           this.showUserDetail(e.target.dataset.userId, e.target.textContent);
         }
       }
 
       if (e.target.classList.contains("blog-detail")) {
         e.preventDefault();
-        this.isShowDetail = true;
+        this.cantScroll = true;
         this.showBlogDetail(e.target.dataset.blogId);
       }
     });
@@ -280,7 +280,7 @@ const app = {
       if (
         scrollTop + clientHeight >= scrollHeight - 5 &&
         !this.endOfPosts &&
-        !this.isShowDetail
+        !this.cantScroll
       ) {
         // this.showLoader();
         const loadDiv = document.createElement("div");
