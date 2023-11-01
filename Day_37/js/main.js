@@ -96,12 +96,12 @@ const app = {
 
       postEl.innerHTML = `
       <a class="link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover" href="#">
-        <span class="username" data-user-id="${post.userId._id}">@${
+        <span class="username" data-user-id="${post.userId._id}">@${stripHtml(
         post.userId.name
-      }</span>
+      )}</span>
       </a>
-      <h3>${post.title}</h3> 
-      <p>${post.content}</p>
+      <h3>${stripHtml(post.title)}</h3> 
+      <p>${stripHtml(post.content)}</p>
       <div class="mb-3">
         <span><i>${relativeTime}</i></span>
         <span>•</span>
@@ -109,7 +109,7 @@ const app = {
       </div>
       <a class="link-underline-primary blog-detail" href="#" data-blog-id="${
         post._id
-      }">#View more ${post.title}</a>
+      }">#View more ${stripHtml(post.title)}</a>
       <hr />
       `;
 
@@ -311,12 +311,12 @@ const app = {
 
       postEl.innerHTML = `
             <a class="link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover" href="#">
-              <span class="username" data-user-id="${post.userId._id}">@${
-        post.userId.name
-      }</span>
+              <span class="username" data-user-id="${
+                post.userId._id
+              }">@${stripHtml(post.userId.name)}</span>
             </a>
-            <h3>${post.title}</h3>
-            <p>${post.content}</p>
+            <h3>${stripHtml(post.title)}</h3>
+            <p>${stripHtml(post.content)}</p>
             <div class="mb-3">
               <span><i>${relativeTime}</i></span>
               <span>•</span>
@@ -341,7 +341,9 @@ const app = {
           <button type="button" class="btn btn-primary login-back mb-3">⭠ Trở về trang chủ</button>
         </div>
         <div class="mb-3">
-          <h2>View profile: <span style="color: #0d6efd">${username}</span></h2>
+          <h2>View profile: <span style="color: #0d6efd">${stripHtml(
+            username
+          )}</span></h2>
         </div>
       </div>`;
 
@@ -360,12 +362,12 @@ const app = {
 
         postEl.innerHTML = `
             <a class="link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover" href="#">
-              <span class="username" data-user-id="${
-                post.userId
-              }">${username}</span>
+              <span class="username" data-user-id="${post.userId}">${stripHtml(
+          username
+        )}</span>
             </a>
-            <h3>${post.title}</h3> 
-            <p>${post.content}</p>
+            <h3>${stripHtml(post.title)}</h3> 
+            <p>${stripHtml(post.content)}</p>
             <div class="mb-3">
               <span><i>${relativeTime}</i></span>
               <span>•</span>
@@ -373,7 +375,7 @@ const app = {
             </div>
             <a class="link-underline-primary blog-detail" href="#" data-blog-id="${
               post._id
-            }">#View more ${post.title}</a>
+            }">#View more ${stripHtml(post.title)}</a>
             <hr />
             `;
 
