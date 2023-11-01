@@ -165,11 +165,6 @@ const app = {
         loadDiv.remove();
       }
       this.renderPosts(posts);
-    } else {
-      // this.endOfPosts = true;
-      // this.hideLoader();
-      // const footer = document.querySelector(".footer");
-      // footer.innerHTML = `<p>Đã xem hết tất cả bài viết!</p>`;
     }
   },
   addEvent: function () {
@@ -273,11 +268,7 @@ const app = {
     window.addEventListener("scroll", () => {
       const { scrollTop, scrollHeight, clientHeight } =
         document.documentElement;
-      if (
-        scrollTop + clientHeight >= scrollHeight - 5 &&
-        !this.endOfPosts &&
-        this.scrollable
-      ) {
+      if (scrollTop + clientHeight >= scrollHeight - 5 && this.scrollable) {
         const loadDiv = document.createElement("div");
         loadDiv.classList.add("loader", "container", "py-3");
         loadDiv.innerHTML = `<p class="text-center">Đang tải...</p>`;
