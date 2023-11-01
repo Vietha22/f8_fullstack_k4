@@ -274,11 +274,11 @@ const app = {
         loadDiv.innerHTML = `<p class="text-center">Đang tải...</p>`;
         if (!this.root.querySelector(".loader")) {
           this.root.append(loadDiv);
+          setTimeout(() => {
+            this.query.page++;
+            this.getPosts(this.query);
+          }, 500);
         }
-        setTimeout(() => {
-          this.query.page++;
-          this.getPosts(this.query);
-        }, 500);
       }
     });
   },
@@ -498,9 +498,9 @@ const app = {
       localStorage.removeItem("login_token");
       this.render();
       this.showToast({
-        title: "Thành công!",
-        message: "Bạn đã đăng xuất.",
-        type: "success",
+        title: "Thất bại!",
+        message: "Vui lòng đăng nhập lại.",
+        type: "error",
         duration: 2000,
       });
     }
