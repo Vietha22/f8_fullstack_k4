@@ -286,6 +286,7 @@ const app = {
     try {
       const { response, data } = await client.get(`/blogs/${blogId}`);
 
+      const stripHtml = (html) => html.replace(/(<([^>]+)>)/gi, "");
       const post = data.data;
       this.root.innerHTML = `
       <div class="posts container py-3">
@@ -297,7 +298,6 @@ const app = {
         </div>
       </div>`;
 
-      const stripHtml = (html) => html.replace(/(<([^>]+)>)/gi, "");
       const postsEl = this.root.querySelector(".posts");
 
       const postEl = document.createElement("div");
@@ -334,6 +334,7 @@ const app = {
     try {
       const { response, data } = await client.get(`/users/${userId}`);
 
+      const stripHtml = (html) => html.replace(/(<([^>]+)>)/gi, "");
       const posts = data.data.blogs;
       this.root.innerHTML = `   
       <div class="posts container py-3">
@@ -347,7 +348,6 @@ const app = {
         </div>
       </div>`;
 
-      const stripHtml = (html) => html.replace(/(<([^>]+)>)/gi, "");
       const postsEl = this.root.querySelector(".posts");
 
       posts.forEach((post) => {
