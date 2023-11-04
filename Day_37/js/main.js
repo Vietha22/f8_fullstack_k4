@@ -81,7 +81,6 @@ const app = {
     this.getPosts(this.query);
   },
   renderPosts: function (posts) {
-    const stripHtml = (html) => html.replace(/(<([^>]+)>)/gi, "");
     const postsEl = this.root.querySelector(".posts");
 
     posts.forEach((post) => {
@@ -96,12 +95,12 @@ const app = {
 
       postEl.innerHTML = `
       <a class="link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover" href="#">
-        <span class="username" data-user-id="${post.userId._id}">@${stripHtml(
+        <span class="username" data-user-id="${post.userId._id}">@${
         post.userId.name
-      )}</span>
+      }</span>
       </a>
-      <h3>${stripHtml(post.title)}</h3> 
-      <p>${stripHtml(post.content)}</p>
+      <h3>${post.title}</h3> 
+      <p>${this.regexLink(post.content)}</p>
       <div class="mb-3">
         <span><i>${relativeTime}</i></span>
         <span>•</span>
@@ -109,7 +108,7 @@ const app = {
       </div>
       <a class="link-underline-primary blog-detail" href="#" data-blog-id="${
         post._id
-      }">#View more ${stripHtml(post.title)}</a>
+      }">#View more ${post.title}</a>
       <hr />
       `;
 
@@ -166,6 +165,33 @@ const app = {
       }
       this.renderPosts(posts);
     }
+  },
+  regexLink: function (content) {
+    const patternLink =
+      /(?!\S+youtube\.com)((?<!\S)(((f|ht){1}tp[s]?:\/\/|(?<!\S)www\.)[-a-zA-Z0-9@:%_\+.~#?&\/\/=]+))/gi;
+
+    const patternPhone = /((0|\+84)\d{9})/g;
+
+    const patternEmail = /([\w\.-]{3,}@[\w\.-]{1,}\.[a-z]{2,})/g;
+
+    const patternYoutube =
+      /(?:https?:\/\/)?(?:www\.)?youtu\.?be(?:\.com)?\/?.*(?:watch|embed)?(?:.*v=|v\/|\/)([\w\-_]+)((\&t=(\d+)s)|)/g;
+
+    const patternLine = /\n+/g;
+    const patternSpace = /\s+/g;
+
+    content = content
+      .replace(patternPhone, `<a href="tel:$1">$1</a>`)
+      .replace(patternEmail, `<a href="mailto:$1">$1</a>`)
+      .replace(
+        patternYoutube,
+        `<iframe src="https://www.youtube.com/embed/$1" width="387" height="218"></iframe>`
+      )
+      .replace(patternLink, `<a href="$1" target="_blank">$2</a>`)
+      .replace(patternLine, "<br>")
+      .replace(patternSpace, " ");
+
+    return content;
   },
   addEvent: function () {
     this.root.addEventListener("submit", (e) => {
@@ -254,13 +280,13 @@ const app = {
               title: "Thất bại!",
               message: "Vui lòng chọn thời gian khác",
               type: "error",
-              duration: 2000,
+              duration: 3000,
             })
           : this.showToast({
               title: "Thành công!",
               message: `Bài viết sẽ được đăng vào ${relativeTime}`,
               type: "success",
-              duration: 2000,
+              duration: 3000,
             });
       }
     });
@@ -286,7 +312,6 @@ const app = {
     try {
       const { response, data } = await client.get(`/blogs/${blogId}`);
 
-      const stripHtml = (html) => html.replace(/(<([^>]+)>)/gi, "");
       const post = data.data;
       this.root.innerHTML = `
       <div class="posts container py-3">
@@ -311,12 +336,12 @@ const app = {
 
       postEl.innerHTML = `
             <a class="link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover" href="#">
-              <span class="username" data-user-id="${
-                post.userId._id
-              }">@${stripHtml(post.userId.name)}</span>
+              <span class="username" data-user-id="${post.userId._id}">@${
+        post.userId.name
+      }</span>
             </a>
-            <h3>${stripHtml(post.title)}</h3>
-            <p>${stripHtml(post.content)}</p>
+            <h3>${post.title}</h3>
+            <p>${this.regexLink(post.content)}</p>
             <div class="mb-3">
               <span><i>${relativeTime}</i></span>
               <span>•</span>
@@ -334,7 +359,6 @@ const app = {
     try {
       const { response, data } = await client.get(`/users/${userId}`);
 
-      const stripHtml = (html) => html.replace(/(<([^>]+)>)/gi, "");
       const posts = data.data.blogs;
       this.root.innerHTML = `   
       <div class="posts container py-3">
@@ -342,9 +366,7 @@ const app = {
           <button type="button" class="btn btn-primary login-back mb-3">⭠ Trở về trang chủ</button>
         </div>
         <div class="mb-3">
-          <h2>View profile: <span style="color: #0d6efd">${stripHtml(
-            username
-          )}</span></h2>
+          <h2>View profile: <span style="color: #0d6efd">${username}</span></h2>
         </div>
       </div>`;
 
@@ -362,12 +384,12 @@ const app = {
 
         postEl.innerHTML = `
             <a class="link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover" href="#">
-              <span class="username" data-user-id="${post.userId}">${stripHtml(
-          username
-        )}</span>
+              <span class="username" data-user-id="${
+                post.userId
+              }">${username}</span>
             </a>
-            <h3>${stripHtml(post.title)}</h3> 
-            <p>${stripHtml(post.content)}</p>
+            <h3>${post.title}</h3> 
+            <p>${this.regexLink(post.content)}</p>
             <div class="mb-3">
               <span><i>${relativeTime}</i></span>
               <span>•</span>
@@ -375,7 +397,7 @@ const app = {
             </div>
             <a class="link-underline-primary blog-detail" href="#" data-blog-id="${
               post._id
-            }">#View more ${stripHtml(post.title)}</a>
+            }">#View more ${post.title}</a>
             <hr />
             `;
 
@@ -407,7 +429,7 @@ const app = {
         title: "Thành công!",
         message: "Bạn đã đăng nhập thành công.",
         type: "success",
-        duration: 2000,
+        duration: 3000,
       });
     } catch (e) {
       this.showError(".login", e.message);
@@ -429,7 +451,7 @@ const app = {
         title: "Thành công!",
         message: "Bạn đã đăng ký thành công.",
         type: "success",
-        duration: 2000,
+        duration: 3000,
       });
     } catch (e) {
       this.showError(".register", e.message);
@@ -492,16 +514,16 @@ const app = {
         title: "Thành công!",
         message: "Bạn đã đăng xuất.",
         type: "success",
-        duration: 2000,
+        duration: 3000,
       });
     } catch (e) {
       localStorage.removeItem("login_token");
       this.render();
       this.showToast({
-        title: "Thất bại!",
-        message: "Vui lòng đăng nhập lại.",
-        type: "error",
-        duration: 2000,
+        title: "Thành công!",
+        message: "Bạn đã đăng xuất.",
+        type: "success",
+        duration: 3000,
       });
     }
   },
@@ -540,7 +562,7 @@ const app = {
         title: "Thành công!",
         message: "Bạn đã đăng bài thành công.",
         type: "success",
-        duration: 2000,
+        duration: 3000,
       });
     } catch (e) {
       if (e.message === "accessToken hết hạn") {
@@ -570,15 +592,18 @@ const app = {
         throw new Error("Unauthorize");
       }
 
-      console.log("Lấy token mới");
-
       const newToken = data.data.token;
       localStorage.setItem("login_token", JSON.stringify(newToken));
     } catch (e) {
       if (e.message === "Unauthorize") {
         localStorage.removeItem("login_token");
         this.render();
-        console.log("Vui lòng đăng nhập lại để lấy refreshToken mới!");
+        this.showToast({
+          title: "Hết hạn!",
+          message: "Vui lòng đăng nhập lại.",
+          type: "error",
+          duration: 3000,
+        });
       }
     }
   },
