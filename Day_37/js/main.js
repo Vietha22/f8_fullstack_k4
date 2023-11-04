@@ -168,14 +168,14 @@ const app = {
   },
   regexLink: function (content) {
     const patternLink =
-      /(?!\S+youtube\.com)((?<!\S)(((f|ht){1}tp[s]?:\/\/|(?<!\S)www\.)[-a-zA-Z0-9@:%_\+.~#?&\/\/=]+))/gi;
+      /(?!\S+youtube\.com)((?<!\S)(((f|ht){1}tp[s]?:\/\/|(?<!\S)www\.)([-a-zA-Z0-9@:%_\+.~#?&\/\/=]+)))/gi;
 
     const patternPhone = /((0|\+84)\d{9})/g;
 
     const patternEmail = /([\w\.-]{3,}@[\w\.-]{1,}\.[a-z]{2,})/g;
 
     const patternYoutube =
-      /(?:https?:\/\/)?(?:www\.)?youtu\.?be(?:\.com)?\/?.*(?:watch|embed)?(?:.*v=|v\/|\/)([\w\-_]+)((\&t=(\d+)s)|)/g;
+      /(?:https:\/\/www\.youtube\.com\/watch\?v=([\w-]+)(?:&[\w-]+=[\w-]+)*)|(?:https:\/\/youtu\.be\/([\w-]+))/g;
 
     const patternLine = /\n+/g;
     const patternSpace = /\s+/g;
@@ -187,7 +187,7 @@ const app = {
         patternYoutube,
         `<iframe src="https://www.youtube.com/embed/$1" width="387" height="218"></iframe>`
       )
-      .replace(patternLink, `<a href="$1" target="_blank">$2</a>`)
+      .replace(patternLink, `<a href="//$5" target="_blank">$1</a>`)
       .replace(patternLine, "<br>")
       .replace(patternSpace, " ");
 
