@@ -100,7 +100,7 @@ const app = {
       }</span>
       </a>
       <h3>${post.title}</h3> 
-      <p>${this.regexLink(post.content)}</p>
+      <p>${this.loadMore(this.regexLink(post.content))}</p>
       <div class="mb-3">
         <span><i>${relativeTime}</i></span>
         <span>•</span>
@@ -166,6 +166,18 @@ const app = {
       this.renderPosts(posts);
     }
   },
+  loadMore: function (content) {
+    content =
+      content.slice(
+        0,
+        content.indexOf(
+          "<br>",
+          content.indexOf("<br>", content.indexOf("<br>") + 1) + 1
+        )
+      ) + `<br>...`;
+
+    return content;
+  },
   regexLink: function (content) {
     const patternLink =
       /(?!\S+youtube\.com)((?<!\S)(((f|ht){1}tp[s]?:\/\/|(?<!\S)www\.)([-a-zA-Z0-9@:%_\+.~#?&\/\/=]+)))/gi;
@@ -193,6 +205,7 @@ const app = {
 
     return content;
   },
+
   addEvent: function () {
     this.root.addEventListener("submit", (e) => {
       e.preventDefault();
@@ -389,7 +402,7 @@ const app = {
               }">${username}</span>
             </a>
             <h3>${post.title}</h3> 
-            <p>${this.regexLink(post.content)}</p>
+            <p>${this.loadMore(this.regexLink(post.content))}</p>
             <div class="mb-3">
               <span><i>${relativeTime}</i></span>
               <span>•</span>
