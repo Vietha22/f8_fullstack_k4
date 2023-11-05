@@ -174,7 +174,7 @@ const app = {
           "<br>",
           content.indexOf("<br>", content.indexOf("<br>") + 1) + 1
         )
-      ) + `<br>...`;
+      ) + `<br><span style="font-style: italic">...Còn tiếp</span>`;
 
     return content;
   },
