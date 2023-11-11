@@ -1,7 +1,11 @@
 import React from "react";
-import TodoItem from "./TodoItem";
+import TodoItem from "../TodoItem/TodoItem";
 
 class TodoList extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+
   render() {
     const { todos, toggleTodo, deleteTodo, editTodo } = this.props;
     return (
@@ -19,7 +23,7 @@ class TodoList extends React.Component {
         {!todos ||
           (todos.length === 0 && (
             <li className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 flex flex-col my-2">
-              Khong co todo
+              Không có todo
             </li>
           ))}
       </ul>

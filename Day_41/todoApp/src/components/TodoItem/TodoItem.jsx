@@ -15,6 +15,13 @@ class TodoItem extends React.Component {
     }));
   };
 
+  cancelBtn = (todo, isCompleted) => {
+    this.setState((prevState) => ({
+      todo: { ...prevState.todo, todo: todo, isCompleted: isCompleted },
+    }));
+    this.toggleEdit();
+  };
+
   handleChangeInput = (e) => {
     this.setState((prevState) => ({
       todo: { ...prevState.todo, todo: e.target.value },
@@ -36,7 +43,6 @@ class TodoItem extends React.Component {
 
   render() {
     const { todo, deleteTodo } = this.props;
-    console.log(this.state.isEditing);
     return (
       <li className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 flex flex-col my-2">
         <div>
@@ -55,7 +61,7 @@ class TodoItem extends React.Component {
           {this.state.isEditing ? (
             <>
               <div className="flex items-center">
-                <label htmlFor="check" className="mr-2 ">
+                <label htmlFor="check" className="mr-2">
                   {this.state.todo.isCompleted ? "Completed" : "Not completed"}
                 </label>
                 <input
@@ -70,7 +76,9 @@ class TodoItem extends React.Component {
               <div className="flex items-center">
                 <button
                   className="bg-orange-500 hover:bg-orange-700 text-white  font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mr-2"
-                  onClick={this.toggleEdit}
+                  onClick={() => {
+                    this.cancelBtn(todo.todo, todo.isCompleted);
+                  }}
                 >
                   Thoát
                 </button>

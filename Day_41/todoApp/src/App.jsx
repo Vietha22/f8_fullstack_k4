@@ -1,6 +1,7 @@
 import React from "react";
-import TodoList from "./components/TodoList";
-import AddTodo from "./components/AddTodo";
+import TodoList from "./components/TodoList/TodoList";
+import AddTodo from "./components/AddTodo/AddTodo";
+import Loader from "./components/Loader/Loader";
 
 import "./App.css";
 import {
@@ -19,6 +20,7 @@ class App extends React.Component {
       todos: [],
       apiKey: localStorage.getItem("apiKey"),
       userEmail: localStorage.getItem("userEmail"),
+      isLoading: false,
     };
   }
 
@@ -29,28 +31,45 @@ class App extends React.Component {
         "halongviet22@gmail.com"
       );
       if (email) {
-        const { data } = await authApi(email);
-
-        const { apiKey } = data.data;
-        localStorage.setItem("apiKey", apiKey);
-        this.setState({ apiKey, userEmail: email });
-        localStorage.setItem("userEmail", email);
-        location.reload();
+        try {
+          this.setState({ isLoading: true });
+          const { data } = await authApi(email);
+          if (data.code === 401) {
+            throw new Error("Lỗi");
+          }
+          const { apiKey } = data.data;
+          localStorage.setItem("apiKey", apiKey);
+          localStorage.setItem("userEmail", email);
+          this.setState({ apiKey, userEmail: email });
+          location.reload();
+        } catch (e) {
+          location.reload();
+        }
       }
     }
     if (this.state.apiKey) {
+      this.setState({ isLoading: true });
       const { data } = await getListTodo();
       const todos = data?.data?.listTodo;
-      this.setState({ todos });
+      this.setState({ todos, isLoading: false });
     }
   }
 
   addTodo = async (newTodo) => {
-    const { data } = await addTodoApi(newTodo);
-    const todo = data?.data;
-    this.setState((prevState) => ({
-      todos: [todo, ...prevState.todos],
-    }));
+    try {
+      this.setState({ isLoading: true });
+      const { data } = await addTodoApi(newTodo);
+      if (data.code === 401) {
+        throw new Error("Lỗi");
+      }
+      const todo = data?.data;
+      this.setState((prevState) => ({
+        todos: [todo, ...prevState.todos],
+        isLoading: false,
+      }));
+    } catch (e) {
+      location.reload();
+    }
   };
 
   toggleTodo = (id) => {
@@ -62,27 +81,46 @@ class App extends React.Component {
   };
 
   deleteTodo = async (id) => {
-    const data = await deleteTodoApi(id);
-    console.log(data);
-    this.setState((prevState) => ({
-      todos: prevState.todos.filter((todo) => todo._id !== id),
-    }));
+    try {
+      this.setState({ isLoading: true });
+      const { data } = await deleteTodoApi(id);
+      if (data.code === 401) {
+        throw new Error("Lỗi");
+      }
+      this.setState((prevState) => ({
+        todos: prevState.todos.filter((todo) => todo._id !== id),
+        isLoading: false,
+      }));
+    } catch (e) {
+      location.reload();
+    }
   };
 
-  editTodo = async (todoItem) => {
-    await editTodoApi(todoItem);
-    this.setState((prevState) => ({
-      todos: prevState.todos.map((item) =>
-        item._id === todoItem._id ? { ...item, todo: todoItem.todo } : item
-      ),
-    }));
+  editTodo = async (todo) => {
+    try {
+      this.setState({ isLoading: true });
+      const { data } = await editTodoApi(todo);
+      if (data.code === 401) {
+        throw new Error("Lỗi");
+      }
+      this.setState((prevState) => ({
+        todos: prevState.todos.map((item) =>
+          item._id === todo._id
+            ? { ...item, todo: todo.todo, isCompleted: todo.isCompleted }
+            : item
+        ),
+        isLoading: false,
+      }));
+    } catch (e) {
+      location.reload();
+    }
   };
 
   render() {
     return (
       <main className="flex items-center justify-center p-8">
         <div className="container bg-slate-700 p-4 flex flex-col justify-center items-center">
-          <h1 className="font-bold text-white">Welcome to TodoApp</h1>
+          <h1 className="font-bold text-white">Welcome to TodoApp!</h1>
           <AddTodo addTodo={this.addTodo} />
           <TodoList
             todos={this.state.todos}
@@ -91,6 +129,7 @@ class App extends React.Component {
             editTodo={this.editTodo}
           />
         </div>
+        {this.state.isLoading && <Loader />}
       </main>
     );
   }

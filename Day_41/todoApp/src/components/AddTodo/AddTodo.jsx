@@ -27,13 +27,13 @@ class AddTodo extends React.Component {
             value={this.state.value}
             onChange={this.updateValue}
             autoFocus
-            placeholder="Add new todo"
+            placeholder="Thêm một việc làm mới"
           />
           <button
             type="submit"
             className=" focus:outline-none focus:shadow-outline flex-shrink-0 bg-teal-500 hover:bg-teal-700 text-white font-bold py-2 px-4 rounded"
           >
-            Add Todo
+            Thêm mới
           </button>
         </div>
       </form>
