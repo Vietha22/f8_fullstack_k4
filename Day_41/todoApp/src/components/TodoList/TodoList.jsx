@@ -20,12 +20,11 @@ class TodoList extends React.Component {
               editTodo={editTodo}
             />
           ))}
-        {!todos ||
-          (todos.length === 0 && (
-            <li className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 flex flex-col my-2">
-              Không có todo
-            </li>
-          ))}
+        {todos.length === 0 && (
+          <li className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 flex flex-col my-2">
+            Không có todo
+          </li>
+        )}
       </ul>
     );
   }
