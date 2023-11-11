@@ -1,4 +1,5 @@
 import React from "react";
+import { toast } from "react-toastify";
 
 class AddTodo extends React.Component {
   constructor(props) {
@@ -12,7 +13,10 @@ class AddTodo extends React.Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    if (!this.state.value) return;
+    if (this.state.value.length < 2) {
+      toast.warning("Todo cần có trên 1 ký tự");
+      return;
+    }
     this.props.addTodo(this.state.value);
     this.setState({ value: "" });
   };

@@ -1,4 +1,5 @@
 import React from "react";
+import { toast } from "react-toastify";
 
 class TodoItem extends React.Component {
   constructor(props) {
@@ -37,6 +38,9 @@ class TodoItem extends React.Component {
   handleUpdate = () => {
     if (this.state.todo.todo.trim()) {
       this.props.editTodo(this.state.todo);
+    } else {
+      toast.warning("Todo cần có trên 1 ký tự");
+      return;
     }
     this.toggleEdit();
   };

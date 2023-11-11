@@ -2,6 +2,8 @@ import React from "react";
 import TodoList from "./components/TodoList/TodoList";
 import AddTodo from "./components/AddTodo/AddTodo";
 import Loader from "./components/Loader/Loader";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 import "./App.css";
 import {
@@ -11,7 +13,6 @@ import {
   getListTodo,
 } from "./api/todo";
 import { authApi } from "./api/auth";
-import { client } from "./utils/client";
 
 class App extends React.Component {
   constructor(props) {
@@ -30,7 +31,8 @@ class App extends React.Component {
         "Please enter your email:",
         "halongviet22@gmail.com"
       );
-      if (email) {
+      const patternEmail = /^([\w\.-]{3,}@[\w\.-]{1,}\.[a-z]{2,})$/;
+      if (patternEmail.test(email)) {
         try {
           this.setState({ isLoading: true });
           const { data } = await authApi(email);
@@ -45,10 +47,17 @@ class App extends React.Component {
         } catch (e) {
           location.reload();
         }
+      } else {
+        toast.error("Invalid email");
+        setTimeout(() => {
+          location.reload();
+        }, 2000);
       }
     }
     if (this.state.apiKey) {
+      const email = localStorage.getItem("userEmail");
       this.setState({ isLoading: true });
+      toast.success(`Chào mừng bạn ${email.slice(0, email.indexOf("@"))}`);
       const { data } = await getListTodo();
       const todos = data?.data?.listTodo;
       this.setState({ todos, isLoading: false });
@@ -62,12 +71,14 @@ class App extends React.Component {
       if (data.code === 401) {
         throw new Error("Lỗi");
       }
+      toast.success("Thêm todo thành công!");
       const todo = data?.data;
       this.setState((prevState) => ({
         todos: [todo, ...prevState.todos],
         isLoading: false,
       }));
     } catch (e) {
+      toast.error("Đã có lỗi xảy ra.");
       location.reload();
     }
   };
@@ -87,11 +98,13 @@ class App extends React.Component {
       if (data.code === 401) {
         throw new Error("Lỗi");
       }
+      toast.success("Xóa todo thành công!");
       this.setState((prevState) => ({
         todos: prevState.todos.filter((todo) => todo._id !== id),
         isLoading: false,
       }));
     } catch (e) {
+      toast.error("Đã có lỗi xảy ra.");
       location.reload();
     }
   };
@@ -103,6 +116,7 @@ class App extends React.Component {
       if (data.code === 401) {
         throw new Error("Lỗi");
       }
+      toast.success("Update todo thành công!");
       this.setState((prevState) => ({
         todos: prevState.todos.map((item) =>
           item._id === todo._id
@@ -112,6 +126,7 @@ class App extends React.Component {
         isLoading: false,
       }));
     } catch (e) {
+      toast.error("Đã có lỗi xảy ra.");
       location.reload();
     }
   };
@@ -130,6 +145,7 @@ class App extends React.Component {
           />
         </div>
         {this.state.isLoading && <Loader />}
+        <ToastContainer />
       </main>
     );
   }
