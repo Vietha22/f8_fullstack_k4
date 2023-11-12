@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import TodoList from "./components/TodoList/TodoList";
 import AddTodo from "./components/AddTodo/AddTodo";
 import Loader from "./components/Loader/Loader";
+import SearchTodo from "./components/SearchTodo/SearchTodo";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -10,6 +11,7 @@ import {
   deleteTodoApi,
   editTodoApi,
   getListTodo,
+  searchTodoApi,
 } from "./api/todo";
 import { authApi } from "./api/auth";
 
@@ -124,10 +126,18 @@ const App = () => {
     }
   };
 
+  const searchTodo = async (value) => {
+    setIsLoading(true);
+    const { data } = await searchTodoApi(value);
+    setTodos(data.data.listTodo);
+    setIsLoading(false);
+  };
+
   return (
     <main className="flex items-center justify-center p-8">
       <div className="container bg-slate-700 p-4 flex flex-col justify-center items-center">
         <h1 className="font-bold text-white">Welcome to TodoApp!</h1>
+        <SearchTodo searchTodo={searchTodo} />
         <AddTodo addTodo={addTodo} />
         <TodoList todos={todos} deleteTodo={deleteTodo} editTodo={editTodo} />
       </div>
