@@ -5,7 +5,7 @@ class TodoItem extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      todo: this.props.todo,
+      todo: props.todo,
       isEditing: false,
     };
   }
@@ -60,7 +60,6 @@ class TodoItem extends React.Component {
             onChange={this.handleChangeInput}
           />
         </div>
-
         <div className="flex items-center justify-between mt-4">
           {this.state.isEditing ? (
             <>

@@ -12,10 +12,9 @@ export const deleteTodoApi = (id) => {
   return client.delete(`/todos/${id}`);
 };
 
-export const editTodoApi = (todo) => {
-  const { _id, todo: todoText, isCompleted } = todo;
+export const editTodoApi = ({ _id, todo, isCompleted }) => {
   return client.patch(`/todos/${_id}`, {
-    todo: todoText,
+    todo,
     isCompleted,
   });
 };

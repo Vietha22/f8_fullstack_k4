@@ -82,14 +82,6 @@ class App extends React.Component {
     }
   };
 
-  toggleTodo = (id) => {
-    this.setState((prevState) => ({
-      todos: prevState.todos.map((todo) =>
-        todo.id === id ? { ...todo, completed: !todo.completed } : todo
-      ),
-    }));
-  };
-
   deleteTodo = async (id) => {
     try {
       this.setState({ isLoading: true });
@@ -138,7 +130,6 @@ class App extends React.Component {
           <AddTodo addTodo={this.addTodo} />
           <TodoList
             todos={this.state.todos}
-            toggleTodo={this.toggleTodo}
             deleteTodo={this.deleteTodo}
             editTodo={this.editTodo}
           />
