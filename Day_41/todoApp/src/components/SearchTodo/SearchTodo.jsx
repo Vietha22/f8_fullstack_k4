@@ -25,7 +25,7 @@ const SearchTodo = ({ searchTodo }) => {
 
   return (
     <form className="w-full max-w-sm" onSubmit={handleSubmit}>
-      <div className="flex items-center border-b border-red-500 py-2">
+      <div className="flex items-center border-b border-teal-500 py-2">
         <input
           className="appearance-none bg-transparent border-none w-full mr-3 py-1 px-2 leading-tight focus:outline-none text-white"
           type="text"
@@ -36,9 +36,9 @@ const SearchTodo = ({ searchTodo }) => {
         />
         <button
           type="submit"
-          className="focus:outline-none focus:shadow-outline flex-shrink-0 bg-teal-500 hover:bg-teal-700 text-white font-bold py-2 px-4 rounded"
+          className="focus:outline-none focus:shadow-outline flex-shrink-0 bg-red-500 hover:bg-teal-700 text-white font-bold py-2 px-4 rounded"
         >
-          Tìm kiếm todo
+          Tìm kiếm
         </button>
       </div>
     </form>
