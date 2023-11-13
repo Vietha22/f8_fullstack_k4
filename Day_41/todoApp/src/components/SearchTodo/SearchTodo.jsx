@@ -25,14 +25,14 @@ const SearchTodo = ({ searchTodo }) => {
 
   return (
     <form className="w-full max-w-sm" onSubmit={handleSubmit}>
-      <div className="flex items-center border-b border-teal-500 py-2">
+      <div className="flex items-center border-b border-red-500 py-2">
         <input
           className="appearance-none bg-transparent border-none w-full mr-3 py-1 px-2 leading-tight focus:outline-none text-white"
           type="text"
           value={value}
           onChange={updateValue}
           autoFocus
-          placeholder="Tìm kiếm todo"
+          placeholder="Tìm kiếm"
         />
         <button
           type="submit"
