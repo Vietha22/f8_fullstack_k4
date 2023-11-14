@@ -94,8 +94,13 @@ const App = () => {
         throw new Error("Lỗi");
       }
       toast.success("Thêm todo thành công!");
-      const todo = data?.data;
-      setTodos([todo, ...todos]);
+      // const todo = data?.data;
+      // setTodos([todo, ...todos]);
+      const { data: data1 } = await getListTodo();
+      if (data.code === 401) {
+        throw new Error("Lỗi 1");
+      }
+      setTodos(data1.data.listTodo);
       setIsLoading(false);
     } catch (e) {
       toast.error("Đã có lỗi xảy ra.");
