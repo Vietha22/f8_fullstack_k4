@@ -4,9 +4,9 @@ const { SERVER_API } = config;
 export const client = {
   serverApi: SERVER_API,
   apiKey: localStorage.getItem("apiKey"),
-  // setApiKey: function (apiKey) {
-  //   this.apiKey = apiKey;
-  // },
+  setApiKey: function (apiKey) {
+    this.apiKey = apiKey;
+  },
   send: async function (url, method = "GET", body = null) {
     url = `${this.serverApi}${url}`;
     const headers = {
