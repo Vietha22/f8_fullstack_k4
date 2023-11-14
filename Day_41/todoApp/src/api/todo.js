@@ -19,6 +19,6 @@ export const editTodoApi = ({ _id, todo, isCompleted }) => {
   });
 };
 
-export const searchTodoApi = (value) => {
-  return client.get(`/todos?q=${value}`);
+export const searchTodoApi = (query) => {
+  return client.get(`/todos${query}`);
 };

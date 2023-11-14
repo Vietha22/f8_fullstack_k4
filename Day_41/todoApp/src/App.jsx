@@ -14,6 +14,7 @@ import {
   searchTodoApi,
 } from "./api/todo";
 import { authApi } from "./api/auth";
+import { client } from "./utils/client";
 
 const App = () => {
   const [todos, setTodos] = useState([]);
@@ -24,7 +25,6 @@ const App = () => {
   useEffect(() => {
     const fetchData = async () => {
       if (!apiKey || !userEmail) {
-        // ... Xử lý giống như trong componentDidMount
         const email = prompt(
           "Please enter your email:",
           "halongviet22@gmail.com"
@@ -42,7 +42,15 @@ const App = () => {
             localStorage.setItem("userEmail", email);
             setApiKey(apiKey);
             setUserEmail(email);
-            location.reload();
+            // location.reload();
+            client.apiKey = apiKey;
+            toast.success(
+              `Chào mừng bạn ${email.slice(0, email.indexOf("@"))}`
+            );
+            const { data: data1 } = await getListTodo();
+            const todos = data1?.data?.listTodo;
+            setTodos(todos);
+            setIsLoading(false);
           } catch (e) {
             location.reload();
           }
@@ -55,19 +63,28 @@ const App = () => {
       }
 
       if (apiKey) {
-        // ... Xử lý giống như trong componentDidMount
-        const email = localStorage.getItem("userEmail");
-        setIsLoading(true);
-        toast.success(`Chào mừng bạn ${email.slice(0, email.indexOf("@"))}`);
-        const { data } = await getListTodo();
-        const todos = data?.data?.listTodo;
-        setTodos(todos);
-        setIsLoading(false);
+        try {
+          const email = localStorage.getItem("userEmail");
+          setIsLoading(true);
+          toast.success(
+            `Chào mừng bạn quay trở lại ${email.slice(0, email.indexOf("@"))}`
+          );
+          const { data } = await getListTodo();
+          if (data.code === 401) {
+            throw new Error("Lỗi");
+          }
+          const todos = data?.data?.listTodo;
+          setTodos(todos);
+          setIsLoading(false);
+        } catch (e) {
+          // localStorage.clear();
+          location.reload();
+        }
       }
     };
 
     fetchData();
-  }, [apiKey, userEmail]);
+  }, []);
 
   const addTodo = async (newTodo) => {
     try {
@@ -126,11 +143,16 @@ const App = () => {
     }
   };
 
-  const searchTodo = async (value) => {
-    setIsLoading(true);
-    const { data } = await searchTodoApi(value);
-    setTodos(data.data.listTodo);
-    setIsLoading(false);
+  const searchTodo = async (query) => {
+    try {
+      setIsLoading(true);
+      const { data } = await searchTodoApi(query);
+      if (data.code === 401) {
+        throw new Error("Lỗi");
+      }
+      setTodos(data.data.listTodo);
+      setIsLoading(false);
+    } catch (e) {}
   };
 
   return (

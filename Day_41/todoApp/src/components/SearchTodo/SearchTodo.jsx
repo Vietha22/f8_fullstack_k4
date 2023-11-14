@@ -6,6 +6,7 @@ import { useDebounce } from "../../hooks/useDebounce.js";
 const SearchTodo = ({ searchTodo }) => {
   const [value, setValue] = useState("");
   const debouncedValue = useDebounce(value, 500);
+  const [isInitialized, setIsInitialized] = useState(false);
 
   const updateValue = (e) => {
     setValue(e.target.value);
@@ -16,9 +17,16 @@ const SearchTodo = ({ searchTodo }) => {
   };
 
   useEffect(() => {
+    // Chặn việc gọi api 2 lần khi reload lại trang web
+    if (!isInitialized) {
+      setIsInitialized(true);
+      return;
+    }
+
     if (debouncedValue) {
-      searchTodo(debouncedValue);
+      searchTodo(`?q=${debouncedValue}`);
     } else {
+      // Nếu không có điều kiện isInitialized ở trên thì khi reload sẽ gọi api 2 lần
       searchTodo("");
     }
   }, [debouncedValue]);
