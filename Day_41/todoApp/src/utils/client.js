@@ -28,9 +28,9 @@ export const client = {
 
     const data = await response.json();
 
-    if (data.code === 401) {
-      localStorage.clear();
-    }
+    // if (data.code === 401) {
+    //   localStorage.clear();
+    // }
 
     return { response, data };
   },

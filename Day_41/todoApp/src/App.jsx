@@ -34,8 +34,8 @@ const App = () => {
           try {
             setIsLoading(true);
             const { data } = await authApi(email);
-            if (data.code === 401) {
-              throw new Error("Lỗi");
+            if (data.code === 400) {
+              throw new Error(data.message);
             }
             const { apiKey } = data.data;
             localStorage.setItem("apiKey", apiKey);
@@ -52,13 +52,17 @@ const App = () => {
             setTodos(todos);
             setIsLoading(false);
           } catch (e) {
-            location.reload();
+            toast.error(e.message);
+            setIsLoading(false);
+            setTimeout(() => {
+              location.reload();
+            }, 3000);
           }
         } else {
           toast.error("Invalid email");
           setTimeout(() => {
             location.reload();
-          }, 2000);
+          }, 3000);
         }
       }
 
@@ -66,18 +70,18 @@ const App = () => {
         try {
           const email = localStorage.getItem("userEmail");
           setIsLoading(true);
-          toast.success(
-            `Chào mừng bạn quay trở lại ${email.slice(0, email.indexOf("@"))}`
-          );
           const { data } = await getListTodo();
           if (data.code === 401) {
             throw new Error("Lỗi");
           }
+          toast.success(
+            `Chào mừng bạn quay trở lại ${email.slice(0, email.indexOf("@"))}`
+          );
           const todos = data?.data?.listTodo;
           setTodos(todos);
           setIsLoading(false);
         } catch (e) {
-          // localStorage.clear();
+          localStorage.clear();
           location.reload();
         }
       }
@@ -91,7 +95,7 @@ const App = () => {
       setIsLoading(true);
       const { data } = await addTodoApi(newTodo);
       if (data.code === 401) {
-        throw new Error("Lỗi");
+        throw new Error("Có lỗi xảy ra, vui lòng reload lại");
       }
       toast.success("Thêm todo thành công!");
       // const todo = data?.data;
@@ -103,8 +107,11 @@ const App = () => {
       setTodos(data1.data.listTodo);
       setIsLoading(false);
     } catch (e) {
-      toast.error("Đã có lỗi xảy ra.");
-      location.reload();
+      setIsLoading(false);
+      toast.error(e.message);
+      setTimeout(() => {
+        location.reload();
+      }, 3000);
     }
   };
 
@@ -113,15 +120,18 @@ const App = () => {
       setIsLoading(true);
       const { data } = await deleteTodoApi(id);
       if (data.code === 401) {
-        throw new Error("Lỗi");
+        throw new Error("Xóa todo thất bại");
       }
       toast.success("Xóa todo thành công!");
 
       setTodos(todos.filter((todo) => todo._id !== id));
       setIsLoading(false);
     } catch (e) {
-      toast.error("Đã có lỗi xảy ra.");
-      location.reload();
+      setIsLoading(false);
+      toast.error(e.message);
+      setTimeout(() => {
+        location.reload();
+      }, 3000);
     }
   };
 
@@ -130,7 +140,7 @@ const App = () => {
       setIsLoading(true);
       const { data } = await editTodoApi(todo);
       if (data.code === 401) {
-        throw new Error("Lỗi");
+        throw new Error("Cập nhật todo thất bại");
       }
       toast.success("Update todo thành công!");
 
@@ -143,8 +153,11 @@ const App = () => {
       );
       setIsLoading(false);
     } catch (e) {
-      toast.error("Đã có lỗi xảy ra.");
-      location.reload();
+      setIsLoading(false);
+      toast.error(e.message);
+      setTimeout(() => {
+        location.reload();
+      }, 3000);
     }
   };
 
