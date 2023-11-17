@@ -1,5 +1,6 @@
 //Import từ node_modules
 import React from "react";
+import { toast } from "react-toastify";
 //Import từ project
 import { useDispatch } from "../core/hook";
 
@@ -7,6 +8,7 @@ function ProductItem({ product }) {
   const dispatch = useDispatch();
 
   const handleAddToCart = (product) => {
+    toast.success("Đã thêm một sản phẩm vào giỏ hàng");
     dispatch({
       type: "cart/add",
       payload: product,

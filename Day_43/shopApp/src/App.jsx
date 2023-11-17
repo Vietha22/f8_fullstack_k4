@@ -36,17 +36,13 @@ function App() {
         dispatch({
           type: "login",
         });
-
         const { data: dataUser } = await getUserApi();
-
         if (dataUser.code === 401) {
           throw new Error("Lỗi");
         }
-
         const { data } = await getProductsApi(8);
         const { listProduct } = data.data;
         const { name } = dataUser.data.emailId;
-
         dispatch({
           type: "product/get",
           payload: listProduct,
