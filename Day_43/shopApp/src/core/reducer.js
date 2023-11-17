@@ -23,14 +23,14 @@ export const reducer = (state, action) => {
           ...state,
           cartItems: state.cartItems.map((item) =>
             item._id === product._id
-              ? { ...item, quantity: item.quantity + 1 }
+              ? { ...item, quantity_cart: item.quantity_cart + 1 }
               : item
           ),
         };
       } else {
         return {
           ...state,
-          cartItems: [...state.cartItems, { ...product, quantity: 1 }],
+          cartItems: [...state.cartItems, { ...product, quantity_cart: 1 }],
         };
       }
     }

@@ -19,7 +19,7 @@ function Cart() {
         type: "loading",
       });
       const checkOut = cartItems.map((item) => {
-        return { productId: item._id, quantity: item.quantity };
+        return { productId: item._id, quantity: item.quantity_cart };
       });
       const { data } = await ordersProductsApi(checkOut);
       if (data.code === 401) {
