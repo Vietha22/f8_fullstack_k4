@@ -10,7 +10,7 @@ function CartItem({ item }) {
         </div>
       </td>
       <td className="px-4 py-3">{item.quantity_cart}</td>
-      <td className="px-4 py-3">{item.quantity - item.quantity_cart}</td>
+      <td className="px-4 py-3">{item.quantity}</td>
       <td className="px-4 py-3">${item.price * item.quantity_cart}</td>
     </tr>
   );

@@ -1,6 +1,8 @@
 export const initialState = {
   products: [],
-  cartItems: [],
+  cartItems: localStorage.getItem("cart")
+    ? JSON.parse(localStorage.getItem("cart"))
+    : [],
   isLogin: false,
   isLoading: false,
 };
@@ -19,19 +21,44 @@ export const reducer = (state, action) => {
         (item) => item._id === product._id
       );
       if (itemExits) {
-        return {
+        const result = {
           ...state,
+          products: state.products.map((item) =>
+            item._id === product._id
+              ? { ...item, quantity: item.quantity - 1 }
+              : item
+          ),
           cartItems: state.cartItems.map((item) =>
             item._id === product._id
-              ? { ...item, quantity_cart: item.quantity_cart + 1 }
+              ? {
+                  ...item,
+                  quantity_cart: item.quantity_cart + 1,
+                  quantity: item.quantity - 1,
+                }
               : item
           ),
         };
+        localStorage.setItem("cart", JSON.stringify(result.cartItems));
+        return result;
       } else {
-        return {
+        const result = {
           ...state,
-          cartItems: [...state.cartItems, { ...product, quantity_cart: 1 }],
+          products: state.products.map((item) =>
+            item._id === product._id
+              ? { ...item, quantity: item.quantity - 1 }
+              : item
+          ),
+          cartItems: [
+            ...state.cartItems,
+            {
+              ...product,
+              quantity_cart: 1,
+              quantity: product.quantity - 1,
+            },
+          ],
         };
+        localStorage.setItem("cart", JSON.stringify(result.cartItems));
+        return result;
       }
     }
     case "cart/empty": {
