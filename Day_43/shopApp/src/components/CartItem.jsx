@@ -1,4 +1,4 @@
-// components/CartItem.js
+//Import từ node_modules
 import React from "react";
 
 function CartItem({ item }) {

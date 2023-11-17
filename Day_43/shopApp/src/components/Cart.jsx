@@ -1,8 +1,48 @@
-// components/Cart.js
+//Import từ node_modules
 import React from "react";
+import { toast } from "react-toastify";
+
+//Import từ project
 import CartItem from "./CartItem";
 
-function Cart({ cartItems, onCheckout }) {
+//Import api
+import { useDispatch, useSelector } from "../core/hook";
+import { ordersProductsApi } from "../api/productsApi";
+
+function Cart() {
+  const cartItems = useSelector((state) => state.cartItems);
+  const dispatch = useDispatch();
+
+  const handleCheckout = async () => {
+    try {
+      dispatch({
+        type: "loading",
+      });
+      const checkOut = cartItems.map((item) => {
+        return { productId: item._id, quantity: item.quantity };
+      });
+      const { data } = await ordersProductsApi(checkOut);
+      if (data.code === 401) {
+        throw new Error("Lỗi");
+      }
+      dispatch({
+        type: "cart/empty",
+      });
+      dispatch({
+        type: "loading",
+      });
+      toast.info("Đã thanh toán");
+    } catch (e) {
+      dispatch({
+        type: "login",
+      });
+      dispatch({
+        type: "loading",
+      });
+      toast.error("Vui lòng đăng nhập lại để tiếp tục");
+    }
+  };
+
   return (
     <>
       {cartItems.length ? (
@@ -25,7 +65,7 @@ function Cart({ cartItems, onCheckout }) {
             </table>
             <button
               className="bg-green-500 hover:bg-green-700 select-none text-white  font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-max relative right-0"
-              onClick={onCheckout}
+              onClick={handleCheckout}
             >
               Thanh toán
             </button>

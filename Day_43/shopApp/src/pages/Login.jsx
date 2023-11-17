@@ -1,7 +1,18 @@
+//Import từ node_modules
 import React, { useState } from "react";
+import { toast } from "react-toastify";
 
-const Login = ({ onLogin }) => {
+//Import từ project
+import { useDispatch } from "../core/hook";
+
+//Import api
+import { authApi } from "../api/auth";
+import { getProductsApi } from "../api/productsApi";
+import { client } from "../utils/client";
+
+const Login = () => {
   const [email, setEmail] = useState("");
+  const dispatch = useDispatch();
 
   const updateValue = (e) => {
     setEmail(e.target.value);
@@ -9,8 +20,40 @@ const Login = ({ onLogin }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onLogin(email);
+    handleLogin(email);
     setEmail("");
+  };
+
+  const handleLogin = async (email) => {
+    try {
+      dispatch({
+        type: "loading",
+      });
+      const { data } = await authApi(email);
+      if (data.code === 400) {
+        throw new Error(data.message);
+      }
+      localStorage.setItem("apiKey", data.data.apiKey);
+      client.setApiKey(data.data.apiKey);
+      localStorage.setItem("userEmail", email);
+      const { data: dataProduct } = await getProductsApi(8);
+      const { listProduct } = dataProduct.data;
+      dispatch({
+        type: "product/get",
+        payload: listProduct,
+      });
+      dispatch({
+        type: "login",
+      });
+      dispatch({
+        type: "loading",
+      });
+    } catch (e) {
+      dispatch({
+        type: "loading",
+      });
+      toast.error(e.message);
+    }
   };
 
   return (
