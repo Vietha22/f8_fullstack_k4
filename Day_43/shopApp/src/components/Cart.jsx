@@ -1,5 +1,5 @@
 //Import từ node_modules
-import React from "react";
+import React, { useEffect } from "react";
 import { toast } from "react-toastify";
 
 //Import từ project
@@ -12,6 +12,12 @@ import { ordersProductsApi } from "../api/productsApi";
 function Cart() {
   const cartItems = useSelector((state) => state.cartItems);
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    return () => {
+      dispatch({ type: "cart/empty" });
+    };
+  }, []);
 
   const handleCheckout = async () => {
     try {

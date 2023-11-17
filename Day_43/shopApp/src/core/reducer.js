@@ -62,6 +62,7 @@ export const reducer = (state, action) => {
       }
     }
     case "cart/empty": {
+      localStorage.removeItem("cart");
       return { ...state, cartItems: [] };
     }
     case "loading": {
