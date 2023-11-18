@@ -22,11 +22,6 @@ export const reducer = (state, action) => {
       );
       const result = {
         ...state,
-        products: state.products.map((item) =>
-          item._id === product._id
-            ? { ...item, quantity: item.quantity - 1 }
-            : item
-        ),
         cartItems: itemExits
           ? state.cartItems.map((item) =>
               item._id === product._id
@@ -51,7 +46,19 @@ export const reducer = (state, action) => {
     }
     case "cart/empty": {
       localStorage.removeItem("cart");
-      return { ...state, cartItems: [] };
+      const checkout = action.payload;
+      return {
+        ...state,
+        cartItems: [],
+        products: state.products.map((product) => {
+          checkout.forEach((item) => {
+            if (item.productId === product._id) {
+              product.quantity = product.quantity - item.quantity;
+            }
+          });
+          return product;
+        }),
+      };
     }
     case "loading": {
       return { ...state, isLoading: !state.isLoading };

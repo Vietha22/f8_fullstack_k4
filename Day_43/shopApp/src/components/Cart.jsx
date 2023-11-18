@@ -29,7 +29,7 @@ function Cart() {
       if (data.code === 401) {
         throw new Error("Lỗi");
       }
-      dispatch({ type: "cart/empty" });
+      dispatch({ type: "cart/empty", payload: checkOut });
       dispatch({ type: "loading" });
       toast.info("Đã thanh toán");
     } catch (e) {
