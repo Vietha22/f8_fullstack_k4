@@ -26,9 +26,7 @@ const Login = () => {
 
   const handleLogin = async (email) => {
     try {
-      dispatch({
-        type: "loading",
-      });
+      dispatch({ type: "loading" });
       const { data } = await authApi(email);
       if (data.code === 400) {
         throw new Error(data.message);
@@ -38,20 +36,11 @@ const Login = () => {
       localStorage.setItem("userEmail", email);
       const { data: dataProduct } = await getProductsApi(8);
       const { listProduct } = dataProduct.data;
-      dispatch({
-        type: "product/get",
-        payload: listProduct,
-      });
-      dispatch({
-        type: "login",
-      });
-      dispatch({
-        type: "loading",
-      });
+      dispatch({ type: "product/get", payload: listProduct });
+      dispatch({ type: "login" });
+      dispatch({ type: "loading" });
     } catch (e) {
-      dispatch({
-        type: "loading",
-      });
+      dispatch({ type: "loading" });
       toast.error(e.message);
     }
   };

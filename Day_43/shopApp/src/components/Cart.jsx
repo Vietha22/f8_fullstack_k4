@@ -21,9 +21,7 @@ function Cart() {
 
   const handleCheckout = async () => {
     try {
-      dispatch({
-        type: "loading",
-      });
+      dispatch({ type: "loading" });
       const checkOut = cartItems.map((item) => {
         return { productId: item._id, quantity: item.quantity_cart };
       });
@@ -31,20 +29,12 @@ function Cart() {
       if (data.code === 401) {
         throw new Error("Lỗi");
       }
-      dispatch({
-        type: "cart/empty",
-      });
-      dispatch({
-        type: "loading",
-      });
+      dispatch({ type: "cart/empty" });
+      dispatch({ type: "loading" });
       toast.info("Đã thanh toán");
     } catch (e) {
-      dispatch({
-        type: "login",
-      });
-      dispatch({
-        type: "loading",
-      });
+      dispatch({ type: "login" });
+      dispatch({ type: "loading" });
       toast.error("Vui lòng đăng nhập lại để tiếp tục");
     }
   };

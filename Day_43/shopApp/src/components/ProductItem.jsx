@@ -9,10 +9,7 @@ function ProductItem({ product }) {
 
   const handleAddToCart = (product) => {
     toast.success("Đã thêm một sản phẩm vào giỏ hàng");
-    dispatch({
-      type: "cart/add",
-      payload: product,
-    });
+    dispatch({ type: "cart/add", payload: product });
   };
 
   return (

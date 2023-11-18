@@ -30,12 +30,8 @@ function App() {
 
     if (apiKey) {
       try {
-        dispatch({
-          type: "loading",
-        });
-        dispatch({
-          type: "login",
-        });
+        dispatch({ type: "loading" });
+        dispatch({ type: "login" });
         const { data: dataUser } = await getUserApi();
         if (dataUser.code === 401) {
           throw new Error("Lỗi");
@@ -43,21 +39,12 @@ function App() {
         const { data } = await getProductsApi(8);
         const { listProduct } = data.data;
         const { name } = dataUser.data.emailId;
-        dispatch({
-          type: "product/get",
-          payload: listProduct,
-        });
-        dispatch({
-          type: "loading",
-        });
+        dispatch({ type: "product/get", payload: listProduct });
+        dispatch({ type: "loading" });
         toast.success(`Chào mừng bạn ${name}`);
       } catch (e) {
-        dispatch({
-          type: "login",
-        });
-        dispatch({
-          type: "loading",
-        });
+        dispatch({ type: "loading" });
+        dispatch({ type: "login" });
         toast.error("Vui lòng đăng nhập lại để tiếp tục");
       }
     }
