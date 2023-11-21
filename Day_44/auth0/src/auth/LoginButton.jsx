@@ -4,10 +4,7 @@ const LoginButton = () => {
   const { loginWithPopup } = useAuth0();
 
   return (
-    <button
-      className="bg-orange-600 py-1 px-2 rounded text-white"
-      onClick={() => loginWithPopup()}
-    >
+    <button className="login" onClick={() => loginWithPopup()}>
       Log In
     </button>
   );

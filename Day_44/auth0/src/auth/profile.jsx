@@ -1,33 +1,37 @@
 import { useAuth0 } from "@auth0/auth0-react";
-import LogoutButton from "./logout";
-import { useState } from "react";
+import LogoutButton from "./LogoutButton";
+import { useRef, useState } from "react";
 import emailjs from "@emailjs/browser";
+import Loader from "../components/Loader/Loader";
+import { toast } from "react-toastify";
 
 const Profile = () => {
   const { user } = useAuth0();
 
-  const [form, setForm] = useState({
-    email: user?.email,
-    message: "Tôi cần trợ giúp bài tập về nhà!",
-    name: user?.name,
-  });
+  const [isLoading, setLoading] = useState(false);
+
+  const form = useRef();
 
   const sendEmail = (e) => {
     e.preventDefault();
 
+    setLoading(true);
+
     emailjs
       .send(
-        "service_sej8v9v",
-        "template_grkgbhp",
+        "service_kuhtj99",
+        "template_l4nd85e",
         {
-          to_name: form.name,
-          to_email: form.email,
-          message: form.message,
+          to_email: form.current[0].defaultValue,
+          to_name: user?.name || user?.nickname,
+          message: form.current[1].defaultValue,
         },
         "sXN-cm1hpaJ668uhA"
       )
       .then(
         (result) => {
+          setLoading(false);
+          toast.success("Gửi mail thành công, cảm ơn bạn <3");
           console.log(result.text);
         },
         (error) => {
@@ -36,50 +40,33 @@ const Profile = () => {
       );
   };
 
-  const onChange = (fieldName, value) => {
-    setForm((prev) => ({
-      ...prev,
-      [fieldName]: value,
-    }));
-  };
-
   return (
-    <div className="flex flex-col items-center mt-8">
-      <div className="text-black/80 bg-white transition-all rounded border border-gray-500 overflow-hidden">
-        <div className="p-4 flex flex-col gap-4">
-          <div className="border border-[#ccc] flex flex-col  p-4 text-center items-center rounded-lg">
-            <div>
-              <img
-                src={user?.picture}
-                alt="avt"
-                className="rounded-full w-20 h-20"
-              />
-            </div>
-            <div>
-              <h1>Xin Chào {user?.name}!</h1>
-            </div>
-            <form onSubmit={sendEmail} className="flex flex-col">
-              <label>Email</label>
-              <input
-                type="email"
-                name="user_email"
-                value={form?.email}
-                onChange={(e) => onChange("email", e.target.value)}
-              />
-              <label>Message</label>
-              <textarea
-                name="message"
-                value={form.message}
-                onChange={(e) => onChange("message", e.target.value)}
-              />
-              <button className="bg-green-500 text-white" type="submit">
-                Yêu cầu hỗ trợ
-              </button>
-            </form>
-            <LogoutButton />
-          </div>
+    <div className="container">
+      <div className="content">
+        <div className="user_img">
+          <img
+            src={user?.picture}
+            alt="avt"
+            className="rounded-full w-20 h-20"
+          />
         </div>
+        <form onSubmit={sendEmail} ref={form} className="form_submit">
+          <h1 className="username" name="to_name">
+            Xin Chào {user?.name || user?.nickname}!
+          </h1>
+          <label>Email</label>
+          <input
+            type="email"
+            name="to_email"
+            defaultValue={user?.email || "example@gmail.com"}
+          />
+          <label>Message</label>
+          <textarea name="message" defaultValue="Hello ae!" />
+          <button type="submit">Yêu cầu hỗ trợ</button>
+        </form>
+        <LogoutButton />
       </div>
+      {isLoading && <Loader />}
     </div>
   );
 };
