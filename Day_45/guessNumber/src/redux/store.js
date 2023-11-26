@@ -25,8 +25,6 @@ const rootReducer = (state = initialState, action) => {
     }
     case "theme/toggle": {
       const val = state.theme === "light" ? "dark" : "light";
-      document.body.classList.remove(state.theme);
-      document.body.classList.add(val);
       localStorage.setItem("theme", val);
       return { ...state, theme: val };
     }

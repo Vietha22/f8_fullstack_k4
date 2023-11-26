@@ -44,7 +44,7 @@ export const TableResult = ({ data, playTimes, totalTimes }) => {
     if (isLast && right) {
       return <span className="text-[#4fd1c5]">{number}</span>;
     }
-    return <span className="text-red-800 ">{number}</span>;
+    return <span className="text-red-800">{number}</span>;
   };
 
   const renderPercentage = () => {
