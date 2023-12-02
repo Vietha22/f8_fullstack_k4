@@ -1,0 +1,43 @@
+#flex-item {
+  width: 22%;
+  text-align: center;
+  box-shadow: 0 0 3px #252b48;
+  border-radius: 10px;
+  padding: 1.5rem;
+  position: relative;
+}
+
+#product-head > img {
+  width: 11rem;
+  height: 7rem;
+  border-radius: 10px;
+  box-shadow: 0 3px #9d174d;
+  margin-bottom: 1.5rem;
+}
+img,
+svg {
+  vertical-align: middle;
+}
+#product-head > h2 {
+  font-size: 1.1rem;
+}
+#product-info {
+  margin-top: 3.5rem;
+}
+#product-info > h2 {
+  position: absolute;
+  left: 30px;
+  bottom: 1px;
+  font-size: 1.8rem;
+}
+#product-info > #shopping-cart {
+  position: absolute;
+  right: 30px;
+  bottom: 9px;
+  font-size: 2.2rem;
+  color: #005b41;
+}
+#product-info > h2 > #dolar-span {
+  color: #9d174d;
+  font-size: 1.8rem;
+}

@@ -1,0 +1,44 @@
+/* @tailwind base;
+@tailwind components;
+@tailwind utilities; */
+*,
+*:before,
+*:after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  outline: none;
+  border: none;
+  transition: ease-in-out 0.2s;
+  transition-property: transform;
+  -webkit-user-select: none;
+  user-select: none;
+}
+ul,
+ol,
+li {
+  list-style: none;
+}
+
+.pagination {
+  width: fit-content;
+  position: relative;
+  bottom: 1rem;
+  font-size: 1.2rem;
+  left: 50%;
+  transform: translate(-50%);
+  display: flex;
+  gap: 0.3rem;
+}
+
+.pagination .active,
+.pagination .previous,
+.pagination .next {
+  color: #9d174d;
+}
+.pagination .active {
+  display: block;
+  font-weight: 600;
+  font-size: 1.5rem;
+  line-height: 1.75rem;
+}
