@@ -10,3 +10,9 @@ export type Task = {
   column: Id;
   content: string;
 };
+
+export type Data = {
+  column: Id | undefined;
+  content: string;
+  columnName: string | undefined;
+}[];

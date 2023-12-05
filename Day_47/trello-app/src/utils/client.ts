@@ -1,21 +1,22 @@
 import { config } from "./config.ts";
+import { Data } from "../types";
 const { SERVER_API } = config;
 
 export const client = {
   serverApi: SERVER_API,
   apiKey: localStorage.getItem("apiKey"),
-  setApiKey: function (apiKey) {
+  setApiKey: function (apiKey: string) {
     this.apiKey = apiKey;
   },
-  send: async function (url, method = "GET", body = null) {
+  send: async function (url: string, method = "GET", body: Data | null) {
     url = `${this.serverApi}${url}`;
-    const headers = {
+    const headers: Record<string, string> = {
       "Content-Type": "application/json",
     };
     if (this.apiKey) {
       headers["X-Api-Key"] = `${this.apiKey}`;
     }
-    const options = {
+    const options: RequestInit = {
       method,
       headers,
     };
@@ -36,23 +37,23 @@ export const client = {
   },
 
   //http get
-  get: function (url) {
-    return this.send(url);
+  get: function (url: string, body: null) {
+    return this.send(url, "GET", body);
   },
   //http post
-  post: function (url, body) {
+  post: function (url: string, body: Data) {
     return this.send(url, "POST", body);
   },
   //http put
-  put: function (url, body) {
+  put: function (url: string, body: Data) {
     return this.send(url, "PUT", body);
   },
   //http patch
-  patch: function (url, body) {
+  patch: function (url: string, body: Data) {
     return this.send(url, "PATCH", body);
   },
   //http delete
-  delete: function (url) {
-    return this.send(url, "DELETE");
+  delete: function (url: string, body: null) {
+    return this.send(url, "DELETE", body);
   },
 };

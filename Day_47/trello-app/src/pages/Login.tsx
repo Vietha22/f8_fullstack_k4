@@ -1,13 +1,17 @@
-import { useState } from "react";
+import React, { useState, FormEvent } from "react";
 
-const Login = ({ onLogin }) => {
-  const [email, setEmail] = useState("");
+interface Props {
+  onLogin: (email: string) => void;
+}
 
-  const updateValue = (e) => {
+const Login: React.FC<Props> = ({ onLogin }: Props) => {
+  const [email, setEmail] = useState<string>("");
+
+  const updateValue = (e: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     onLogin(email);
     setEmail("");

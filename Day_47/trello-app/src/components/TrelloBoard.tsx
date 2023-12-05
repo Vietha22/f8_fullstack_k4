@@ -47,9 +47,9 @@ function TrelloBoard() {
       const columnId = columns.find((col) => col.column === task.column);
 
       return {
-        column: columnId.column,
+        column: columnId?.column,
         content: task.content,
-        columnName: columnId.columnName,
+        columnName: columnId?.columnName,
       };
     });
   };
@@ -304,7 +304,7 @@ function TrelloBoard() {
 
     // Im dropping a Task over another Task
     if (isActiveATask && isOverATask) {
-      let newTasks: Task[];
+      let newTasks: Task[] = [];
       setTasks((tasks) => {
         const activeIndex = tasks.findIndex((t) => t._id === activeId);
         const overIndex = tasks.findIndex((t) => t._id === overId);
@@ -327,7 +327,7 @@ function TrelloBoard() {
 
     // Im dropping a Task over a column
     if (isActiveATask && isOverAColumn) {
-      let newTasks: Task[];
+      let newTasks: Task[] = [];
       setTasks((tasks) => {
         const activeIndex = tasks.findIndex((t) => t._id === activeId);
 
