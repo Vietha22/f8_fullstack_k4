@@ -32,7 +32,7 @@ const Login: React.FC<Props> = ({ onLogin }: Props) => {
           type="email"
           id="email"
           name="email"
-          className="mt-1 block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+          className="mt-1 block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm text-black"
           placeholder="example@example.com"
         />
         <button
