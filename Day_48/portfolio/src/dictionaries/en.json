@@ -1,0 +1,66 @@
+{
+    "header": {
+        "name": "Ha Long Viet"
+    },
+    "home": {
+        "self": {
+            "name": "Ha Long Viet",
+            "desc": "Started exposure to the first programming language at the age of 18, constantly trying and learning to improve myself."
+        },
+        "skills": {
+            "title": "My skills",
+            "skill": [
+                {
+                    "title": "Web developer",
+                    "desc": "REST API, React.js, Next.js, Redux, Context, CSS3, HTML5, UI/UX, Figma, Photoshop..."
+                },
+                {
+                    "title": "Other skills",
+                    "desc": "Relatively good research and search skills. Working thinking, good teamwork skills compared to age."
+                }
+            ]
+        },
+        "history": {
+            "title": "Histories",
+            "timeline": [
+                {
+                    "year": "2016-2019",
+                    "desc": "A highschool..."
+                },
+                {
+                    "year": "2019-now",
+                    "desc": "An university..."
+                }
+            ]
+        },
+        "projects": {
+            "title": "Self project",
+            "project": [
+                {
+                    "name": "Project portfolio",
+                    "desc": "A personal blog website with posts about programming and learning. Using Next.js."
+                },
+                {
+                    "name": "Project portfolio",
+                    "desc": "A personal blog website with posts about programming and learning. Using Next.js."
+                },
+                {
+                    "name": "Project portfolio",
+                    "desc": "A personal blog website with posts about programming and learning. Using Next.js."
+                }
+            ]
+        },
+        "hobbies": {
+            "title": "My hobbies",
+            "hobby": [
+                {
+                    "desc": "Listening to music"
+                },
+                {
+                    "desc": "Reading book"
+                }
+            ]
+        },
+        "footer": "© 2023 Ha Long Viet. All rights reserved."
+    }
+}
