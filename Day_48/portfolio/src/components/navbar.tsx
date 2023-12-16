@@ -16,6 +16,7 @@ import { GithubIcon, FacebookIcon } from "@/components/icons";
 import { Locale } from "@/i18n.config";
 import { getDictionary } from "@/lib/dictionary";
 import LocaleSwitcher from "./locale-switcher";
+import { useSession } from "next-auth/react";
 
 export const Navbar = async ({ lang }: { lang: Locale }) => {
   const { header } = await getDictionary(lang);
