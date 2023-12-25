@@ -1,8 +1,10 @@
 "use client";
 import { usePathname } from "next/navigation";
+import { useUser } from "@auth0/nextjs-auth0/client";
 import Link from "next/link";
 const Header = () => {
   const pathname = usePathname();
+  const { user, isLoading } = useUser();
   const isActive = (path) => {
     return path === pathname;
   };
@@ -74,18 +76,33 @@ const Header = () => {
           >
             Liên hệ
           </Link>
-          <a
-            href="#"
-            className="p-2 lg:px-4 md:mx-2 text-indigo-600 text-center border border-transparent rounded hover:bg-indigo-100 hover:text-indigo-700 transition-colors duration-300"
-          >
-            Login
-          </a>
-          <a
-            href="#"
-            className="p-2 lg:px-4 md:mx-2 text-indigo-600 text-center border border-solid border-indigo-600 rounded hover:bg-indigo-600 hover:text-white transition-colors duration-300 mt-1 md:mt-0 md:ml-1"
-          >
-            Signup
-          </a>
+          {user && (
+            <>
+              <span className="p-2 lg:px-4 md:mx-2 text-indigo-600 text-center border border-transparent rounded hover:bg-indigo-100 hover:text-indigo-700 transition-colors duration-300">
+                Hi, {user.email}
+              </span>
+              <a
+                href="/my-mindmap"
+                className="p-2 lg:px-4 md:mx-2 text-indigo-600 text-center border border-transparent rounded hover:bg-indigo-100 hover:text-indigo-700 transition-colors duration-300"
+              >
+                MindMap
+              </a>
+              <a
+                href="/api/auth/logout"
+                className="p-2 lg:px-4 md:mx-2 text-indigo-600 text-center border border-solid border-indigo-600 rounded hover:bg-indigo-600 hover:text-white transition-colors duration-300 mt-1 md:mt-0 md:ml-1"
+              >
+                Đăng xuất
+              </a>
+            </>
+          )}
+          {!isLoading && !user && (
+            <a
+              href="/api/auth/login"
+              className="p-2 lg:px-4 md:mx-2 text-indigo-600 text-center border border-solid border-indigo-600 rounded hover:bg-indigo-600 hover:text-white transition-colors duration-300 mt-1 md:mt-0 md:ml-1"
+            >
+              Đăng nhập
+            </a>
+          )}
         </div>
       </div>
     </nav>
