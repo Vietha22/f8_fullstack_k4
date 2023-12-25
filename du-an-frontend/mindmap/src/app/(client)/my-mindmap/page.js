@@ -1,6 +1,12 @@
 import FlowWithProvider from "@/components/FlowWithProvider";
+import { getSession } from "@auth0/nextjs-auth0";
+import { redirect } from "next/navigation";
 
-const Mindmap = () => {
+const Mindmap = async () => {
+  const session = await getSession();
+  if (!session) {
+    redirect("/api/auth/login");
+  }
   return (
     <div className="py-5 mx-auto">
       <div className="text-start">
