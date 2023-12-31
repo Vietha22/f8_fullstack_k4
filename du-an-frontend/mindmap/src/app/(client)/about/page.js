@@ -1,3 +1,8 @@
+export const metadata = {
+  title: "Giới thiệu - Mindmap Flow",
+  description: "Mindmap Flow - Công cụ xây dựng sơ đồ tư duy mạnh mẽ",
+};
+
 const About = () => {
   return (
     <div className="2xl:container 2xl:mx-auto lg:py-16 lg:px-20 md:py-12 md:px-6 py-9 px-4">
