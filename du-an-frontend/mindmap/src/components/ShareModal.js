@@ -6,19 +6,22 @@ import { useState } from "react";
 import { toast } from "react-toastify";
 
 const ShareModal = ({ setModalOn, nodes, edges, dataMindMap }) => {
-  const [isPrivate, setIsPrivate] = useState(dataMindMap?.isPrivate);
   const router = useRouter();
+  const [isPrivate, setIsPrivate] = useState(dataMindMap?.isPrivate);
+  const [title, setTitle] = useState("Mindmap không có tên");
+  const [desc, setDesc] = useState("Chưa có mô tả");
+  const [img, setImg] = useState(
+    "http://f8-mindmap.sanphamkythuat.online:880/_next/static/media/so-do-tu-duy.95dad645.jpg"
+  );
   const changePrivate = () => {
     setIsPrivate(!isPrivate);
   };
-  const saveMap = async (id) => {
-    const data = { nodes, edges };
-
+  const saveSeo = async (id) => {
     await axios.patch(`/api/mindMap/${id}`, {
-      //   name: title,
-      //   description: desc,
       isPrivate: isPrivate,
-      //   data: JSON.stringify(data),
+      seo_title: isPrivate ? null : title,
+      seo_desc: isPrivate ? null : desc,
+      seo_img: isPrivate ? null : img,
     });
     toast.success("Đã lưu thành công", {
       position: "top-right",
@@ -105,20 +108,21 @@ const ShareModal = ({ setModalOn, nodes, edges, dataMindMap }) => {
                     <input
                       id="share-input"
                       className="peer h-10 w-full rounded-md bg-gray-50 px-4 drop-shadow-sm transition-all duration-200 ease-in-out focus:bg-white focus:ring-2 focus:ring-blue-400 outline-none"
-                      readOnly=""
+                      readOnly
                       type="url"
                       defaultValue={`https://f8-fullstack-k4-mindmap.vercel.app/my-mindmap/${dataMindMap?.id}`}
                     />
                   </div>
-                  {/* <div className="group relative mt-3">
+                  <div className="group relative mt-3">
                     <label className="block w-full pb-1 text-sm font-medium text-gray-500 transition-all duration-200 ease-in-out group-focus-within:text-blue-400">
                       Tiêu đề
                     </label>
                     <input
                       className="peer h-10 w-full rounded-md bg-gray-50 px-4 drop-shadow-sm transition-all duration-200 ease-in-out focus:bg-white focus:ring-2 focus:ring-blue-400 outline-none"
                       type="text"
-                      defaultValue="Mindmap không có tên"
+                      defaultValue={dataMindMap?.seo_title || title}
                       name="title"
+                      onChange={(e) => setTitle(e.target.value)}
                     />
                   </div>
                   <div className="group relative mt-3">
@@ -129,7 +133,8 @@ const ShareModal = ({ setModalOn, nodes, edges, dataMindMap }) => {
                       type="text"
                       className="peer h-20 w-full rounded-md bg-gray-50 px-4 drop-shadow-sm transition-all duration-200 ease-in-out focus:bg-white focus:ring-2 focus:ring-blue-400 outline-none"
                       name="description"
-                      defaultValue={"Chưa có mô tả"}
+                      defaultValue={dataMindMap?.seo_desc || desc}
+                      onChange={(e) => setDesc(e.target.value)}
                     />
                   </div>
                   <div className="group relative mt-3">
@@ -139,10 +144,11 @@ const ShareModal = ({ setModalOn, nodes, edges, dataMindMap }) => {
                     <input
                       className="peer h-10 w-full rounded-md bg-gray-50 px-4 drop-shadow-sm transition-all duration-200 ease-in-out focus:bg-white focus:ring-2 focus:ring-blue-400 outline-none"
                       type="url"
-                      defaultValue="http://f8-mindmap.sanphamkythuat.online:880/_next/static/media/so-do-tu-duy.95dad645.jpg"
+                      defaultValue={dataMindMap?.seo_img || img}
                       name="image"
+                      onChange={(e) => setImg(e.target.value)}
                     />
-                  </div> */}
+                  </div>
                 </>
               )}
             </div>
@@ -157,7 +163,7 @@ const ShareModal = ({ setModalOn, nodes, edges, dataMindMap }) => {
               <button
                 type="submit"
                 className="py-2 px-4 bg-blue-500 text-white rounded hover:bg-blue-700 mr-2"
-                onClick={() => saveMap(dataMindMap?.id)}
+                onClick={() => saveSeo(dataMindMap?.id)}
               >
                 <i className="fas fa-plus" /> Lưu lại
               </button>

@@ -1,6 +1,11 @@
 import mindmap from "@/assets/images/mindmap.jpg";
 import Image from "next/image";
 
+export const metadata = {
+  title: "Mindmap Flow",
+  description: "Mindmap Flow - Công cụ xây dựng sơ đồ tư duy mạnh mẽ",
+};
+
 const Home = () => {
   return (
     <div className="bg-indigo-100 py-6 md:py-12">

@@ -4,6 +4,26 @@ import { db } from "@/libs/db";
 import { redirect } from "next/navigation";
 import React from "react";
 
+export const generateMetadata = async ({ params }) => {
+  const { id } = params;
+  const detailMindmap = await db.mindmap.findUnique({ where: { id } });
+  if (!detailMindmap?.isPrivate) {
+    return {
+      title: detailMindmap?.name,
+      description: detailMindmap?.description,
+      openGraph: {
+        title: detailMindmap?.seo_title,
+        description: detailMindmap?.seo_desc,
+        images: [detailMindmap?.seo_img],
+      },
+    };
+  }
+  return {
+    title: detailMindmap?.name,
+    description: detailMindmap?.description,
+  };
+};
+
 const DetailMap = async ({ params }) => {
   const { id } = params || "";
   const currentUser = await getCurrentUser();
