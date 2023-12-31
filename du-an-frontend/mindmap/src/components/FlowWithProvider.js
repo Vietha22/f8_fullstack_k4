@@ -92,13 +92,14 @@ const AddNodeOnEdgeDrop = ({ dataMindMap, isOwner }) => {
 
   return (
     <>
-      <MindMapAction
-        setModalOn={setModalOn}
-        nodes={nodes}
-        edges={edges}
-        dataMindMap={dataMindMap}
-        isOwner={isOwner}
-      />
+      {isOwner && (
+        <MindMapAction
+          setModalOn={setModalOn}
+          nodes={nodes}
+          edges={edges}
+          dataMindMap={dataMindMap}
+        />
+      )}
       <div
         className="wrapper"
         style={{ width: "100%", height: "500px" }}

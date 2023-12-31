@@ -1,8 +1,3 @@
-export const metadata = {
-  title: "Bảng giá - Mindmap Flow",
-  description: "Mindmap Flow - Công cụ xây dựng sơ đồ tư duy mạnh mẽ",
-};
-
 const Pricing = () => {
   return (
     <div className="max-w-6xl mx-auto pt-10 pb-36 px-8">

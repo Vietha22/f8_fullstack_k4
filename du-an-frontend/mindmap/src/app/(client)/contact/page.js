@@ -1,8 +1,3 @@
-export const metadata = {
-  title: "Liên hệ - Mindmap Flow",
-  description: "Mindmap Flow - Công cụ xây dựng sơ đồ tư duy mạnh mẽ",
-};
-
 const Contact = () => {
   return (
     <div className="container mx-auto my-20 w-1/3 border text-indigo-600 bg-white">

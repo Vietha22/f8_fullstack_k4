@@ -4,11 +4,6 @@ import MindMapHeader from "@/components/MindMapHeader";
 import { db } from "@/libs/db";
 import { redirect } from "next/navigation";
 
-export const metadata = {
-  title: "Mindmap của tôi - Mindmap Flow",
-  description: "Mindmap Flow - Công cụ xây dựng sơ đồ tư duy mạnh mẽ",
-};
-
 const Mindmap = async () => {
   const currentUser = await getCurrentUser();
   if (!currentUser) return redirect("/signIn");
