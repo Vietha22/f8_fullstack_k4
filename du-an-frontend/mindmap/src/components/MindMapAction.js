@@ -7,7 +7,7 @@ import { ToastContainer, toast } from "react-toastify";
 
 import "react-toastify/dist/ReactToastify.css";
 
-const MindMapAction = ({ setModalOn, nodes, edges, dataMindMap }) => {
+const MindMapAction = ({ setModalOn, nodes, edges, dataMindMap, isOwner }) => {
   const [title, setTitle] = useState(dataMindMap?.name);
   const [desc, setDesc] = useState(dataMindMap?.description);
   const router = useRouter();
@@ -54,30 +54,32 @@ const MindMapAction = ({ setModalOn, nodes, edges, dataMindMap }) => {
               {desc}
             </p>{" "}
           </div>
-          <div className="w-1/5">
-            <div className="flex justify-end items-center">
-              <button
-                className="border-2 duration-200 ease inline-flex items-center mb-1 mr-1 transition py-1 px-2 text-sm rounded text-white border-green-600 bg-green-600 hover:bg-green-700 hover:border-green-700"
-                target="_blank"
-                rel="noopener"
-                onClick={() => saveMap(dataMindMap?.id)}
-              >
-                <i className="fa-solid fa-save" />
-                <span className="ml-2">Lưu thay đổi</span>
-              </button>
-              <button
-                className="border-2 duration-200 ease inline-flex items-center mb-1 mr-1 transition py-1 px-2 text-sm rounded text-white border-blue-600 bg-blue-600 hover:bg-blue-700 hover:border-blue-700"
-                target="_blank"
-                rel="noopener"
-                href="https://www.linkedin.com/shareArticle?mini=true&url=&title=&summary=&source="
-                aria-label="Share on Linkedin"
-                onClick={() => setModalOn(true)}
-              >
-                <i className="fa-solid fa-share" />
-                <span className="ml-2">Chia sẻ</span>
-              </button>
+          {isOwner && (
+            <div className="w-1/5">
+              <div className="flex justify-end items-center">
+                <button
+                  className="border-2 duration-200 ease inline-flex items-center mb-1 mr-1 transition py-1 px-2 text-sm rounded text-white border-green-600 bg-green-600 hover:bg-green-700 hover:border-green-700"
+                  target="_blank"
+                  rel="noopener"
+                  onClick={() => saveMap(dataMindMap?.id)}
+                >
+                  <i className="fa-solid fa-save" />
+                  <span className="ml-2">Lưu thay đổi</span>
+                </button>
+                <button
+                  className="border-2 duration-200 ease inline-flex items-center mb-1 mr-1 transition py-1 px-2 text-sm rounded text-white border-blue-600 bg-blue-600 hover:bg-blue-700 hover:border-blue-700"
+                  target="_blank"
+                  rel="noopener"
+                  href="https://www.linkedin.com/shareArticle?mini=true&url=&title=&summary=&source="
+                  aria-label="Share on Linkedin"
+                  onClick={() => setModalOn(true)}
+                >
+                  <i className="fa-solid fa-share" />
+                  <span className="ml-2">Chia sẻ</span>
+                </button>
+              </div>
             </div>
-          </div>
+          )}
         </div>
       </div>
       <ToastContainer />
