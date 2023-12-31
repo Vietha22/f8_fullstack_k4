@@ -1,3 +1,8 @@
+export const metadata = {
+  title: "Tính năng chính - Mindmap Flow",
+  description: "Mindmap Flow - Công cụ xây dựng sơ đồ tư duy mạnh mẽ",
+};
+
 const Features = () => {
   return (
     <div className="feature-1 py-6 md:py-12">

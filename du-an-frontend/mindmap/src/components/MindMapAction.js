@@ -1,6 +1,7 @@
 "use client";
 
 import axios from "axios";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 
@@ -9,6 +10,7 @@ import "react-toastify/dist/ReactToastify.css";
 const MindMapAction = ({ setModalOn, nodes, edges, dataMindMap }) => {
   const [title, setTitle] = useState(dataMindMap?.name);
   const [desc, setDesc] = useState(dataMindMap?.description);
+  const router = useRouter();
   const saveMap = async (id) => {
     const data = { nodes, edges };
 
@@ -27,6 +29,7 @@ const MindMapAction = ({ setModalOn, nodes, edges, dataMindMap }) => {
       progress: undefined,
       theme: "light",
     });
+    router.refresh();
   };
   return (
     <div className="text-start">
