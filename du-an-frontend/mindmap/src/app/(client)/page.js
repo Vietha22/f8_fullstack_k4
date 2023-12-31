@@ -1,3 +1,6 @@
+import mindmap from "@/assets/images/mindmap.jpg";
+import Image from "next/image";
+
 const Home = () => {
   return (
     <div className="bg-indigo-100 py-6 md:py-12">
@@ -10,16 +13,10 @@ const Home = () => {
             Sử dụng miễn phí
           </button>
           <div className="mt-4">
-            <img
-              alt="Sơ đồ tư duy"
-              loading="lazy"
-              width={1200}
-              height={630}
-              decoding="async"
-              data-nimg={1}
-              srcSet="http://f8-mindmap.sanphamkythuat.online:880/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fso-do-tu-duy.95dad645.jpg&w=1200&q=75"
-              src="http://f8-mindmap.sanphamkythuat.online:880/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fso-do-tu-duy.95dad645.jpg&w=1200&q=75"
-              style={{ color: "transparent" }}
+            <Image
+              src={mindmap}
+              alt="mindmap"
+              style={{ width: "1200", height: "630" }}
             />
           </div>
         </div>

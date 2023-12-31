@@ -1,11 +1,14 @@
 // ../../../../../components
+import getCurrentUser from "@/actions/getCurrentUser";
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 
-const ClientLayout = ({ children }) => {
+const ClientLayout = async({ children }) => {
+  const currentUser = await getCurrentUser();
+
   return (
     <div>
-      <Header />
+      <Header currentUser={currentUser}/>
       {children}
       <Footer />
     </div>
