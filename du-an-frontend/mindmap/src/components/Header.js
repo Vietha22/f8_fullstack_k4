@@ -2,7 +2,11 @@
 import { usePathname, useRouter } from "next/navigation";
 import Link from "next/link";
 import { signIn, signOut } from "next-auth/react";
-const Header = ({ currentUser }) => {
+import { useSession } from "next-auth/react";
+const Header = () => {
+  const { data } = useSession();
+  console.log(useSession());
+  const currentUser = data?.user;
   const pathname = usePathname();
   const router = useRouter();
   const isActive = (path) => {
