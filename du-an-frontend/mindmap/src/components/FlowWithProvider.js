@@ -13,6 +13,7 @@ import ReactFlow, {
   applyEdgeChanges,
 } from "reactflow";
 import "reactflow/dist/style.css";
+import "@/assets/css/reactflow.css";
 import MindMapAction from "./MindMapAction";
 import TextUpdaterNode from "./TextUpdaterNode";
 import ShareModal from "./ShareModal";
@@ -117,9 +118,13 @@ const AddNodeOnEdgeDrop = ({ dataMindMap, isOwner }) => {
           fitViewOptions={{ padding: 2 }}
           nodeOrigin={[0.5, 0]}
         />
-        {/* <Controls />
+        <Controls />
         <MiniMap />
-        <Background variant="dots" /> */}
+        <Background
+          variant="dots"
+          gap={15}
+          style={{ width: "50%", height: "500px" }}
+        />
       </div>
       {modalOn && (
         <ShareModal
