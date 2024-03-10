@@ -20,15 +20,14 @@ const App = () => {
   const [todos, setTodos] = useState([]);
   const [apiKey, setApiKey] = useState(localStorage.getItem("apiKey"));
   const [userEmail, setUserEmail] = useState(localStorage.getItem("userEmail"));
+  const [userName, setUserName] = useState(localStorage.getItem("userName"));
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
       if (!apiKey || !userEmail) {
-        const email = prompt(
-          "Please enter your email:",
-          "halongviet22@gmail.com"
-        );
+        const email = "halongviet22@gmail.com";
+        const name = prompt("Please enter your name: ");
         const patternEmail = /^([\w\.-]{3,}@[\w\.-]{1,}\.[a-z]{2,})$/;
         if (patternEmail.test(email)) {
           try {
@@ -40,13 +39,13 @@ const App = () => {
             const { apiKey } = data.data;
             localStorage.setItem("apiKey", apiKey);
             localStorage.setItem("userEmail", email);
+            localStorage.setItem("userName", name);
             setApiKey(apiKey);
             setUserEmail(email);
+            setUserName(name);
             // location.reload();
             client.apiKey = apiKey;
-            toast.success(
-              `Chào mừng bạn ${email.slice(0, email.indexOf("@"))}`
-            );
+            toast.success(`Chào mừng bạn ${name}`);
             const { data: data1 } = await getListTodo();
             const todos = data1?.data?.listTodo;
             setTodos(todos);
@@ -68,15 +67,13 @@ const App = () => {
 
       if (apiKey) {
         try {
-          const email = localStorage.getItem("userEmail");
           setIsLoading(true);
+          const name = localStorage.getItem("userName");
           const { data } = await getListTodo();
           if (data.code === 401) {
             throw new Error("Lỗi");
           }
-          toast.success(
-            `Chào mừng bạn quay trở lại ${email.slice(0, email.indexOf("@"))}`
-          );
+          toast.success(`Chào mừng bạn quay trở lại ${name}`);
           const todos = data?.data?.listTodo;
           setTodos(todos);
           setIsLoading(false);
