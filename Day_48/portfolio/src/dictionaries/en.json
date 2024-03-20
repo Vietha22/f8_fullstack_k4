@@ -12,11 +12,11 @@
             "skill": [
                 {
                     "title": "Web developer",
-                    "desc": "REST API, React.js, Next.js, Redux, Context, CSS3, HTML5, UI/UX, Figma, Photoshop..."
+                    "desc": "HTML-CSS-Javascript, React.js, Next.js, Redux"
                 },
                 {
                     "title": "Other skills",
-                    "desc": "Relatively good research and search skills. Working thinking, good teamwork skills compared to age."
+                    "desc": "Relatively good research and search skills. Working thinking, good teamwork skills."
                 }
             ]
         },
@@ -24,12 +24,12 @@
             "title": "Histories",
             "timeline": [
                 {
-                    "year": "2016-2019",
-                    "desc": "A highschool..."
+                    "year": "2019 - now",
+                    "desc": "VNU University of Engineering and Technology"
                 },
                 {
-                    "year": "2019-now",
-                    "desc": "An university..."
+                    "year": "2016 - 2019",
+                    "desc": "Ham Rong High School"
                 }
             ]
         },
@@ -37,16 +37,19 @@
             "title": "Self project",
             "project": [
                 {
-                    "name": "Project portfolio",
-                    "desc": "A personal blog website with posts about programming and learning. Using Next.js."
+                    "name": "Mindmap Application",
+                    "desc": "Application for Creating Mind Maps. Using Next.js, Prisma, MongoDB.",
+                    "link": "https://mindmap-longviet.vercel.app"
+                },
+                {
+                    "name": "Shop App",
+                    "desc": "Shopping Interface Website. Using React, TailwindCSS, Redux.",
+                    "link": "https://shop-app-longviet.vercel.app"
                 },
                 {
                     "name": "Project portfolio",
-                    "desc": "A personal blog website with posts about programming and learning. Using Next.js."
-                },
-                {
-                    "name": "Project portfolio",
-                    "desc": "A personal blog website with posts about programming and learning. Using Next.js."
+                    "desc": "Simple Todolist Web Application. Using React, TailwindCSS.",
+                    "link": "https://todolist-longviet.vercel.app"
                 }
             ]
         },

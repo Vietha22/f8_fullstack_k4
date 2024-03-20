@@ -12,11 +12,11 @@
             "skill": [
                 {
                     "title": "Kỹ năng web",
-                    "desc": "REST API, React.js, Next.js, Redux, Context, CSS3, HTML5, UI/UX, Figma, Photoshop..."
+                    "desc": "HTML-CSS-Javascript, React.js, Next.js, Redux"
                 },
                 {
                     "title": "Các kỹ năng khác",
-                    "desc": "Kỹ năng nghiên cứu và tìm kiếm tương đối tốt. Tư duy làm việc, kỹ năng làm việc nhóm tốt so với độ tuổi."
+                    "desc": "Có khả năng tự nghiên cứu và tìm kiếm. Tư duy làm việc, kỹ năng làm việc nhóm tốt."
                 }
             ]
         },
@@ -24,12 +24,12 @@
             "title": "Lịch sử",
             "timeline": [
                 {
-                    "year": "2016-2019",
-                    "desc": "Trường THPT nào đó"
+                    "year": "2019 - hiện tại",
+                    "desc": "Trường đại học Công Nghệ - ĐHQGHN"
                 },
                 {
-                    "year": "2019-now",
-                    "desc": "Trường đại học nào đó"
+                    "year": "2016 - 2019",
+                    "desc": "Trường THPT Hàm Rồng"
                 }
             ]
         },
@@ -37,16 +37,19 @@
             "title": "Các dự án cá nhân",
             "project": [
                 {
-                    "name": "Project portfolio",
-                    "desc": "Một trang web blog social với các bài viết về lập trình và học tập. Sử dụng Next.js."
+                    "name": "Mindmap Application",
+                    "desc": "Ứng Dụng Tạo Các Sơ Đồ Tư Duy. Sử dụng Next.js, Prisma, MongoDB.",
+                    "link": "https://mindmap-longviet.vercel.app"
                 },
                 {
-                    "name": "Project portfolio",
-                    "desc": "Một trang web blog social với các bài viết về lập trình và học tập. Sử dụng Next.js."
+                    "name": "Shop App",
+                    "desc": "Trang Web Giao Diện Shopping. Sử dụng React, TaildwindCSS, Redux.",
+                    "link": "https://shop-app-longviet.vercel.app"
                 },
                 {
-                    "name": "Project portfolio",
-                    "desc": "Một trang web blog social với các bài viết về lập trình và học tập. Sử dụng Next.js."
+                    "name": "Todolist App",
+                    "desc": "Ứng Dụng Web Tạo Todolist Đơn Giản. Sử dụng React, TaildwindCSS.",
+                    "link": "https://todolist-longviet.vercel.app"
                 }
             ]
         },

@@ -4,18 +4,18 @@ export const siteConfig = {
   name: "Next.js + NextUI",
   description: "Make beautiful websites regardless of your design experience.",
   navItems: [
-    {
-      label: "Blog",
-      href: "/blog",
-    },
-    {
-      label: "About",
-      href: "/about",
-    },
-    {
-      label: "Profile",
-      href: "/profile",
-    },
+    // {
+    //   label: "Blog",
+    //   href: "/blog",
+    // },
+    // {
+    //   label: "About",
+    //   href: "/about",
+    // },
+    // {
+    //   label: "Profile",
+    //   href: "/profile",
+    // },
   ],
   navMenuItems: [
     // {

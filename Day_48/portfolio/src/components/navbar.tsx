@@ -31,7 +31,7 @@ export const Navbar = async ({ lang }: { lang: Locale }) => {
             <p className="font-bold text-inherit">{header.name}</p>
           </NextLink>
         </NavbarBrand>
-        <ul className="hidden lg:flex gap-4 justify-start ml-2">
+        {/* <ul className="hidden lg:flex gap-4 justify-start ml-2">
           {siteConfig.navItems.map((item) => (
             <NavbarItem key={item.href}>
               <NextLink
@@ -46,7 +46,7 @@ export const Navbar = async ({ lang }: { lang: Locale }) => {
               </NextLink>
             </NavbarItem>
           ))}
-        </ul>
+        </ul> */}
       </NavbarContent>
 
       <NavbarContent
@@ -54,7 +54,7 @@ export const Navbar = async ({ lang }: { lang: Locale }) => {
         justify="end"
       >
         <NavbarItem className="hidden sm:flex gap-2">
-          <Link
+          {/* <Link
             isExternal
             href={siteConfig.links.facebook}
             aria-label="Facebook"
@@ -63,7 +63,7 @@ export const Navbar = async ({ lang }: { lang: Locale }) => {
           </Link>
           <Link isExternal href={siteConfig.links.github} aria-label="Github">
             <GithubIcon className="text-default-500" />
-          </Link>
+          </Link> */}
           <ThemeSwitch />
         </NavbarItem>
         <NavbarItem className="flex">

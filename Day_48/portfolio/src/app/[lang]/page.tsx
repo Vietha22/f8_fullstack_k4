@@ -2,6 +2,7 @@ import { Locale } from "@/i18n.config";
 import { getDictionary } from "@/lib/dictionary";
 import { Image, Tooltip } from "@nextui-org/react";
 import { Link } from "@nextui-org/react";
+import Avatar from "../../assets/images/avatar.jpg";
 
 export default async function Home({
   params: { lang },
@@ -23,7 +24,7 @@ export default async function Home({
                 isZoomed={true}
                 // width={240}
                 alt="NextUI Fruit Image with Zoom"
-                src="https://scontent.fhan15-1.fna.fbcdn.net/v/t1.6435-9/174610317_2925910220978212_8042285855468780937_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=be3454&_nc_eui2=AeHeXDKbS0vjKa3sSM_dwx_sTtyZjaXiBM5O3JmNpeIEztbsXUfJpF4jSeIAslaYlFBFFo7zR_h_iGrg6L11RjAN&_nc_ohc=mXLaaKjkVHQAX8SR7T6&_nc_ht=scontent.fhan15-1.fna&oh=00_AfA_7jus2GrqGd5d7BkQZqq-uSpu9YfHJUqRgvY2WYbVpw&oe=659C28C7"
+                src="https://scontent.fhan2-4.fna.fbcdn.net/v/t1.6435-9/57154246_2321760988059808_3060512825190383616_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=5f2048&_nc_eui2=AeEAPg63iTBYRoQt2dvzCyWI19a1sFdpwDTX1rWwV2nANN1Befyo8IcdFvCeZybUOUQyOgtct5Klda0b8NxHOJci&_nc_ohc=l7g8UH_jQu4AX92FjkT&_nc_ht=scontent.fhan2-4.fna&oh=00_AfBzOZVAfpZQaHZmyL3poHoloFlO-x2PQTpYM_GF5hfXQA&oe=6621B5C5"
               />
             </div>
             <p className="text-center mt-2">Frontend Developer</p>
@@ -62,16 +63,12 @@ export default async function Home({
                   <span className="text-xl font-semibold">{item.name}</span>
                   <p>{item.desc}</p>
                   <div className="flex gap-3">
-                    <Tooltip content="https://f8-fullstack-k4-portfolio.vercel.app">
-                      <Link
-                        href="https://f8-fullstack-k4-portfolio.vercel.app"
-                        underline="hover"
-                        target="_blank"
-                      >
+                    <Tooltip content={item.link}>
+                      <Link href={item.link} underline="hover" target="_blank">
                         Demo
                       </Link>
                     </Tooltip>
-                    <Tooltip content="https://github.com/Vietha22/f8_fullstack_k4/tree/main/Day_48">
+                    {/* <Tooltip content="https://github.com/Vietha22/f8_fullstack_k4/tree/main/Day_48">
                       <Link
                         href="https://github.com/Vietha22/f8_fullstack_k4/tree/main/Day_48"
                         underline="hover"
@@ -79,13 +76,13 @@ export default async function Home({
                       >
                         Code
                       </Link>
-                    </Tooltip>
+                    </Tooltip> */}
                   </div>
                 </div>
               ))}
             </div>
           </div>
-          <div>
+          {/* <div>
             <h2 className="text-2xl font-semibold text-center mb-3">
               {home.hobbies.title}
             </h2>
@@ -96,7 +93,7 @@ export default async function Home({
                 </li>
               ))}
             </ul>
-          </div>
+          </div> */}
         </div>
       </div>
       <div className="p-3 h-auto flex w-full items-center overflow-hidden subpixel-antialiased rounded-b-large pt-0.5 text-center justify-center">
